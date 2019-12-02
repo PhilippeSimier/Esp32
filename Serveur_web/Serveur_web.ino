@@ -6,8 +6,8 @@
 #define InAna 34
 #define LED 13
 
-const char* ssid     = "SNIR03";        // Nom du réseau
-const char* password = "totototo";      // clé 
+const char* ssid     = "Livebox-5648";        // Nom du réseau SNIR03
+const char* password = "vz9Lcc2RnTTmnDuD4Y";      // clé totototo
 
 WebServer server(80);
 Timer tempo(false);
