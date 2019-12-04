@@ -9,16 +9,21 @@
 #include <WiFi.h>
 
 // valeurs pour le WiFi
-const char* ssid     = "Livebox-5648";
-const char* password = "vz9Lcc2RnTTmnDuD4Y";
+//const char* ssid     = "Livebox-5648";
+//const char* password = "vz9Lcc2RnTTmnDuD4Y";
+
+const char* ssid     = "SNIR03";        // Nom du réseau
+const char* password = "totototo";      // clé 
 
 // valeurs pour le serveur Web
-const char* host     = "Example.com";
+const char* host     = "example.com";
+int cpt;
 
 void setup() {
   Serial.begin(9600);
   delay(10);
-
+  cpt = 0;
+  
   // We start by connecting to a WiFi network
 
   Serial.print("Connexion au WiFi ");
@@ -53,19 +58,23 @@ void loop() {
   // Si la connexio échoue ca sera pour la prochaine fois
   if (!client.connect(host, httpPort)) {
     Serial.println("connection failed");
+    client.stop();
+    delay(10000);
     return;
   }
 
   
   // La connexion a réussie on forme le chemin 
   String url = String("/");
-  
+  url += "index.html?t=";
+  url += cpt;
+  cpt++;
   Serial.print("demande URL: ");
   Serial.println(url);
   
-  // On l'envoie au serveur sur plusieurs lignes
+  // On l'envoie au serveur sur plusieurs lignes l'entête suivant
   // GET / HTTP/1.1
-  // Hosts: outils.plido.net
+  // Host: example.com
   // Connection: close
   // 
   // La première ligne précise à  la fin version du protocole attendu
@@ -78,8 +87,16 @@ void loop() {
                "Host: " + host + "\r\n" + 
                "Connection: close\r\n\r\n");
 
-  // On attend 10 mili-secondes
-  delay(1000);
+  
+  // attente de la réponse du serveur
+  unsigned long timeout = millis();
+  while (client.available() == 0) {
+    if (millis() - timeout > 5000) {
+        Serial.println(">>> Client Timeout !");
+        client.stop();
+        return;
+     }
+  }
   
   // On lit les données reçues, s'il y en a
   while(client.available()){
@@ -87,9 +104,11 @@ void loop() {
     Serial.print(line);
   }
 
+  
+
    // plus de données
   Serial.println();
   Serial.println("connexion fermée");
-
+  client.stop(); 
   delay(30000);
 }
