@@ -9,18 +9,18 @@
 #include <WiFi.h>
 
 // valeurs pour le WiFi
-//const char* ssid     = "Livebox-5648";
-//const char* password = "vz9Lcc2RnTTmnDuD4Y";
+const char* ssid     = "Livebox-5648";
+const char* password = "vz9Lcc2RnTTmnDuD4Y";
 
-const char* ssid     = "SNIR03";        // Nom du réseau
-const char* password = "totototo";      // clé 
+//const char* ssid     = "SNIR03";        // Nom du réseau
+//const char* password = "totototo";      // clé 
 
 // valeurs pour le serveur Web
 const char* host     = "example.com";
 int cpt;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   delay(10);
   cpt = 0;
   
@@ -110,5 +110,5 @@ void loop() {
   Serial.println();
   Serial.println("connexion fermée");
   client.stop(); 
-  delay(30000);
+  delay(5000);
 }
