@@ -12,13 +12,11 @@ int ServoMoteur::compteurChannel = 0;
 
 ServoMoteur::ServoMoteur()
 {
-  int freq = 50;
   channel = compteurChannel;
   compteurChannel++; 
   gpio = 0;
-  int resolution = 16;
   pos = 90;
-  ledcSetup(channel, freq, resolution); // channel 0, 50 Hz, 16-bit width
+  ledcSetup(channel, 50, 16); // channel 0, 50 Hz, 16-bit width
 }
 
 void ServoMoteur::Attacher(int _gpio, int _mini, int _maxi)
