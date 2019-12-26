@@ -1,0 +1,64 @@
+#include "WiFi.h"
+#include "esp_wifi.h"
+#include <WebServer.h>
+
+const char *ssid = "ESP32AP";
+const char *password = "totototo";
+
+WebServer server(80);
+
+void pageIndex() {
+  Serial.println("requete GET /");
+  server.send ( 200, "text/html", "<h1>Cela fonctionne tres bien</h1>" );
+  afficherListeClients();
+
+}
+
+void afficherListeClients(){
+  wifi_sta_list_t wifi_sta_list;
+  tcpip_adapter_sta_list_t adapter_sta_list;
+
+  memset(&wifi_sta_list, 0, sizeof(wifi_sta_list));
+  memset(&adapter_sta_list, 0, sizeof(adapter_sta_list));
+
+  esp_wifi_ap_get_sta_list(&wifi_sta_list);
+  tcpip_adapter_get_sta_list(&wifi_sta_list, &adapter_sta_list);
+
+  for (int i = 0; i < adapter_sta_list.num; i++) {
+
+    tcpip_adapter_sta_info_t station = adapter_sta_list.sta[i];
+
+    Serial.print("station nr ");
+    Serial.println(i);
+
+    Serial.print("MAC: ");
+
+    for (int i = 0; i < 6; i++) {
+
+      Serial.printf("%02X", station.mac[i]);
+      if (i < 5)Serial.print(":");
+    }
+
+    Serial.print("\nIP: ");
+    Serial.println(ip4addr_ntoa(&(station.ip)));
+    Serial.println("-----------");
+  }
+}
+
+void setup() {
+
+  Serial.begin(9600);
+  WiFi.softAP(ssid, password);
+
+  Serial.println();
+  Serial.print("IP address: ");
+  Serial.println(WiFi.softAPIP());
+
+  server.on ( "/",  pageIndex );
+  server.begin();
+
+}
+
+void loop() {
+  server.handleClient();
+}

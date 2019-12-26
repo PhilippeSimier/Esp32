@@ -8,7 +8,7 @@ WebServer server(80);
 
 void pageIndex() {
     Serial.println("requete GET /");
-    server.send ( 200, "text/html", "this works as well" );
+    server.send ( 200, "text/html", "<h1>Cela fonctionne tres bien</h1>" );
 
 }
 

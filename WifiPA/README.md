@@ -38,8 +38,50 @@ requete GET /
 requete GET /
 ```
 Un serveur DHCP distribue les adresses IP aux clients qui se connectent. Le premier client obtient 192.168.4.2
-A partir d'un client il est possible de pinger le point d'accès.
+A partir d'un client il est possible de d'effectuer ping vers le point d'accès.
 
+# Obtenir la liste des stations connectés
+Nous allons afficher les adresses IP de toutes les stations connectées au réseau.
+il est nécessaire d'inclure **esp_wifi.h** qui expose les fonctions de niveau inférieur et les structures de données pour obtenir les adresses IP de toutes les stations connectées à l'ESP32.
+La structure de type ***wifi_sta_list_t*** contient la liste des stations associées au softAP ESP32. L'appel à la fonction ***esp_wifi_ap_get_sta_list()*** permet d'obtenir la liste des adresses MAC des stations.
+La structure ***tcpip_adapter_sta_list_t*** contient  les adresses IP des stations connectées au réseau.   L'appel à la fonction ***tcpip_adapter_get_sta_list*** permet d'obtenir la liste des adresses IP .
+La structure ***tcpip_adapter_sta_list_t*** contient un membre appelé **num** qui correspond au nombre de stations actuellement connectées au réseau ESP32.
+nous pouvons faire une boucle for pour parcourir le tableau de sta et imprimer les informations sur chaque station.
+### le code complet de la fonction:
+```c
+void afficherListeClients(){
+
+  wifi_sta_list_t wifi_sta_list;
+  tcpip_adapter_sta_list_t adapter_sta_list;
+
+  memset(&wifi_sta_list, 0, sizeof(wifi_sta_list));
+  memset(&adapter_sta_list, 0, sizeof(adapter_sta_list));
+
+  esp_wifi_ap_get_sta_list(&wifi_sta_list);
+  tcpip_adapter_get_sta_list(&wifi_sta_list, &adapter_sta_list);
+
+  for (int i = 0; i < adapter_sta_list.num; i++) {
+
+    tcpip_adapter_sta_info_t station = adapter_sta_list.sta[i];
+
+    Serial.print("station nr ");
+    Serial.println(i);
+
+    Serial.print("MAC: ");
+    for (int i = 0; i < 6; i++) {
+      Serial.printf("%02X", station.mac[i]);
+      if (i < 5)Serial.print(":");
+    }
+
+    Serial.print("\nIP: ");
+    Serial.println(ip4addr_ntoa(&(station.ip)));
+    Serial.println("-----------");
+  }
+}
+
+```
+### l'affichage obtenu
+![PA wifi](/WifiPA/capture0.JPG)
 
 # Changelog
 
