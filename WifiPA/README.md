@@ -1,13 +1,21 @@
 ﻿# Point d'accès WIFI & Esp32 
 
-# Description
+## Introduction
+
+Les bibliothèques WiFi prennent en charge la configuration et la surveillance de la fonctionnalité de mise en réseau WiFi ESP32.
+
+ - Mode station (également appelé mode STA ou mode client WiFi). ESP32 se connecte à un point d'accès.
+ - Mode AP (également appelé mode Soft-AP ou mode Point d'accès). Les stations se connectent à l'ESP32. 
+ - Mode combiné AP-STA (ESP32 est à la fois un point d'accès et une station connectée à un autre point d'accès).
+
+## le mode point d'accès Wifi
 Définir l'ESP32 comme AP (point d'accès), permet d'être connecté à l'ESP32 à l'aide de n'importe quel appareil doté de capacités Wi-Fi sans avoir à se connecter à un routeur.
 
-En termes simples, lorsque l'ESP32 est défini comme point d'accès, il va créer un réseau Wi-Fi et les appareils Wi-Fi (stations) à proximité pourront s'y connecter (smartphone ou  ordinateur).
+En termes simples, lorsque l'ESP32 est défini comme point d'accès, il va créer un réseau Wi-Fi et les appareils tels-que smartphone ou  ordinateur (Wi-Fi stations) à proximité pourront s'y connecter.
  
  ![PA wifi](/WifiPA/access-point.png)
 
-# la méthode softAP
+## la méthode softAP
 Vous devez définir un nom SSID et un mot de passe pour accéder à l'ESP32. Dans cet exemple, nous définissons le nom SSID  sur **ESP32AP** ,  Le mot de passe est **totototo** la  contrainte est qu'il doit avoir au minimum **8 caractères**.
 ```c
   #include "WiFi.h"
@@ -38,7 +46,10 @@ requete GET /
 requete GET /
 ```
 Un serveur DHCP distribue les adresses IP aux clients qui se connectent. Le premier client obtient 192.168.4.2
-A partir d'un client il est possible de d'effectuer ping vers le point d'accès.
+
+## Protocol ICMP (ping)
+ICMP (Internet Control Message Protocol) est utilisé à des fins de diagnostic ou de contrôle ou généré en réponse à des erreurs dans les opérations IP. L'utilisation de réseau  **ping** est implémentée sur la base des paquets ICMP avec la valeur de champ de type 0, également appelée **Echo Reply**
+l'ESP32 répond nativement aux commandes ping. Cette fonctionnalité est très utile pour le débogage, car nous pouvons confirmer que notre ESP32 est accessible simplement en envoyant une simple commande ping à partir d'un ordinateur sur le même réseau.
 
 # Obtenir la liste des stations connectés
 Nous allons afficher les adresses IP de toutes les stations connectées au réseau.
@@ -83,6 +94,24 @@ void afficherListeClients(){
 ### l'affichage obtenu
 ![PA wifi](/WifiPA/Capture0.JPG)
 
+# Les événements WIFI
+
+Nous avons  la possibilité de travailler avec des événements WiFi qui sont déclenchés par les couches inférieures. Plus précisément, nous pouvons définir des fonctions de gestion d'événements qui sont exécutées lorsque les événements se produisent.  Cela nous donne le contrôle sur les différentes phases de la procédure de connexion WiFi, ce qui nous donne beaucoup plus de possibilité.
+Les événement wifi détectés pour le mode AP sont :
+
+ - WIFI_EVENT_AP_STACONNECTED  (station connectée)
+ - WIFI_EVENT_AP_STADISCONNECTED (station déconnectée)
+ -  WIFI_EVENT_AP_PROBEREQRECVED ( réception d'une demande de sonde)
+ 
+
+exemple de code:
+Appel de la fonction afficherListeClients quand une station se connecte au PA.
+```c
+void afficherListeClients(WiFiEvent_t event, WiFiEventInfo_t info);
+
+WiFi.onEvent(afficherListeClients, SYSTEM_EVENT_AP_STACONNECTED);
+```
+[La documentation de référence de l'API](https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/network/esp_wifi.html) 
 # Changelog
 
 **23/12/2019 : ** Ajout du dossier wifiPA . 

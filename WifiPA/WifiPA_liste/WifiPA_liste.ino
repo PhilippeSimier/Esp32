@@ -13,7 +13,7 @@ void pageIndex() {
   server.send ( 200, "text/html", "<h1>Cela fonctionne tres bien</h1>" );
 }
 
-void afficherListeClients(WiFiEvent_t event, WiFiEventInfo_t info){
+void afficherListeClients(WiFiEvent_t event, WiFiEventInfo_t info) {
   delay(500); // permet d'attendre un peu l'attribution d'une adresse par dhcp
   wifi_sta_list_t wifi_sta_list;
   tcpip_adapter_sta_list_t adapter_sta_list;
@@ -45,11 +45,22 @@ void afficherListeClients(WiFiEvent_t event, WiFiEventInfo_t info){
   }
 }
 
+void afficherDeconnexion(WiFiEvent_t event, WiFiEventInfo_t info) {
+  Serial.println("Déconnexion station");
+  Serial.print("MAC: ");
+  for (int i = 0; i < 6; i++) {
+    Serial.printf("%02X", info.sta_connected.mac[i]);
+    if (i < 5)Serial.print(":");
+  }
+  Serial.println("\n------------");
+}
+
 void setup() {
 
   Serial.begin(9600);
   WiFi.softAP(ssid, password);
   WiFi.onEvent(afficherListeClients, SYSTEM_EVENT_AP_STACONNECTED);
+  WiFi.onEvent(afficherDeconnexion, SYSTEM_EVENT_AP_STADISCONNECTED);
 
   Serial.println();
   Serial.print("IP address: ");
