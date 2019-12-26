@@ -1,4 +1,4 @@
-#include "WiFi.h"
+#include <WiFi.h>
 #include "esp_wifi.h"
 #include <WebServer.h>
 
@@ -7,14 +7,14 @@ const char *password = "totototo";
 
 WebServer server(80);
 
+
 void pageIndex() {
   Serial.println("requete GET /");
   server.send ( 200, "text/html", "<h1>Cela fonctionne tres bien</h1>" );
-  afficherListeClients();
-
 }
 
-void afficherListeClients(){
+void afficherListeClients(WiFiEvent_t event, WiFiEventInfo_t info){
+  delay(500); // permet d'attendre un peu l'attribution d'une adresse par dhcp
   wifi_sta_list_t wifi_sta_list;
   tcpip_adapter_sta_list_t adapter_sta_list;
 
@@ -49,6 +49,7 @@ void setup() {
 
   Serial.begin(9600);
   WiFi.softAP(ssid, password);
+  WiFi.onEvent(afficherListeClients, SYSTEM_EVENT_AP_STACONNECTED);
 
   Serial.println();
   Serial.print("IP address: ");
