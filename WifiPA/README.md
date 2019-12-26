@@ -81,7 +81,7 @@ void afficherListeClients(){
 
 ```
 ### l'affichage obtenu
-![PA wifi](/WifiPA/capture0.JPG)
+![PA wifi](/WifiPA/Capture0.JPG)
 
 # Changelog
 
