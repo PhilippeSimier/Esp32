@@ -13,7 +13,7 @@ Définir l'ESP32 comme AP (point d'accès), permet d'être connecté à l'ESP32 
 
 En termes simples, lorsque l'ESP32 est défini comme point d'accès, il va créer un réseau Wi-Fi et les appareils tels-que smartphone ou  ordinateur (Wi-Fi stations) à proximité pourront s'y connecter.
  
- ![PA wifi](/WifiPA/access-point.png)
+ ![PA wifi](/05_Wifi_PA/access-point.png)
 
 ## la méthode softAP
 Vous devez définir un nom SSID et un mot de passe pour accéder à l'ESP32. Dans cet exemple, nous définissons le nom SSID  sur **ESP32AP** ,  Le mot de passe est **totototo** la  contrainte est qu'il doit avoir au minimum **8 caractères**.
@@ -92,7 +92,7 @@ void afficherListeClients(){
 
 ```
 ### l'affichage obtenu
-![PA wifi](/WifiPA/Capture0.JPG)
+![PA wifi](/05_Wifi_PA/Capture0.JPG)
 
 # Les événements WIFI
 
