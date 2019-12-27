@@ -1,5 +1,5 @@
 /*
- *  This sketch sends data via HTTP GET requests to data.sparkfun.com service.
+ *  This sketch sends data via HTTP GET requests to example.com service.
  *
  *  You need to get streamId and privateKey at data.sparkfun.com and paste them
  *  below. Or just customize this script to talk to other HTTP servers.
@@ -55,7 +55,7 @@ void loop() {
   // le serveur Web attend tradionnellement sur le port 80
   const int httpPort = 80;
 
-  // Si la connexio échoue ca sera pour la prochaine fois
+  // Si la connexion échoue ca sera pour la prochaine fois
   if (!client.connect(host, httpPort)) {
     Serial.println("connection failed");
     client.stop();
