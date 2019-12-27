@@ -8,7 +8,7 @@ Si le temps d'impulsion varie d'un fabricant  à l'autre, les valeurs suivantes 
 1.50 ms = 90 degrés
 2 ms = 180 degrés
 
-![Impulsions](/Servo/signal.png)
+![Impulsions](/03_Servomoteur/signal.png)
 
 La période du signal est de 20 ms, le signal  généré doit donc avoir une fréquence de 50 Hz. 
  
