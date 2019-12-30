@@ -5,7 +5,7 @@ Les files d'attente (queues) sont très utiles pour la communication inter-tâch
 Les données insérées dans la file d'attente sont copiées plutôt que référencées. Cela signifie que si nous envoyons un entier à la file d'attente, sa valeur sera réellement copiée et si nous changeons la valeur d'origine après cela, aucun problème ne devrait se produire.
 Un aspect de comportement important est que l'insertion dans une file d'attente pleine ou la consommation d'une file d'attente vide peut bloquer les appels pendant une durée donnée (cette durée est un paramètre de l'API).
 
-##Création d'une file d'attente
+## Création d'une file d'attente
 **xQueueCreate** : Crée une nouvelle file d'attente et renvoie un descripteur par lequel la file d'attente peut être référencée. Chaque file d'attente requiert de la RAM utilisée pour conserver l'état de la file d'attente et pour contenir les éléments.
 Les éléments sont mis en file d'attente par copie, et non par référence, c'est donc le nombre d'octets qui seront copiés pour chaque élément en file d'attente. Chaque élément de la file d'attente doit être de la même taille.
 
