@@ -1,6 +1,7 @@
 #include <Wire.h>
 #include <Adafruit_BME280.h>
 
+
 typedef struct {
   float t;
   float h;
@@ -15,7 +16,7 @@ QueueHandle_t queue;
 int queueSize = 128;
 static int taskCore = 1;
 
-
+// Tache lecteur du capteur BME280
 void sensorTask( void * pvParameters ) {
   typeMesure mesureSend;
 
@@ -25,6 +26,14 @@ void sensorTask( void * pvParameters ) {
     mesureSend.p = bme.readPressure() / 100.0F;
 
     xQueueSend(queue, &mesureSend, portMAX_DELAY);
+    delay(1000);
+  }
+}
+
+// Tache blinking
+void blinkTask(void * pvParameters ) {
+  while (1) {
+    digitalWrite(2, digitalRead(2) ^ 1);
     delay(1000);
   }
 }
@@ -52,6 +61,15 @@ void setup() {
     taskCore        /* Core where the task should run */
   );
   Serial.println("Tâche sensorTask créée...");
+
+  pinMode(2, OUTPUT);
+  xTaskCreate(
+    blinkTask,      /* la fonction associée . */
+    "blinkTask",    /* le nom de la tâche */
+    10000,          /* la taille de la pile */
+    NULL,           /* parameter of the task */
+    1,              /* priorité de la tâche */
+    NULL);          /* Task handle to keep track of created task */
 }
 
 void loop() {
