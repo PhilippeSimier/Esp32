@@ -21,7 +21,7 @@ Considérez un **sémaphore binaire** comme une file d'attente qui ne peut conte
 Prenons le cas où une tâche est utilisée pour lire un périphérique. L'interrogation du périphérique serait une perte de ressources CPU et empêcherait l'exécution d'autres tâches. Il est donc préférable que la tâche passe la plupart de son temps à l'état Bloqué (permettant à d'autres tâches de s'exécuter) et ne s'exécute que lorsqu'elle a réellement quelque chose à faire. Ceci est réalisé en utilisant un sémaphore binaire. Une routine d'interruption est alors écrite pour le périphérique qui «donne» simplement le sémaphore lorsque le périphérique nécessite une lecture. 
 La tâche «prend» toujours le sémaphore (lit dans la file d'attente pour rendre la file d'attente vide), mais ne la «donne» jamais. L'interruption «donne» toujours le sémaphore (écrit dans la file d'attente pour le remplir) mais ne le prend jamais.
 
-![enter image description here](/09_FreeRTOS/02_Synchronisation/binary-semaphore.gif)
+![enter image description here](/09_FreeRTOS/02_Synchronisation/semaphore_binaire/binary-semaphore.gif)
 
 
 # Changelog
