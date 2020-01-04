@@ -12,7 +12,7 @@ Une tâche est une instance indépendante composée :
 Une seule définition de fonction tâche peut être utilisée pour créer plusieurs tâches.
 Un prototype de la fonction tâche doit :
 
- - Avoir un paramètre de type  pointeur générique **void ***
+ - Avoir un paramètre de type  pointeur générique void *
  - pas de retour **void**
  
  Exemple de code
