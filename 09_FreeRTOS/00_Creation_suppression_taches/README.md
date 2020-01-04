@@ -44,7 +44,7 @@ Lors de la création d'une tâche, le noyau alloue un espace mémoire TCB  (task
 La fonction de création de tâche  **xTaskCreate()** utilise 6 paramètres et
 retourne une valeur de type "portBASE_TYPE" :
 
-###Paramètres
+### Paramètres
 
  - **taskFunction** : pointeur sur la fonction implémentant la tâche
 
