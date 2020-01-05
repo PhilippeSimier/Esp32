@@ -2,20 +2,16 @@
 
 ## Introduction
 
-Une tâche est une fonction C en cours d’exécution qui possède ses propres droits .
-Cette fonction C comprend une boucle infinie. On ne peut donc pas en sortir  et il n'y a pas de RETURN.  Cependant on doit l'effacer si elle n'est plus utile en appelant **vTaskDelete(NULL)**. NULL est un paramètre que fait référence à la tâche elle même.
+Une **tâche** (task or thread) est une **fonction** C en cours d’exécution qui possède son propre espace mémoire **TCB**  (Task Control Block) . Cette fonction C comprend le plus souvent, **une boucle infinie**. On ne peut donc pas en sortir  et il n'y a pas de RETURN.  Cependant s'il existe une fin de tache on doit, pour libérer la mémoire, détruire l'instance ,  en appelant **vTaskDelete(NULL)**. NULL est un paramètre qui fait référence à la tâche elle même.
 
 Une tâche est une instance indépendante composée :
  - De sa propre pile
  - De sa propre copie de toutes les variables locales à la tâche
 
 Une seule définition de fonction tâche peut être utilisée pour créer plusieurs tâches.
-Un prototype de la fonction tâche doit :
 
- - Avoir un paramètre de type  pointeur générique **void ***
- - pas de retour **void**
- 
- Exemple de code
+Les tâches sont implémentées en tant que fonctions C. Leur seule spécificité est leur prototype, qui doit renvoyer **void** et prendre un paramètre de **pointeur void**, comme illustré ici.
+
 ```c
 void taskFunction (void *pvParameters)
 {
@@ -80,6 +76,13 @@ fonction taskFunction :
 xTaskCreate( taskFunction, "instance1DeTask1" , 1024, NULL, 2, NULL);
 xTaskCreate( taskFunction, "instance2DeTask1" , 1024, NULL, 2, NULL);  
 ```
+
+# Documentation FreeRTOS
+
+[Manuel du développeur](https://docs.aws.amazon.com/fr_fr/freertos-kernel/latest/dg/about.html)
+
+[Manuel de l'utilisateur](https://docs.aws.amazon.com/fr_fr/freertos/latest/userguide/what-is-amazon-freertos.html)
+
 
 # Changelog
 
