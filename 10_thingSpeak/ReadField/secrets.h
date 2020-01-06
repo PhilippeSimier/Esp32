@@ -1,8 +1,8 @@
 // Use this file to store all of the private credentials 
 // and connection details
 
-#define SECRET_SSID "Livebox-5648"		
-#define SECRET_PASS "vz9Lcc2RnTTmnDuD4Y"	
+#define SECRET_SSID "SNIR03"		
+#define SECRET_PASS "totototo"	
 
 #define SECRET_CH_ID_WEATHER_STATION 539387	     //Tessé weather station
 
