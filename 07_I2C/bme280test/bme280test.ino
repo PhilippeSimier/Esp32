@@ -1,11 +1,12 @@
 
 #include <Wire.h>
-#include <Adafruit_BME280.h>
+#include "Adafruit_BME280.h"
 
-#define SEALEVELPRESSURE_HPA (1035.9)
+#define SEALEVELPRESSURE_HPA (1030.0)
 Adafruit_BME280 bme; 
 
 unsigned long delayTime;
+void printValues();
 
 void setup() {
     Serial.begin(9600);
@@ -14,7 +15,7 @@ void setup() {
 
     unsigned status;
     
-    status = bme.begin(0x76);  
+    status = bme.begin(0x77);  
     if (!status) {
         Serial.println("Could not find a valid BME280 sensor, check wiring, address, sensor ID!");
         Serial.print("SensorID was: 0x"); Serial.println(bme.sensorID(),16);

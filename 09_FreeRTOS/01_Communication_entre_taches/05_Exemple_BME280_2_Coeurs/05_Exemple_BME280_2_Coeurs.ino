@@ -46,7 +46,7 @@ void setup() {
   queue = xQueueCreate( queueSize, sizeof( typeMesure ));
 
   Serial.println("BME280 test");
-  if (!bme.begin(0x76)) {
+  if (!bme.begin(0x77)) {
     Serial.println("Ne peut pas trouver le capteur BME280!");
     while (1);
   }

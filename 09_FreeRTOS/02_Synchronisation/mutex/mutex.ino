@@ -1,35 +1,6 @@
 
 SemaphoreHandle_t xMutex;
 
-void setup() {
-  Serial.begin(9600);
-
-  /* creation d'un Mutex */
-  xMutex = xSemaphoreCreateMutex();
-
-  xTaskCreate(
-    lowPriorityTask,    /* Task function. */
-    "lowPriorityTask",  /* name of task. */
-    1000,               /* Stack size of task */
-    NULL,               /* parameter of the task */
-    1,                  /* priority of the task */
-    NULL);              /* Task handle to keep track of created task */
-
-  delay(500);
-  /* let lowPriorityTask run first then create highPriorityTask */
-
-  xTaskCreate(
-    highPriorityTask,   /* Task function. */
-    "highPriorityTask", /* name of task. */
-    1000,               /* Stack size of task */
-    NULL,               /* parameter of the task */
-    4,                  /* priority of the task */
-    NULL);              /* Task handle to keep track of created task */
-}
-
-void loop() {
-}
-
 /* Tâche de basse priorité */
 void lowPriorityTask( void * parameter )
 {
@@ -67,4 +38,34 @@ void highPriorityTask( void * parameter )
     delay(1000);
   }
   vTaskDelete( NULL );
+}
+
+
+void setup() {
+  Serial.begin(9600);
+
+  /* creation d'un Mutex */
+  xMutex = xSemaphoreCreateMutex();
+
+  xTaskCreate(
+    lowPriorityTask,    /* Task function. */
+    "lowPriorityTask",  /* name of task. */
+    1000,               /* Stack size of task */
+    NULL,               /* parameter of the task */
+    1,                  /* priority of the task */
+    NULL);              /* Task handle to keep track of created task */
+
+  delay(500);
+  /* let lowPriorityTask run first then create highPriorityTask */
+
+  xTaskCreate(
+    highPriorityTask,   /* Task function. */
+    "highPriorityTask", /* name of task. */
+    1000,               /* Stack size of task */
+    NULL,               /* parameter of the task */
+    4,                  /* priority of the task */
+    NULL);              /* Task handle to keep track of created task */
+}
+
+void loop() {
 }

@@ -11,6 +11,10 @@ L'exemple met en oeuvre trois tâches :
  
  ![enter image description here](/09_FreeRTOS/01_Communication_entre_taches/05_Exemple_BME280_2_Coeurs/schema.JPG) 
 
+## Câblage sur breadboard
+![Cablage sur breadboard](/09_FreeRTOS/01_Communication_entre_taches/05_Exemple_BME280_2_Coeurs/Cablage_BME280_esp32.png)
+
+
 # Changelog
 
 **27/12/2019 : ** Ajout du README . 
