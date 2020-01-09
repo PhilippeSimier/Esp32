@@ -3,10 +3,11 @@ SemaphoreHandle_t barrierSemaphore = xSemaphoreCreateCounting( nTasks, 0 );
 
 void genericTask( void * parameter ) {
   String taskMessage = "Tâche numéro : ";
-  taskMessage = taskMessage + *((int *)parameter);
+  int nb;
+  nb = *((int *)parameter);
+  taskMessage = taskMessage + nb;
   Serial.println(taskMessage);
-
-  xSemaphoreGive(barrierSemaphore);
+  xSemaphoreGive(barrierSemaphore);   // Incrémente le sémaphore désigné par barrierSemaphore
   vTaskDelete(NULL);
 }
 
@@ -31,7 +32,7 @@ void setup()
   }
 
   for (i = 0; i < nTasks; i++) {
-    xSemaphoreTake(barrierSemaphore, portMAX_DELAY);
+    xSemaphoreTake(barrierSemaphore, portMAX_DELAY);   // Décrémente le sémaphore désigné par son descripteur
   }
   Serial.println("Tasks launched and semaphore passed...");
 }
