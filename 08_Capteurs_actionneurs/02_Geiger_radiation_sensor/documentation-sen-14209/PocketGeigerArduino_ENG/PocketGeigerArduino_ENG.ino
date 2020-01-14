@@ -10,28 +10,28 @@ int noisePin = 26; //Vibration Noise Pulse (White)
 //GND (Black)
 ////////////////////////////////
 
-const double alpha = 53.032; // cpm = uSv x alpha
+const double alpha = 53.032;  // cpm = uSv x alpha
 
-int i = 0; //Number of loops
-char msg[256] = ""; //Message buffer for serial output
+int i = 0;              //Number of loops
+char msg[256] = "";     //Message buffer for serial output
 
-int signCount = 0; //Counter for Radiation Pulse
-int noiseCount = 0; //Counter for Noise Pulse
+int signCount = 0;      //Counter for Radiation Pulse
+int noiseCount = 0;     //Counter for Noise Pulse
 
-int sON = 0; //Lock flag for Radiation Pulse
-int nON = 0; //Lock flag for Noise Puls
+int sON = 0;            //Lock flag for Radiation Pulse
+int nON = 0;            //Lock flag for Noise Puls
 
-double cpm = 0; //Count rate [cpm] of current
+double cpm = 0;         //Count rate [cpm] of current
 double cpmHistory[200]; //History of count rates
-int cpmIndex = 0; //Position of current count rate on cpmHistory[]
-int cpmIndexPrev = 0; //Flag to prevent duplicative counting
+int cpmIndex = 0;       //Position of current count rate on cpmHistory[]
+int cpmIndexPrev = 0;   //Flag to prevent duplicative counting
 
 //Timing Settings for Loop Interval
 int prevTime = 0;
 int currTime = 0;
 
-int totalSec = 0; //Elapsed time of measurement [sec]
-int totalHour = 0; //Elapsed time of measurement [hour]
+int totalSec = 0;       //Elapsed time of measurement [sec]
+int totalHour = 0;      //Elapsed time of measurement [hour]
 
 //Time settings for CPM calcuaration
 int cpmTimeMSec = 0;
