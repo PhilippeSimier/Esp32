@@ -11,7 +11,7 @@ La structure PIN permet la détection de photons, un peu à la manière d'un tub
 Le module est construit autour d'une photodiode PIN d'une taille relativement importante (1cm * 1cm).
 La détection et l’électronique qui l'entoure est là pour amplifier le signal et le transmettre avec des niveaux adaptés. 
 
-![schema_type](/08_Capteurs_actionneurs/02_geiger_radiation/shema-type.jpg)
+![schema_type](/08_Capteurs_actionneurs/02_Geiger_radiation_sensor/shema_type.jpg)
 
 # Changelog
 
