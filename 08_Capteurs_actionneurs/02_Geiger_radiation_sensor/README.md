@@ -18,15 +18,16 @@ A noter que des radionucléides, dits cosmogéniques, sont également produits e
 
 ![Variation débit](/08_Capteurs_actionneurs/02_Geiger_radiation_sensor/Variation-debit.jpg)
 
-### Mesurer la radioactivité
+### Unités de mesure de la radioactivité
 
-Le **Becquerel (Bq)** est l’unité de mesure de la radioactivité d’un corps. Elle caractérise le nombre de désintégrations spontanées de noyaux d’atomes instables qui s’y produit par seconde. Dans le corps humain, la radioactivité est naturellement de 120 Bq/kg.
-Le **Gray (Gy)** est l’unité qui permet de mesurer la quantité de rayonnement absorbé par un corps exposé à de la radioactivité. 1 Gy = 1 J / kg
-Le **Sievert (Sv)** est une variante du Gray qui tient compte des effets spécifiques des rayonnements sur l’être humain et sa santé.
+ - Le **Becquerel (Bq)** est l’unité de mesure de la radioactivité d’un  corps. Elle caractérise le nombre de désintégrations spontanées de  noyaux d’atomes instables qui s’y produit par seconde. Dans le corps humain, la radioactivité est naturellement de 120 Bq/kg.
+ - Le **Gray (Gy)** est l’unité qui permet de mesurer la quantité de  rayonnement absorbé par un corps exposé à de la radioactivité. **1 Gy =  1 J / kg**
+ - Le **Sievert (Sv)** est une variante du Gray qui tient compte des effets spécifiques des rayonnements sur l’être humain et sa santé.
+
  Une dose de 1 Gy sur la main n’a pas les mêmes effets que 1 Gy sur le cerveau. Le sievert tient compte de tout ça. De plus, 1 Gy diluée tout au long d’une vie et une dose de 1 Gy reçu en quelques instants n’ont pas non plus les mêmes effets. Pour être plus précis, on parlera le plus souvent du nombre de sievert par unité de temps (sievert par an [Sv/an] ou sievert par seconde [Sv/s] ou microsievert par heure [uSv/h]).
 
-## Module de détection à diode PIN
-Les compteurs de rayonnement nucléaire basés sur l'absorption directe dans le silicium constituent une alternative fiable et peu coûteuse par rapport au système à tube Geiger-Muller.
+## Détecteur solide (diode PIN)
+Les compteurs de rayonnement nucléaire basés sur l'absorption directe dans le silicium constituent une alternative fiable et peu coûteuse par rapport au détecteur à gaz (tube Geiger-Muller).
 La détection des rayons gamma repose sur un capteur semi-conducteur, plus précisément sur un type particulier de diode, les **diodes PIN**. PIN pour Positive Intrisic Negative fait référence directement à la manière dont est constitué le composant. Une diode ordinaire est une jonction de deux demi-conducteurs, l'un dopé négativement (N) par ajout d'impuretés apportant un excès d'électrons et l'autre dopé positivement (P) par ajout d’impureté provoquant une carence en électrons. Dans le cas de la diode PIN on trouve entre les zones P et N une zone non dopée dite intrinsèque.  
 La structure PIN permet la détection de photons, un peu à la manière d'un tube Geiger-Muller avec un effet cascade et une brève conductivité. elles sont aussi capable de détecter les rayons gamma ainsi que les rayon X (qui ne sont rien d'autre qu'une onde électromagnétique, comme l'est la lumière visible.
 
