@@ -1,0 +1,49 @@
+Bill Of Materials
+=================
+Design:   E:\ballon 2020\ballon2020.DSN
+Doc. no.: <NONE>
+Revision: <NONE>
+Author:   <NONE>
+Created:  21/05/08
+Modified: 19/01/20
+
+QTY  PART-REFS           VALUE               CODE                          
+---  ---------           -----               ----                          
+Resistors
+---------
+4    R1-R4               10k                                               
+1    R5                  1k                                                
+1    R6                  3.3k                                              
+
+Capacitors
+----------
+2    C1,C4               10uF                                              
+4    C2,C3,C5,C6         100nF                                             
+
+Integrated Circuits
+-------------------
+1    U1                  TTGO ESP32                                        
+1    U2                  BRKWS01                                           
+
+Transistors
+-----------
+2    Q1,Q2               2N7002                                            
+1    Q3                  BC847B                                            
+
+Diodes
+------
+1    D1                  1N4007                                            
+1    D2                  1N4148                                            
+
+Miscellaneous
+-------------
+1    J1                  ALIM                                              
+1    J2                  CONN-SIL5                                         
+1    J3                  CONN-SIL7                                         
+2    J4,J5               GPS                                               
+1    J6                  CONN-SIL4                                         
+3    J10,J12,J13         5V                                                
+1    J11                 3.3V                                              
+1    L1                  VK200                                             
+4    PT1-PT4             ENTRETOISE                                        
+
