@@ -6,8 +6,8 @@ a tick noise for each radiation hitting the Pocket Geiger.
 You need a piezo buzzer or similar connected to pin 8.
 */
 
-const int PIN_TONE = 8;
-RadiationWatch radiationWatch(27,26);
+//const int PIN_TONE = 8;
+RadiationWatch radiationWatch(32,33);
 
 void onRadiation()
 {
@@ -17,9 +17,8 @@ void onRadiation()
   Serial.print(radiationWatch.uSvh());
   Serial.print(" uSv/h +/- ");
   Serial.println(radiationWatch.uSvhError());
-  Serial.print("CPM = ");
+  Serial.print(" CPM = ");
   Serial.println(radiationWatch.cpm());
-  
 }
 
 void onNoise()
@@ -29,7 +28,8 @@ void onNoise()
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
+  Serial.println("Mesure rayon Gamma");
   radiationWatch.setup();
   // Register the callbacks.
   radiationWatch.registerRadiationCallback(&onRadiation);
