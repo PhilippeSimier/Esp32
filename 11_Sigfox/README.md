@@ -2,7 +2,7 @@
 
 ## La carte BRKWS01
 
-Le breakout **BRKWS01** est une carte  SigFox , basée sur le module Wisol SFM10R1. Cette carte permet  d'utiliser le réseau SigFox LPWan  pour la transmission de données. Le réseau SigFox permet d'envoyer des messages de **12 octets** à raison de 140 messages par jours.
+Le breakout **BRKWS01** est une carte  SigFox , basée sur le module Wisol SFM10R1. Cette carte permet  d'utiliser le réseau SigFox LPWan  pour la transmission de données. Le réseau SigFox permet d'envoyer des messages de **12 octets** à raison de 140 messages par jour.
 
 ## Envoi de données via SigFox
 
