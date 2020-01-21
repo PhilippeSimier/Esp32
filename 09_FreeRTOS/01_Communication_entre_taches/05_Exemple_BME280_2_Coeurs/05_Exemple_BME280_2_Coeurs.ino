@@ -2,6 +2,7 @@
 #include <Adafruit_BME280.h>
 
 
+
 typedef struct {
   float t;
   float h;
@@ -15,6 +16,7 @@ Adafruit_BME280 bme;
 QueueHandle_t queue;
 int queueSize = 128;
 static int taskCore = 1;
+int LED = 22;
 
 // Tache lecteur du capteur BME280
 void sensorTask( void * pvParameters ) {
@@ -26,21 +28,21 @@ void sensorTask( void * pvParameters ) {
     mesureSend.p = bme.readPressure() / 100.0F;
 
     xQueueSend(queue, &mesureSend, portMAX_DELAY);
-    delay(1000);
+    delay(10000);
   }
 }
 
-// Tache blinking
+// Tache blinking led intégrée verte
 void blinkTask(void * pvParameters ) {
   while (1) {
-    digitalWrite(2, digitalRead(2) ^ 1);
+    digitalWrite(LED, digitalRead(LED) ^1);
     delay(1000);
   }
 }
 
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial);
 
   queue = xQueueCreate( queueSize, sizeof( typeMesure ));
@@ -62,7 +64,7 @@ void setup() {
   );
   Serial.println("Tâche sensorTask créée...");
 
-  pinMode(2, OUTPUT);
+  pinMode(LED, OUTPUT);
   xTaskCreate(
     blinkTask,      /* la fonction associée . */
     "blinkTask",    /* le nom de la tâche */

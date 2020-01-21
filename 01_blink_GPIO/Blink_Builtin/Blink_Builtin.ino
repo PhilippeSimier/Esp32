@@ -5,17 +5,18 @@
   
 */
 
-int LED_BUILTIN = 2;
+int LED = 22;
 
 void setup() 
 {
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(LED, OUTPUT);
+  
 }
 
 void loop() 
 {
-  digitalWrite(LED_BUILTIN, digitalRead(LED_BUILTIN) ^1);   // turn the LED 
+  digitalWrite(LED, digitalRead(LED) ^1);   // turn the LED 
   delay(200);                       // wait for a second
-  digitalWrite(LED_BUILTIN, digitalRead(LED_BUILTIN) ^1);    // turn the LED 
+  digitalWrite(LED, digitalRead(LED) ^1);    // turn the LED 
   delay(1000);                       // wait for a second
 }
