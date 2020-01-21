@@ -7,12 +7,12 @@ You need a piezo buzzer or similar connected to pin 8.
 */
 
 const int PIN_TONE = 8;
-RadiationWatch radiationWatch(27,26);
+RadiationWatch radiationWatch(32,33);
 
 void onRadiation()
 {
   // Output classic geiger counter tick noise.
-  //tone(PIN_TONE, 800, 1);
+  
   Serial.println("A wild gamma ray appeared");
   Serial.print(radiationWatch.uSvh());
   Serial.print(" uSv/h +/- ");
@@ -29,7 +29,7 @@ void onNoise()
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   radiationWatch.setup();
   // Register the callbacks.
   radiationWatch.registerRadiationCallback(&onRadiation);
