@@ -13,8 +13,10 @@ Comme tous les périphériques, les broches des UART peuvent être mappées logi
  | U2UXD | GPIO16 | GPIO17  | GPIO8 | GPIO7  |	
 
 **U0UXD** est utilisé pour communiquer avec l'ESP32 pour la programmation et pendant la réinitialisation / démarrage.
+
 **U1UXD** n'est pas utilisé et peut être utilisé pour vos projets.
- **U2UXD** n'est pas utilisé et peut être utilisé pour vos projets.
+
+**U2UXD** n'est pas utilisé et peut être utilisé pour vos projets.
 
 # Changelog
 
