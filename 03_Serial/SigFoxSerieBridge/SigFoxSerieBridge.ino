@@ -14,7 +14,7 @@ HardwareSerial serialSig(2);
 void setup() {
   Serial.begin(9600);
   serialSig.begin(9600, SERIAL_8N1, 26, 27);
-
+  Serial.println("Sigfox Serial Bridge");
   
   pinMode(LED, OUTPUT);
 }
