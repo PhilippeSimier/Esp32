@@ -1,3 +1,13 @@
+/**
+  * @file sigfox.h
+  * @author Philippe SIMIER
+  * @date 26 janvier 2020
+  * @details Assure la communication avec le réseau Sigfox avec les commandes AT
+  * 
+  */
+
+
+
 #ifndef __SIGFOX__
 #define __SIGFOX__
 
