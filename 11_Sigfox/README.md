@@ -58,7 +58,10 @@ Choisir l'option **Custom callback**
 
 to do
 
-## Classe pour esp32
+## Diagramme de classe Sigfox pour esp32
+
+![Diagramme de classe](/11_Sigfox/class_Sigfox.png)
+
 
 [le code](https://github.com/PhilippeSimier/Esp32/tree/master/11_Sigfox/Sigfox_Demo) 
 
