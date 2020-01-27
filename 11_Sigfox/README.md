@@ -14,7 +14,7 @@ Quand votre inscription est terminée. Il reste à la valider en suivant le lien
 
 ## Envoi de données via SigFox
 
-Le module est controlé avec des commandes série AT envoyées sur des broches TX / RX. La communication série: se fait à **9600** bauds, avec **8 bits par caractères**, 1 bit de stop, **sans parité** écho local.
+Le module est contrôle avec des commandes série AT envoyées sur des broches TX / RX. La communication série: se fait à **9600** bauds, avec **8 bits par caractères**, 1 bit de stop, **sans parité** écho local.
 Les commandes AT se font en **majuscules**
 
 Test de Communication:	
@@ -62,6 +62,14 @@ to do
 
 ![Diagramme de classe](/11_Sigfox/class_Sigfox.png)
 
+### Les méthodes publiques
+ - **Sigfox** Le constructeur de l'objet avec en  paramètres **rxPIN** le numero de la broche rx, **txPin** le numero de la broche tx, **debug** un booléen pour activer le mode débogage.
+ - **begin** Ouvre le port série et fixe le débit de communication à 9600 bauds, 
+ - **tester** Envoie une commande AT sur la liaison série et lit les données entrantes, le module renvoie OK si tout va bien.
+ - **obtenirID** Permet d'obtenir l'ID du module Sigfox connecté.
+ - **obtenirPAC** Permet d'obtenir le code PAC du module Sigfox connecté.
+ - **obtenirTemp** Permet d'obtenir la température interne du module SigFox connecté.
+ - **envoyer** Envoie un message sur le réseau Sigfox. Un message Sigfox est composé au maximum de 12 octets. Cette méthode attend la réponse du réseau. Elle renvoie un booléen à l'état Vrai si la réponse obtenue du réseau Sigfox est OK.
 
 [le code](https://github.com/PhilippeSimier/Esp32/tree/master/11_Sigfox/Sigfox_Demo) 
 
