@@ -14,9 +14,9 @@ GREP=grep
 NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
-CC=xtensa-esp32-elf-cc
-CCC=xtensa-esp32-elf-c++
-CXX=xtensa-esp32-elf-c++
+CC=xtensa-esp32-elf-gcc
+CCC=xtensa-esp32-elf-g++
+CXX=xtensa-esp32-elf-g++
 FC=gfortran
 AS=xtensa-esp32-elf-as
 
@@ -35,8 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/BME280.o \
-	${OBJECTDIR}/BME280I2C.o \
 	${OBJECTDIR}/main.ino.o
 
 
@@ -58,21 +56,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/capteur
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/capteur_bme280
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/capteur: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/capteur_bme280: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/capteur ${OBJECTFILES} ${LDLIBSOPTIONS}
-
-${OBJECTDIR}/BME280.o: BME280.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/BME280.o BME280.cpp
-
-${OBJECTDIR}/BME280I2C.o: BME280I2C.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/BME280I2C.o BME280I2C.cpp
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/capteur_bme280 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/main.ino.o: main.ino.cpp
 	${MKDIR} -p ${OBJECTDIR}

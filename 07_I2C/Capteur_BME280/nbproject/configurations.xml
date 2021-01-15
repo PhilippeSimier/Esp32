@@ -4,8 +4,6 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>BME280.h</itemPath>
-      <itemPath>BME280I2C.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -14,8 +12,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>BME280.cpp</itemPath>
-      <itemPath>BME280I2C.cpp</itemPath>
       <itemPath>main.ino.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -40,14 +36,6 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="BME280.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="BME280.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="BME280I2C.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="BME280I2C.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="main.ino.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -71,14 +59,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="BME280.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="BME280.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="BME280I2C.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="BME280I2C.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="main.ino.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>

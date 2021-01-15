@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include <Wire.h>
-#include "BME280I2C.h"
+#include <BME280.h>
+#include <BME280I2C.h>
+#include <BH1750.h>
 #define SERIAL_BAUD 115200
 
 BME280I2C::Settings settings(
@@ -15,9 +17,11 @@ BME280I2C::Settings settings(
 );
 
 BME280I2C bme(settings);    
+BH1750 eclairement;
 
 void printBME280Data(Stream* client);
-                  
+
+
 void setup()
 {
   Serial.begin(SERIAL_BAUD);
@@ -43,6 +47,14 @@ void setup()
      default:
        Serial.println("Found UNKNOWN sensor! Error!");
   }
+  
+  while(!eclairement.begin()){
+    Serial.println("Could not find BH1750 sensor!");
+    delay(1000);
+  }
+  eclairement.configure(BH1750::CONTINUOUS_HIGH_RES_MODE_2);
+  
+  
 }
 
 
@@ -54,22 +66,26 @@ void loop()
 
 void printBME280Data( Stream* client)
 {
-   float temp(NAN), hum(NAN), pres(NAN);
+   float temp(NAN), hum(NAN), pres(NAN), lux(NAN);
 
    BME280::TempUnit tempUnit(BME280::TempUnit_Celsius);
    BME280::PresUnit presUnit(BME280::PresUnit_Pa);
 
    bme.read(pres, temp, hum, tempUnit, presUnit);
+   lux = eclairement.readLightLevel();
 
    client->print("Temp: ");
    client->print(temp);
-   client->print(" °"+ String(tempUnit == BME280::TempUnit_Celsius ? 'C' :'F'));
+   client->print(" °C");
    client->print("\tHumidité: ");
    client->print(hum);
    client->print("%");
    client->print("\tPression: ");
    client->print(pres/100);
-   client->println(" hPa");
+   client->print(" hPa");
+   client->print("\tEclairement: ");
+   client->print(lux);
+   client->println(" Lux");
 
    delay(1000);
 }

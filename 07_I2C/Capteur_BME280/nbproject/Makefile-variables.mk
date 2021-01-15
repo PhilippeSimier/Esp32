@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=esp32-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/esp32-Linux
-CND_ARTIFACT_NAME_Debug=capteur
-CND_ARTIFACT_PATH_Debug=dist/Debug/esp32-Linux/capteur
+CND_ARTIFACT_NAME_Debug=capteur_bme280
+CND_ARTIFACT_PATH_Debug=dist/Debug/esp32-Linux/capteur_bme280
 CND_PACKAGE_DIR_Debug=dist/Debug/esp32-Linux/package
-CND_PACKAGE_NAME_Debug=capteur.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/esp32-Linux/package/capteur.tar
+CND_PACKAGE_NAME_Debug=capteurbme280.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/esp32-Linux/package/capteurbme280.tar
 # Release configuration
 CND_PLATFORM_Release=esp32-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/esp32-Linux
-CND_ARTIFACT_NAME_Release=capteur
-CND_ARTIFACT_PATH_Release=dist/Release/esp32-Linux/capteur
+CND_ARTIFACT_NAME_Release=capteur_bme280
+CND_ARTIFACT_PATH_Release=dist/Release/esp32-Linux/capteur_bme280
 CND_PACKAGE_DIR_Release=dist/Release/esp32-Linux/package
-CND_PACKAGE_NAME_Release=capteur.tar
-CND_PACKAGE_PATH_Release=dist/Release/esp32-Linux/package/capteur.tar
+CND_PACKAGE_NAME_Release=capteurbme280.tar
+CND_PACKAGE_PATH_Release=dist/Release/esp32-Linux/package/capteurbme280.tar
 #
 # include compiler specific variables
 #
