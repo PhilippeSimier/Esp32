@@ -2,9 +2,11 @@
 
 ## Introduction
 
-Il existe **trois interfaces série** prises en charge par le matériel sur l'ESP32, appelées **UART0**, **UART1** et **UART2**. 
+Un récepteur / émetteur asynchrone universel (UART) est une fonctionnalité matérielle qui gère la communication série.
+Il existe **trois contrôleur série** prises en charge par le matériel sur l'ESP32, appelées **UART0**, **UART1** et **UART2**. 
+Chaque contrôleur UART est configurable indépendamment avec des paramètres tels que la vitesse de transmission, le nombre de bits de données, l'ordre des bits, le nombre de bits d'arrêt, le bit de parité, etc.
 
-Comme tous les périphériques, les broches des UART peuvent être mappées logiquement à l'une des broches disponibles sur l'ESP32. Cependant, les UART peuvent également avoir un accès direct, ce qui améliore légèrement les performances. Le tableau de mappage des broches  est le suivant.
+Comme tous les périphériques, les broches des UART peuvent être mappées logiquement à l'une des broches disponibles sur l'ESP32. Cependant, les UART peuvent également avoir un accès direct, ce qui améliore légèrement les performances. Le tableau de mappage par défaut des broches  est le suivant.
 
  | UART	|   RX    |	  TX    | CTS   | RTS    |
  |------|---------|---------|-------|--------|
@@ -18,9 +20,25 @@ Comme tous les périphériques, les broches des UART peuvent être mappées logi
 
 **U2UXD** n'est pas utilisé et peut être utilisé pour vos projets.
 
+## Attribuer les broches à une liaison série
+Les broches des liaisons séries sont attribuées par défaut, mais il est possible de les réaffecter.
+
+```cpp
+	#include <HardwareSerial.h>  // la bibliothèque HardwareSerial.h
+	HardwareSerial MaSerie(1);	 // Déclaration d'un controleur lié à UART 1
+	
+	// Configuration de la vitesse du nombre de bits par caratère
+	// GPIO25 -> RX
+	// GPIO26 -> TX
+	
+	MaSerie.begin(9600,SERIAL_8N1,25,26);  
+```
+
+
+
 # Changelog
 
-**08/01/2020 : ** Ajout du README . 
+**19/01/2021 : ** Ajout du README . 
 
 > **Notes :**
 
@@ -32,5 +50,6 @@ Comme tous les périphériques, les broches des UART peuvent être mappées logi
 
 Génération des badges : https://shields.io/
 Génération de ce fichier : https://stackedit.io/editor#
+
 
 
