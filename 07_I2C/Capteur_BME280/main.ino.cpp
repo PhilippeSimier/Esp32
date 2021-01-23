@@ -5,7 +5,7 @@
 #include <BH1750.h>
 #define SERIAL_BAUD 115200
 
-BME280I2C::Settings settings(
+BME280I2C::Settings parametrage(
    BME280::OSR_X1,
    BME280::OSR_X1,
    BME280::OSR_X1,
@@ -13,10 +13,10 @@ BME280I2C::Settings settings(
    BME280::StandbyTime_1000ms,
    BME280::Filter_Off,
    BME280::SpiEnable_False,
-   BME280I2C::I2CAddr_0x77 // I2C address pour BME 280 Adafruit.
+   BME280I2C::I2CAddr_0x76 // I2C address pour BME 280 Adafruit.
 );
 
-BME280I2C bme(settings);    
+BME280I2C bme(parametrage);    
 BH1750 eclairement;
 
 void printBME280Data(Stream* client);
@@ -25,11 +25,9 @@ void printBME280Data(Stream* client);
 void setup()
 {
   Serial.begin(SERIAL_BAUD);
-
   while(!Serial) {} // Wait
 
   Wire.begin();
-
   while(!bme.begin())
   {
     Serial.println("Could not find BME280 sensor!");

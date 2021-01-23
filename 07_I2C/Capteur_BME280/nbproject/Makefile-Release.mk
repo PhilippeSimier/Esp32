@@ -14,9 +14,9 @@ GREP=grep
 NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
-CC=xtensa-esp32-elf-gcc
-CCC=xtensa-esp32-elf-g++
-CXX=xtensa-esp32-elf-g++
+CC=xtensa-esp32-elf-cc
+CCC=xtensa-esp32-elf-c++
+CXX=xtensa-esp32-elf-c++
 FC=gfortran
 AS=xtensa-esp32-elf-as
 
