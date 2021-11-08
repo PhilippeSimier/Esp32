@@ -1,6 +1,6 @@
 /*
    Bridge Série pour modem SigFox 
- * Projet ballon sonde
+ * Projet Ruche esp32
 */
 #include <HardwareSerial.h>
 #define LED 22
@@ -11,7 +11,7 @@ HardwareSerial serialSigfox(2);
 
 void setup() {
   Serial.begin(9600);
-  serialSigfox.begin(9600, SERIAL_8N1, 27, 26);
+  serialSigfox.begin(9600, SERIAL_8N1, 16, 17);
   Serial.println("Sigfox Serial Bridge");
   
   pinMode(LED, OUTPUT);
