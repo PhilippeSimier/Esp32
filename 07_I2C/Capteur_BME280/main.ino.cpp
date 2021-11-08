@@ -13,7 +13,7 @@ BME280I2C::Settings parametrage(
    BME280::StandbyTime_1000ms,
    BME280::Filter_Off,
    BME280::SpiEnable_False,
-   BME280I2C::I2CAddr_0x76 // I2C address pour BME 280 Adafruit.
+   BME280I2C::I2CAddr_0x77 // I2C address pour BME 280 Adafruit.
 );
 
 BME280I2C bme(parametrage);    
