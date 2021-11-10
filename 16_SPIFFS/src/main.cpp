@@ -20,7 +20,7 @@ void setup() {
 
   // Envoie le contenu du fichier index.html sur le port série
   Serial.println();
-  Serial.println("Read test.txt file content:");
+  Serial.println("Read index.txt file content:");
   while(file.available()){
     Serial.write(file.read());
   }
