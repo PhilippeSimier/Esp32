@@ -4,6 +4,7 @@
     <df root="." name="0">
       <df name="data">
         <in>index.html</in>
+        <in>style.css</in>
       </df>
       <df name="include">
       </df>

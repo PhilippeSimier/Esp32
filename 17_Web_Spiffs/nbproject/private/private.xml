@@ -7,7 +7,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/philippe/Esp32/16_fichiers_SPIFFS/data/index.html</file>
+            <file>file:/home/philippe/Esp32/17_Web_Spiffs/data/index.html</file>
+            <file>file:/home/philippe/Esp32/17_Web_Spiffs/data/style.css</file>
+            <file>file:/home/philippe/Esp32/17_Web_Spiffs/platformio.ini</file>
+            <file>file:/home/philippe/Esp32/17_Web_Spiffs/src/main.cpp</file>
         </group>
     </open-files>
 </project-private>
