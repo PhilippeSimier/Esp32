@@ -11,6 +11,7 @@
       <df name="lib">
       </df>
       <df name="src">
+        <in>definition.h</in>
         <in>main.cpp</in>
       </df>
       <df name="test">

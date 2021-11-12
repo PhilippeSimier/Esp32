@@ -9,79 +9,78 @@
 #include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 #include <SPIFFS.h>
+#include "definition.h"
 
 // Replace with your network credentials
-const char* ssid = "Livebox-5648";
-const char* password = "vz9Lcc2RnTTmnDuD4Y";
+const char* ssid = SSID;
+const char* password = PSWD;
 
-// Set LED GPIO
-const int ledPin = 2;
-// Stores LED state
-String ledState;
-
-// Create AsyncWebServer object on port 80
+// Création d'un serveur web asynchrone (écoute sur le port 80)
 AsyncWebServer server(80);
 
-// Replaces placeholder with LED state value
+// Remplace le mot clé STATE par l'état de la led On ou Off
 
 String processor(const String& var) {
-    Serial.println(var);
+
+    String retour = "Off";
+    Serial.print(var);
+    Serial.print(" : ");
+
     if (var == "STATE") {
-        if (digitalRead(ledPin)) {
-            ledState = "ON";
-        } else {
-            ledState = "OFF";
-        }
-        Serial.print(ledState);
-        return ledState;
+        if (digitalRead(LED)) 
+            retour = "On";       
     }
-    return String();
+    Serial.println(retour);
+    return retour;
 }
 
 void setup() {
-    // Serial port for debugging purposes
-    Serial.begin(115200);
-    pinMode(ledPin, OUTPUT);
 
-    // Initialize SPIFFS
+    Serial.begin(115200);
+    pinMode(LED, OUTPUT);
+
+    // Initialise SPIFFS
     if (!SPIFFS.begin(true)) {
-        Serial.println("An Error has occurred while mounting SPIFFS");
+        Serial.println("Une erreur est apparue pendant le montage SPIFFS");
         return;
     }
 
-    // Connect to Wi-Fi
+    // Connection du Wi-Fi
     WiFi.begin(ssid, password);
+    Serial.print("Tentative de connexion...");
     while (WiFi.status() != WL_CONNECTED) {
-        delay(1000);
-        Serial.println("Connecting to WiFi..");
+        Serial.print(".");
+        delay(500);
     }
+    Serial.println("\n");
+    Serial.println("Connexion établie!");
 
-    // Print ESP32 Local IP Address
+    Serial.print("Adresse IP: ");
     Serial.println(WiFi.localIP());
 
-    // Route for root / web page
+    // Request GET /  -> envoie du fichier /index.html 
     server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
         request->send(SPIFFS, "/index.html", String(), false, processor);
     });
 
-    // Route to load style.css file
+    // Request GET /style.css -> envoie du fichier /style.css
     server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest * request) {
         request->send(SPIFFS, "/style.css", "text/css");
     });
 
-    // Route to set GPIO to HIGH
+    // Request GET /on -> allumage led & envoie du fichier /index.html
     server.on("/on", HTTP_GET, [](AsyncWebServerRequest * request) {
-        digitalWrite(ledPin, HIGH);
+        digitalWrite(LED, HIGH);
         request->send(SPIFFS, "/index.html", String(), false, processor);
     });
 
-    // Route to set GPIO to LOW
+    // Request GET /off -> extinction led & envoie du fichier /index.html
     server.on("/off", HTTP_GET, [](AsyncWebServerRequest * request) {
-        digitalWrite(ledPin, LOW);
+        digitalWrite(LED, LOW);
         request->send(SPIFFS, "/index.html", String(), false, processor);
     });
 
-    // Start server
+    // Démarrage du serveur
     server.begin();
 }
 
