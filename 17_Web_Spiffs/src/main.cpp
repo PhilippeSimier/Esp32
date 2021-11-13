@@ -18,7 +18,7 @@ const char* password = PSWD;
 // Création d'un serveur web asynchrone (écoute sur le port 80)
 AsyncWebServer server(80);
 
-// Remplace le mot clé STATE par l'état de la led On ou Off
+// Remplace le champ STATE par l'état de la led On ou Off
 
 String processor(const String& var) {
 
