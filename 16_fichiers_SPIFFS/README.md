@@ -35,3 +35,84 @@ Cette méthode monte le système de fichiers SPIFFS et doit être appelée avant
 
 Renvoie l’objet File. Pour vérifier si le fichier a été ouvert avec succès, utilisez l’opérateur booléen.    
 
+# Enregistrer des données
+
+**Effortless-SPIFFS** - C'est une classe utile pour faciliter la lecture et le stockage des données dans les fichiers.
+Cette classe vise à rendre l'accès à SPIFFS beaucoup plus facile pour permettre aux utilisateurs de continuer à écrire les choses importantes plutôt que de déboguer pourquoi le stockage ne fonctionne pas.
+ 
+Exemple de code
+```cpp
+#include <Effortless_SPIFFS.h>
+
+eSPIFFS fileSystem;
+float myVariable;
+
+void setup(){
+    Serial.begin(115200);
+    Serial.println();
+}
+
+void loop() {
+    // Open the storage file and save data to myVariable
+    if (fileSystem.openFromFile("/Float.txt", myVariable)) {
+        Serial.print("Successfully read file and parsed data: ");
+        Serial.println(myVariable, 6);
+    }
+
+    // Set myVariable to a random value
+    myVariable = (float)random(1, 1000) / (float)random(1000, 65563);
+    Serial.print("myVariable is now: ");
+    Serial.println(myVariable, 6);
+
+    // Write the data back to the SPIFFS
+    if (fileSystem.saveToFile("/Float.txt", myVariable)) {
+        Serial.println("Successfully wrote data to file");
+    }
+
+    // Delay between loops
+    delay(10000);
+}
+```
+#### Enregistrement des données dans un fichier à partir d'une variable
+La méthode  `saveToFile` est utilisée pour enregistrer le contenu d'une variable dans un fichier. les différents prototypes de la méthode **saveToFile** sont
+```cpp
+// Definition
+bool saveToFile(const char*, &bool);
+bool saveToFile(const char*, &float);
+bool saveToFile(const char*, &double);
+bool saveToFile(const char*, &signed char);
+bool saveToFile(const char*, &unsigned char);
+bool saveToFile(const char*, &signed int);
+bool saveToFile(const char*, &unsigned int);
+bool saveToFile(const char*, &signed short);
+bool saveToFile(const char*, &unsigned short);
+bool saveToFile(const char*, &signed long);
+bool saveToFile(const char*, &unsigned long);
+bool saveToFile(const char*, &char*);
+bool saveToFile(const char*, &const char*);
+bool saveToFile(const char*, &String);
+bool saveToFile(const char*, &std::string);
+bool saveToFile(const char*, &ArduinoJson::DynamicJsonDocument);
+```
+#### Affectation d'une variable à partir d'un fichier
+La méthode  `openToFile` est utilisée pour affecter le contenu d'une variable à partir un fichier. les différents prototypes de la méthode **saveToFile** sont
+```cpp
+bool openFromFile(const char*, &bool);
+bool openFromFile(const char*, &float);
+bool openFromFile(const char*, &double);
+bool openFromFile(const char*, &signed char);
+bool openFromFile(const char*, &unsigned char);
+bool openFromFile(const char*, &signed int);
+bool openFromFile(const char*, &unsigned int);
+bool openFromFile(const char*, &signed short);
+bool openFromFile(const char*, &unsigned short);
+bool openFromFile(const char*, &signed long);
+bool openFromFile(const char*, &unsigned long);
+bool openFromFile(const char*, &char*);
+bool openFromFile(const char*, &const char*);
+bool openFromFile(const char*, &String);
+bool openFromFile(const char*, &std::string);
+bool openFromFile(const char*, &ArduinoJson::DynamicJsonDocument);
+```
+
+
