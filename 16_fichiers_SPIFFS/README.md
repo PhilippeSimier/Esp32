@@ -95,7 +95,7 @@ bool saveToFile(const char*, &std::string);
 bool saveToFile(const char*, &ArduinoJson::DynamicJsonDocument);
 ```
 #### Affectation d'une variable à partir d'un fichier
-La méthode  `openToFile` est utilisée pour affecter le contenu d'une variable à partir un fichier. les différents prototypes de la méthode **saveToFile** sont
+La méthode  `openToFile` est utilisée pour affecter le contenu d'une variable à partir d'un fichier. Les différents prototypes de la méthode **openToFile** sont :
 ```cpp
 bool openFromFile(const char*, &bool);
 bool openFromFile(const char*, &float);
