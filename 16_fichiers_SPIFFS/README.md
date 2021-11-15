@@ -115,4 +115,18 @@ bool openFromFile(const char*, &std::string);
 bool openFromFile(const char*, &ArduinoJson::DynamicJsonDocument);
 ```
 
+#### Installer la bibliothèque Effortless-SPIFFS avec pio
+Recherche de la bibliothèque
 
+    pio lib search "header:Effortless_SPIFFS.h"
+
+Installation de la bibliothèque
+```bash
+philippe@b107PSR:~$ pio lib -g install 6954
+Library Storage: /home/philippe/.platformio/lib
+Library Manager: Installing id:6954
+Downloading  [####################################]  100%
+Unpacking  [####################################]  100%
+Library Manager: Effortless-SPIFFS @ 2.3.0 has been installed!
+
+```
