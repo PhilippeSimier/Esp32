@@ -3,6 +3,8 @@
  * Author: philippe SIMIER Touchard Washington 
  *
  * Created on 30 octobre 2021, 14:13
+ * 
+ * Attention retirer la carte SD pour uploader le programme
  */
 #include <Arduino.h>
 
@@ -12,8 +14,14 @@
 
 #include <MsdCard.h>
 
-//MsdCard carteSD;  // Avec l'affectation des broches standard de la liaison SPI de l'esp32 (carte ruche)
-MsdCard carteSD(14, 2, 15, 13);  // Avec l'affectation des broches (carte ballon)
+// Affectation des broches SPI carte SD pour TTGO-T1
+static const uint8_t SD_SS    = 13;
+static const uint8_t SD_MOSI  = 15;
+static const uint8_t SD_MISO  = 2;
+static const uint8_t SD_SCK   = 14;
+
+
+MsdCard carteSD(SD_SCK, SD_MISO, SD_MOSI, SD_SS);  // Avec l'affectation des broches (carte ballon)
 
 void setup() {
 
