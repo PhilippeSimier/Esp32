@@ -13,7 +13,6 @@
 #include <MsdCard.h>
 
 MsdCard carteSD;  // Avec l'affectation des broches standard de la liaison SPI de l'esp32 (carte ruche)
-//MsdCard carteSD(14, 2, 15, 13)  // Avec l'affectation des broches (carte ballon)
 
 void setup() {
 

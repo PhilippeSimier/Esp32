@@ -32,7 +32,7 @@ void setup() {
 
     Serial.println();
 
-    // Ouvre le fichier de test en lecture seule
+    // Ouvre le fichier de index.html en lecture seule
     File file = SPIFFS.open("/index.html", "r");
     if (!file) {
         // File not found | le fichier de test n'existe pas
