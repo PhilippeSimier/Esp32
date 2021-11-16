@@ -21,7 +21,7 @@ static const uint8_t SD_MISO  = 2;
 static const uint8_t SD_SCK   = 14;
 
 
-MsdCard carteSD(SD_SCK, SD_MISO, SD_MOSI, SD_SS);  // Avec l'affectation des broches (carte ballon)
+MsdCard carteSD(SD_SCK, SD_MISO, SD_MOSI, SD_SS);  
 
 void setup() {
 
