@@ -1,8 +1,8 @@
 /* 
  * File:   biblio.h
- * Author: psimier
+ * Author: philippe
  *
- * Created on 25 novembre 2021, 09:42
+ * Created on 27 novembre 2021, 08:08
  */
 
 #ifndef BIBLIO_H
@@ -15,7 +15,6 @@
 void tacheBlink(void * parameter);
 
 void envoyerFichier(String fichier);
-
 
 
 #endif /* BIBLIO_H */

@@ -20,12 +20,8 @@ void envoyerFichier(String fichier) {
         Serial.println();
         Serial.print("Oups le fichier ");
         Serial.print(fichier);
-        Serial.println(" n'existe pas !!!");
-        
+        Serial.println(" n'existe pas !!!");       
     }
-
-
-
 }
 
 // Tâche pour faire clignoter la led bleu 

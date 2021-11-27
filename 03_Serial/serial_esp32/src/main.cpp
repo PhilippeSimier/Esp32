@@ -18,8 +18,6 @@ void setup() {
 
     // Création de la tâche blink 
     xTaskCreate( tacheBlink, "TacheBlink", 10000, NULL, 1, NULL); 
-
-
 }
 
 void loop() {
@@ -50,9 +48,13 @@ void loop() {
                 Serial.write(0x04);
                 break;
             case 'f':
-                envoyerFichier("/essai.txt");
+                envoyerFichier("/chinois.txt");
                 Serial.write(0x04);
                 break;
+            case 'g':
+                envoyerFichier("/chinois_traduit.txt");
+                Serial.write(0x04);
+                break;    
             case 't':
                 t = hall_sensor_read();
                 Serial.printf("H = %d\r\n", t);
@@ -61,14 +63,10 @@ void loop() {
             case '\r':
             case '\n':
                 Serial.write(0x04);
+                break;
             default:
                 Serial.println("Commande inconnue\n");
                 Serial.write(0x04);
-
-        }
-        
-            
+        }          
     }
-
 }
-
