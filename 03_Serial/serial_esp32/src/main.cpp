@@ -54,6 +54,12 @@ void loop() {
             case 'g':
                 envoyerFichier("/chinois_traduit.txt");
                 Serial.write(0x04);
+                break; 
+            case 'n':
+                while(Serial.available() == 0){
+                    envoyerFichier("/leMans.nmea");
+                }    
+                Serial.write(0x04);
                 break;    
             case 't':
                 t = hall_sensor_read();

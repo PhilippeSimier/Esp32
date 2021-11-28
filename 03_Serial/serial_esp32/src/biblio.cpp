@@ -7,10 +7,6 @@ void envoyerFichier(String fichier) {
         File file = SPIFFS.open(fichier, "r");
 
         // Envoie le contenu du fichier sur le port série
-        Serial.println();
-        Serial.print("Lecture du fichier ");
-        Serial.println(fichier);
-
         while (file.available()) {
             Serial.write(file.read());
         }
