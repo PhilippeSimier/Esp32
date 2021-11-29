@@ -40,11 +40,11 @@ void loop() {
                 Serial.write(0x04);
                 break;
             case 'd':
-                envoyerFichier("/les_hirondelles.txt");
+                envoyerFichier("/fableTortue.txt");
                 Serial.write(0x04);
                 break;
             case 'e':
-                envoyerFichier("/Beaute.txt");
+                envoyerFichier("/fableLeLoup.txt");
                 Serial.write(0x04);
                 break;
             case 'f':
@@ -54,7 +54,16 @@ void loop() {
             case 'g':
                 envoyerFichier("/chinois_traduit.txt");
                 Serial.write(0x04);
-                break; 
+                break;
+            case 'h':
+                envoyerFichier("/Beaute.txt");
+                Serial.write(0x04);
+                break;    
+            case 'i':
+                envoyerFichier("/les_hirondelles.txt");
+                Serial.write(0x04);
+                break;      
+                
             case 'n':
                 while(Serial.available() == 0){
                     envoyerFichier("/leMans.nmea");

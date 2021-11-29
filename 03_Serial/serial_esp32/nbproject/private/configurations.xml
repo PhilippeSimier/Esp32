@@ -5,6 +5,8 @@
       <df name="data">
         <in>chinois.txt</in>
         <in>chinois_traduit.txt</in>
+        <in>fableLeLoup.txt</in>
+        <in>fableTortue.txt</in>
       </df>
       <df name="include">
       </df>
