@@ -23,6 +23,27 @@ Dans votre programme principal vous pouvez inclure la bibliothèque
 #include <Keypad.h>
 ```
 Ne pas oublier de renseigner le répertoire src de la bibliothèque dans "code assistance" pour permettre la reconnaissance du "**#include <Keypad.h>**" et la complétion de code.
+### Le constructeur
+```cpp
+const byte ROWS = 4; // Déclaration du nombre de lignes
+const byte COLS = 3; // Déclaration du nombre de colonnes
+
+// Déclaration des caractères sur les touches
+char keys[ROWS][COLS] = {
+{'1', '2', '3'},
+{'4', '5', '6'},
+{'7', '8', '9'},
+{'*', '0', '#'}
+};
+
+//affectation des GPIO au R1,R2,R3,R4 du clavier
+byte rowPins[ROWS] = {23, 22, 3, 21};
+//affectation des GPIO au C1,C2,C3 du clavier
+byte colPins[COLS] = {19, 18, 5};
+
+Keypad clavier = Keypad((char *) keys, rowPins, colPins, ROWS, COLS);
+
+``` 
  
 ### Les méthodes
 
