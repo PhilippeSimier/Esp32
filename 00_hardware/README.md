@@ -1,10 +1,11 @@
-﻿# Les cartes de développement ESP32
+# Les cartes de développement ESP32
 
-**ESP32 DEV KIT V1**
+
 Le kit de développement 30 broches
+![DEV KIT V1 30 pins](/00_hardware/esp32_30pins.png)
 
-![DEV KIT V1 30 pins](/00_hardware/esp32_30.png)
+Le kit de développement 38 broches
+![DEV KIT V1 36 pins](/00_hardware/esp32_38pins.png)
 
 Le kit de développement 36 broches
-
-![DEV KIT V1 36 pins](/00_hardware/esp32_36.png)
+![DEV KIT V1 36 pins](/00_hardware/esp32_36pins.png)
