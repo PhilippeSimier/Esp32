@@ -1,19 +1,6 @@
-/*
- *   Installer la bibliothèque Keypad avec la commande suivante
- *   pio lib install 165
- *   Vous devez obtenir la ligne suivante
- *   Library Manager: Keypad @ 3.1.1 has been installed!
- */
-
-/* 
- * File:   main.cpp
- * Author: psimier
- *
- * Created on 16 décembre 2021, 08:50
- */
-
 #include <Arduino.h>
 #include <Keypad.h>
+
 
 
 const byte ROWS = 4; // Déclaration du nombre de lignes
@@ -42,7 +29,8 @@ String secret = "1234#";
 void setup() {
     Serial.begin(115200);
     pinMode( 2, OUTPUT);   // led builtin
-    
+    delay(500);
+    Serial.println("\nSetup done");
 }
 
 void loop() {
@@ -58,14 +46,13 @@ void loop() {
                 digitalWrite(2, HIGH);
                 delay(2000);
                 digitalWrite(2, LOW);
-                
+
             } else {
                 Serial.println("\nCode faux !!!");
                 code = "";
 
             }
-        }    
+        }
     }
 
 }
-
