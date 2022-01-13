@@ -6,7 +6,7 @@
 
 #define LED 22
 
-HardwareSerial serialGps(2);
+HardwareSerial serialGps(1); // Déclaration d'un controleur lié à UART 1
 
 void setup() {
   Serial.begin(115800);
