@@ -21,11 +21,9 @@ void setup() {
 }
 
 void loop() {
-    bool newData = false;
 
-    newData = lectureCapteur(1000);
 
-    if (newData) {
+    if (lectureCapteur(1000)) {
         float flat, flon;
         unsigned long age;
         gps.f_get_position(&flat, &flon, &age);
@@ -52,8 +50,8 @@ static void print_date(TinyGPS &gps)
     else
     {
         char sz[32];
-        sprintf(sz, "%02d/%02d/%02d %02d:%02d:%02d ",
-                day, month, year, hour, minute, second);
+        sprintf(sz, "%02d/%02d/%02d %02d:%02d:%02d,%ld",
+                day, month, year, hour, minute, second, age);
         Serial.print(sz);
     }
 }
