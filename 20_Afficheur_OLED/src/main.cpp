@@ -62,12 +62,14 @@ void loop() {
                 digitalWrite(2, HIGH);
                 delay(2000);
                 digitalWrite(2, LOW);
+                afficher("Entrez le", "code");
 
             } else {
                 Serial.println("\nCode faux !!!");
                 afficher("Code faux!");
                 code = "";
-
+                delay(2000);
+                afficher("Entrez le", "code");
             }
         }
     }
