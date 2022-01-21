@@ -2,7 +2,6 @@
 #include <Keypad.h>
 
 
-
 const byte ROWS = 4; // Déclaration du nombre de lignes
 const byte COLS = 3; // Déclaration du nombre de  colonnes
 
@@ -26,11 +25,17 @@ String code;
 String secret = "1234#";
 
 
+
+
 void setup() {
+
+
     Serial.begin(115200);
     pinMode( 2, OUTPUT);   // led builtin
     delay(500);
     Serial.println("\nSetup done");
+
+
 }
 
 void loop() {

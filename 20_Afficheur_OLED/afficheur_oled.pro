@@ -110,7 +110,7 @@ INCLUDEPATH += "$${HOMEDIR}/.platformio/packages/toolchain-xtensa32/xtensa-esp32
 INCLUDEPATH += "$${HOMEDIR}/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/5.2.0/include-fixed"
 INCLUDEPATH += "$${HOMEDIR}/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/5.2.0/include"
 INCLUDEPATH += "$${HOMEDIR}/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include"
-INCLUDEPATH += "$${HOMEDIR}/.platformio/lib/ESP8266 and ESP32 OLED driver for SSD1306 displays/src"
+
 
 DEFINES += "PLATFORMIO=50204"
 DEFINES += "ARDUINO_LOLIN32"
