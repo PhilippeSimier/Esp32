@@ -34,7 +34,7 @@ Keypad clavier = Keypad((char *) keys, rowPins, colPins, ROWS, COLS);
 String code;
 String secret = "1234#";
 
-void afficher(String message, String message2 = "");
+void afficher(String message);
 
 void setup() {
     Serial.begin(115200);
@@ -57,30 +57,32 @@ void loop() {
         if (key == '#'){
             if (!code.compareTo(secret)) {
                 Serial.println("\nLa porte s'ouvre");
-                afficher("La porte", "s'ouvre");
+                afficher("La porte s'ouvre");
                 code = "";
                 digitalWrite(2, HIGH);
                 delay(2000);
                 digitalWrite(2, LOW);
-                afficher("Entrez le", "code");
+                afficher("Entrez le code");
 
             } else {
                 Serial.println("\nCode faux !!!");
                 afficher("Code faux!");
                 code = "";
                 delay(2000);
-                afficher("Entrez le", "code");
+                afficher("Entrez le code");
             }
+        }
+        if (key == '*'){
+            code = "";
+            afficher(code);
         }
     }
 
 }
 
-void afficher(String message, String message2){
+void afficher(String message){
     display.clear();
-    display.drawString(0, 0,  message);
-    if (!message2.isEmpty()){
-        display.drawString(0, 32,  message2);
-    }
+    display.drawStringMaxWidth(0, 0, 110, message);
+
     display.display();
 }
