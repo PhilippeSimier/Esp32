@@ -44,4 +44,19 @@ void setup(){
 
 Le « point zéro » est situé en haut à gauche de l’écran. (le haut est du côté de la nappe)
 
-![Axes X-Y](/20_Afficheur_OLED/coordonnees-ecran-oled-XY.jpg ) 
+![Axes X-Y](/20_Afficheur_OLED/coordonnees-ecran-oled-XY.jpg )
+
+##  Afficheur OLED  avec contrôleur SH1106
+
+Certain écrans semblables sont pilotés par un contrôleur **SH1106**
+Il y plusieurs bibliothèques compatibles, la première est la bibliothèque Adafruit_SH1106 qui n'est pas  officielle contrairement à ce que son nom pourrait laisser croire. C'est une classe qui spécialise la classe Adafruit_GFX pour le controleur SH1106.
+
+[lien vers la bibliothèque SH1106](https://github.com/wonho-maker/Adafruit_SH1106) 
+
+La deuxième la bibliothèque **U8glib** a très bonne réputation parmi les utilisateurs d'écrans OLED. Elle prend en charge les écrans OLED et LCD monochromes, et incluent presque tous les contrôleurs.
+
+[lien vers la bibliothèque U8glib](https://github.com/olikraus/u8g2) 
+
+<!-- TOOLBOX 
+
+https://www.amazon.de/stores/page/DC4FF333-D6DB-425C-B998-EB83DCBC0078?ingress=0&visitId=ca152fb6-7e8e-4fd5-b00f-54b3c19b93d0&ref_=bl_dp_s_web_11713305031
