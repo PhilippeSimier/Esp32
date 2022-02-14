@@ -32,6 +32,21 @@ void Afficheur::afficher(const String message) {
 }
 
 /**
+ * Méthode pour afficher un mot de passe
+ * @param message le mot de passe
+ */
+void Afficheur::afficherMdp(const String message){
+    clear();
+    String psd;
+    for (int i = 0; i<message.length(); i++){
+        psd += "*";
+        
+    }
+    drawStringMaxWidth(0, 0, 110, psd);
+    display();
+}
+
+/**
  * Méthode pour afficher une grandeur physique
  * @param char* message le libellé
  * @param valeur  la valeur à afficher

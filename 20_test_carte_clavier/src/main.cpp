@@ -8,6 +8,7 @@
 #include <Arduino.h>
 #include <Keypad.h>
 #include <Afficheur.h>          // Afficheur SSD1306
+#include <Led.h>
 
 
 const byte ROWS = 4; // Déclaration du nombre de lignes
@@ -32,47 +33,53 @@ Keypad clavier = Keypad((char *) keys, rowPins, colPins, ROWS, COLS);
 String code;
 String secret = "1234#";
 Afficheur *afficheur;
+Led *leds;
 
 void setup() {
-
 
     Serial.begin(115200);
     pinMode(2, OUTPUT); // led builtin
     delay(500);
     afficheur = new Afficheur;
+    leds = new Led(4);  // quatre leds
+    
+    
     afficheur->afficher("Setup done");
+    leds->allumer(BLEU, 3);  // led 3  bleu
 }
 
 void loop() {
     char key = clavier.getKey();
 
     if (key) {
-        Serial.print(key);
+        
         code.concat(key);
-        afficheur->afficher(code);
+        afficheur->afficherMdp(code);
 
         if (key == '#') {
             if (!code.compareTo(secret)) {
-                Serial.println("\nLa porte s'ouvre");
                 afficheur->afficher("La porte s'ouvre");
                 code = "";
-                digitalWrite(2, HIGH);
-                delay(2000);
-                digitalWrite(2, LOW);
+                leds->allumer(VERT); // led 0 verte
+                delay(3000);
+                leds->eteindre();
                 afficheur->afficher("Entrez le code");
 
             } else {
-                Serial.println("\nCode faux !!!");
                 afficheur->afficher("Code faux!");
                 code = "";
+                leds->allumer(ROUGE);  // led 0 rouge
                 delay(2000);
+                leds->eteindre();
                 afficheur->afficher("Entrez le code");
             }
         }
         if (key == '*') {
             code = "";
-            afficheur->afficher(code);
+            afficheur->afficher("Entrez le code");
+            // leds->eteindre(3); 
         }
+        
     }
 
 
