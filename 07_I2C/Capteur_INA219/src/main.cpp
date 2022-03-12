@@ -9,47 +9,40 @@
  */
 
 #include <Wire.h>
-#include <Adafruit_INA219.h>
+#include <Battery.h>
 
-Adafruit_INA219 ina219;
+Battery *laBatterie;
+float  charge  = 0.0;
 
 void setup(void) {
     Serial.begin(115200);
-
-    Serial.println("Recherche de la puce INA219 !");
-    while (!ina219.begin()) {
-        delay(3000);
-    }
-    Serial.println("Puce INA219 trouvée");
-
-
+    laBatterie = new Battery;
+    laBatterie->init(120);
+    laBatterie->setCalibration_16V_400mA();   
 }
 
-void loop(void) {
-
-    float shuntvoltage = ina219.getShuntVoltage_mV();
-    float busvoltage = ina219.getBusVoltage_V();
-    float current_mA = ina219.getCurrent_mA();
-    float power_mW = ina219.getPower_mW();
-    float loadvoltage = busvoltage + (shuntvoltage / 1000);
+void loop(void) {  
+    
+    float busvoltage = laBatterie->getBusVoltage_V();
+    float i1 = laBatterie->getCurrent_mA();
+    float power_mW = laBatterie->getPower_mW();
+    
 
     Serial.print("Bus Voltage:   ");
     Serial.print(busvoltage);
     Serial.println(" V");
-    Serial.print("Shunt Voltage: ");
-    Serial.print(shuntvoltage);
-    Serial.println(" mV");
-    Serial.print("Load Voltage:  ");
-    Serial.print(loadvoltage);
-    Serial.println(" V");
+    
     Serial.print("Current:       ");
-    Serial.print(current_mA);
+    Serial.print(i1);
     Serial.println(" mA");
+    
     Serial.print("Power:         ");
     Serial.print(power_mW);
     Serial.println(" mW");
-    Serial.println("");
-
+     
+    Serial.print("Charge:         ");
+    Serial.print(laBatterie->obtenirCharge());
+    Serial.println(" mAh");
     delay(2000);
 
 }
