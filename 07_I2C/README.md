@@ -2,7 +2,7 @@
 
 ## Présentation
 
-Cette bibliothèque fait donc partie intégrante du framwork  Arduino, elle est installée de base. Il suffit juste de l’importer dans le programme que l’on écrit.
+Cette bibliothèque fait partie intégrante du framwork  Arduino, elle est installée de base. Il suffit juste de l’importer dans le programme que l’on écrit.
 ```cpp
  #include <Wire.h> 
  ```
@@ -18,7 +18,13 @@ Quatre fils  sont nécessaires pour la communication :
 
 ![raccordement](/07_I2C/Cablage_BME280_esp32.png)
 
-## Les différentes méthodes
+## Les différentes méthodes de Wire
+
+La classe **Wire** hérite de **Stream** On retrouve donc toutes les méthodes de Stream dans Wire.  
+
+ - read
+ - available
+ - readBytes
 
 **begin() (maître/esclave)**
 
@@ -54,3 +60,42 @@ Sinon, quand une erreur est détectée la réponse est :
 -   3 : signifie NACK pour erreur sur la transmission des données
 -   4 : autre erreur
 
+**requestFrom() (maître)**  
+Cette fonction utilisée par le périphérique maître, sert à demander une information à un esclave.  L’argument de cette fonction est l’adresse de l’esclave à interroger.
+```cpp
+Wire.requestFrom(address, quantity, stop)
+```    
+
+Les deux premiers paramètres sont indispensables :
+
+**Paramètre address**  
+Comme son nom l’indique, l’adresse de l’esclave codée sur 7 bits.
+
+**Paramètre quantity**  
+Le nombre d’octets (bytes) que le maître demande de l’esclave dans sa réponse.
+
+**Paramètre stop**  
+Valeur booléenne, elle est par défaut à True.  
+True : après la requête du maître, requestFrom() envoie un message stop sur le bus, le libérant.  
+False : à contrario, le bus n’est ici pas libéré.
+
+Cette fonction renvoie  le nombre d’octets retournés par l’esclave
+
+## Exemple de programme
+```cpp
+// Lecture du registre de température
+
+Wire.beginTransmission(i2c_device_address);
+Wire.write(REG_ADDR_TEMP);
+if (Wire.endTransmission())
+   return error;
+
+// Lecture du contenu du registre
+if (Wire.requestFrom(i2c_device_address, 2)) {
+    Wire.readBytes((uint8_t*) & i2c_received, 2);
+} else {
+// Erreur de lecture temperature
+   return error;
+}
+....
+```
