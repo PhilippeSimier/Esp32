@@ -11,13 +11,13 @@
 #include <Wire.h>
 #include <Battery.h>
 
-Battery *laBatterie;
+Battery *laBatterie; 
 float  charge  = 0.0;
 
 void setup(void) {
     Serial.begin(115200);
-    laBatterie = new Battery;
-    laBatterie->init(120);
+    laBatterie = new Battery(120); //  instanciation d'une batterie de 120 mAh
+    laBatterie->init(120);         //  déclaration de la charge initiale 
     laBatterie->setCalibration_16V_400mA();   
 }
 
@@ -40,10 +40,17 @@ void loop(void) {
     Serial.print(power_mW);
     Serial.println(" mW");
      
-    Serial.print("Charge:         ");
-    Serial.print(laBatterie->obtenirCharge());
+    Serial.print("Charge:        ");
+    Serial.print(laBatterie->getCharge());
     Serial.println(" mAh");
-    delay(2000);
+    
+    delay(1000);
+    
+    Serial.print("Taux:          ");
+    Serial.print(laBatterie->getSOC());
+    Serial.println(" %");
+    
+    delay(1000);
 
 }
 

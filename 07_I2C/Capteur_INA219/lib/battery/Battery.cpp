@@ -7,13 +7,14 @@
 
 #include "Battery.h"
 
-Battery::Battery() :
+Battery::Battery(const float _capacite) :
     Adafruit_INA219(),
     t0(0),
     t1(0),
     i0(0),
     i1(0),
-    charge(0)
+    charge(0),
+    capacite(_capacite)    
 {
 }
 
@@ -37,7 +38,7 @@ void Battery::init(const float _charge){
  * @brief  calcul de la charge mAh (methode des trapèzes)
  * @return float la charge de la batterie
  */
-float Battery::obtenirCharge(){
+float Battery::getCharge(){
     
     t1 = millis();
     i1 = getCurrent_mA();
@@ -47,7 +48,15 @@ float Battery::obtenirCharge(){
     
     // la charge ne peut pas être négative
     if (charge < 0.0) charge = 0.0;
+    // la charge ne peut pas être supérieur à la capacité
+    if (charge > capacite) charge = capacite;
     
     return charge; 
+}
+
+float Battery::getSOC(){
+    
+    getCharge();
+    return 100 * charge/capacite;
 }
 

@@ -15,11 +15,12 @@
 class Battery : public Adafruit_INA219
 {
 public:
-    Battery();
+    Battery(const float _capacite);
     Battery(const Battery& orig);
     
     void  init(const float _charge);
-    float obtenirCharge();
+    float getCharge();
+    float getSOC();
     
 private:
     unsigned long t0;
