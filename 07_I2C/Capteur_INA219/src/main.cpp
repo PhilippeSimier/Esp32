@@ -16,9 +16,9 @@ float  charge  = 0.0;
 
 void setup(void) {
     Serial.begin(115200);
-    laBatterie = new Battery(120); //  instanciation d'une batterie de 120 mAh
-    laBatterie->init(120);         //  déclaration de la charge initiale 
-    laBatterie->setCalibration_16V_400mA();   
+    laBatterie = new Battery(3000); //  instanciation d'une batterie de 120 mAh
+    laBatterie->init(3000);         //  déclaration de la charge initiale 
+    laBatterie->setCalibration_32V_1A();   
 }
 
 void loop(void) {  
