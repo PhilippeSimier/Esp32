@@ -5,7 +5,7 @@ I²C signifie Inter Integrated Circuit (il se prononce I-squared-C). C'est un pr
 L'ESP32 prend en charge la communication I2C via ses deux interfaces de bus I2C qui peuvent servir de maître ou d'esclave I2C, selon la configuration de l'utilisateur.
 
 Avec la communication I2C, chaque esclave sur le bus a sa propre adresse, un nombre hexadécimal qui permet à l'ESP32 de communiquer avec chaque appareil.
-L'adresse I2C se trouve généralement sur la fiche technique du composant. Cependant, si elle est difficile à trouver, vous pouvez exécuter le programme scanner I2C présent dans ce dépot pour trouver l'adresse I2C.
+L'adresse I2C se trouve généralement sur la fiche technique du composant. Cependant, si elle est difficile à trouver, vous pouvez exécuter le programme scanner I2C présent dans ce dépot pour trouver son adresse.
 
 ## Présentation de l'objet Wire
 
@@ -19,7 +19,7 @@ L'objet Wire est une instance de la classe TwoWire.
 
 ## Câblage des capteurs
 
-Deux fils  sont nécessaires pour la communication eet deux autres pour l'alimentation:
+Deux fils  sont nécessaires pour la communication et deux autres pour l'alimentation:
 
 -   SDA (Serial Data Line)  D21
 -   SCL (Serial Clock Line) D22
@@ -35,9 +35,9 @@ Avec l'objet Wire, vous initialisez l'I2C comme suit :
 ```
 Il vous suffit donc de définir les broches SDA et SCL souhaités dans les variables I2C_SDA et I2C_SCL.
 
-Cependant, si vous utilisez des bibliothèques pour communiquer avec vos capteurs, cela peut, ne pas fonctionner car il peut être  difficile de sélectionner d'autres broches. Cela se produit parce que ces bibliothèques peuvent écraser votre configuration, si vous ne transmettez pas votre propre instance TwoWire lors de l'initialisation de la bibliothèque. Dans ces cas, vous devez examiner de plus près les fichiers de bibliothèque .cpp et voir comment transmettre vos propres paramètres.
+Cependant, si vous utilisez des bibliothèques pour communiquer avec vos capteurs, cela peut, ne pas fonctionner car il peut être  difficile de sélectionner d'autres broches que celles par défaut. Cela se produit parce que ces bibliothèques peuvent écraser votre configuration, si vous ne transmettez pas votre propre instance TwoWire lors de l'initialisation de la bibliothèque. Dans ces cas, vous devez examiner de plus près les fichiers de bibliothèque .cpp et voir comment transmettre votre propre instance .
 
-Rien ne vous interdit de créer votre propre instance de la classe TwoWire, comme le montre le code exemple suivant
+En effet rien ne vous interdit de créer votre propre instance de la classe TwoWire, comme le montre le code exemple suivant puis de la passer à la méthode begin de votre composant.
 
 ```cpp
     #define I2C_SDA 33
