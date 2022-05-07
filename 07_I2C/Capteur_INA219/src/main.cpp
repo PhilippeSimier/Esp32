@@ -8,6 +8,7 @@
  * installation :  pio lib -g install 160
  */
 
+#include <Arduino.h>
 #include <Wire.h>
 #include <Battery.h>
 
