@@ -3,7 +3,7 @@
 #include <BME280.h>
 #include <SPI.h>
 #include <BME280I2C.h>
-#include <BH1750.h>
+
 
 #define SERIAL_BAUD 115200
 
@@ -19,7 +19,7 @@ BME280I2C::Settings parametrage(
         );
 
 BME280I2C bme(parametrage);
-BH1750 eclairement;
+
 
 void printBME280Data(Stream* client);
 
@@ -45,12 +45,7 @@ void setup() {
             Serial.println("Found UNKNOWN sensor! Error!");
     }
 
-    while (!eclairement.begin()) {
-        Serial.println("Could not find BH1750 sensor!");
-        delay(1000);
-    }
-    eclairement.configure(BH1750::CONTINUOUS_HIGH_RES_MODE_2);
-
+   
 
 
 
@@ -69,7 +64,7 @@ void printBME280Data(Stream* client) {
     BME280::PresUnit presUnit(BME280::PresUnit_Pa);
 
     bme.read(pres, temp, hum, tempUnit, presUnit);
-    lux = eclairement.readLightLevel();
+    
 
     client->print("Temp: ");
     client->print(temp);
