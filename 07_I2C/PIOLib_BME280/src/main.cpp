@@ -1,3 +1,18 @@
+/* 
+ * File:   main.cpp Programme pour test du capteur BME280
+ * Author: philippe SIMIER Touchard Washington Le Mans
+ *
+ * Created on 9 février 2022, 17:11
+ * 
+ * Bibliothèque : BME280 @ 3.0.0
+ * installation : pio lib -g install 901
+ * 
+ * Modifier la bibliothèque fichier BME280.cpp
+ * ajouter return true aux methodes
+ *        bool BME280::InitializeFilter() 
+ *        bool BME280::WriteSettings()
+ */
+
 #include <Arduino.h>
 #include <Wire.h>
 #include <BME280.h>
@@ -74,10 +89,8 @@ void printBME280Data(Stream* client) {
     client->print("%");
     client->print("\tPression: ");
     client->print(pres / 100);
-    client->print(" hPa");
-    client->print("\tEclairement: ");
-    client->print(lux);
-    client->println(" Lux");
+    client->println(" hPa");
+
 
     delay(1000);
 }
