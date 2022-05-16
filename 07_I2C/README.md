@@ -1,26 +1,58 @@
-﻿# Bibliothèque Wire : I2C
+﻿# Le bus I2C
 
-## Présentation
+## Présentation I2C
+I²C signifie Inter Integrated Circuit (il se prononce I-squared-C). C'est un protocole de communication synchrone, multi-maître, multi-esclave. 
+L'ESP32 prend en charge la communication I2C via ses deux interfaces de bus I2C qui peuvent servir de maître ou d'esclave I2C, selon la configuration de l'utilisateur.
 
-Cette bibliothèque fait partie intégrante du framwork  Arduino, elle est installée de base. Il suffit juste de l’importer dans le programme que l’on écrit.
+Avec la communication I2C, chaque esclave sur le bus a sa propre adresse, un nombre hexadécimal qui permet à l'ESP32 de communiquer avec chaque appareil.
+L'adresse I2C se trouve généralement sur la fiche technique du composant. Cependant, si elle est difficile à trouver, vous pouvez exécuter le programme scanner I2C présent dans ce dépot pour trouver son adresse.
+
+## Présentation de l'objet Wire
+
+L'objet Wire fait partie intégrante du framwork  Arduino, il est crée de base. Il suffit juste  d’importer le fichier Wire.h dans le programme que l’on écrit.
+
 ```cpp
  #include <Wire.h> 
  ```
+L'objet Wire est une instance de la classe TwoWire.
+
 
 ## Câblage des capteurs
 
-Quatre fils  sont nécessaires pour la communication :
+Deux fils  sont nécessaires pour la communication et deux autres pour l'alimentation:
 
 -   SDA (Serial Data Line)  D21
 -   SCL (Serial Clock Line) D22
--   GND pour un commun entre les 2 appareils
+-   GND pour le commun entre les 2 appareils
 -   3,3V ou 5V pour alimenter le périphérique
 
 ![raccordement](/07_I2C/Cablage_BME280_esp32.png)
 
+Avec l'objet Wire, vous initialisez l'I2C comme suit : 
+
+```cpp
+    Wire.begin(I2C_SDA, I2C_SCL);
+```
+Il vous suffit donc de définir les broches SDA et SCL souhaités dans les variables I2C_SDA et I2C_SCL.
+
+Cependant, si vous utilisez des bibliothèques pour communiquer avec vos capteurs, cela peut, ne pas fonctionner car il peut être  difficile de sélectionner d'autres broches que celles par défaut. Cela se produit parce que ces bibliothèques peuvent écraser votre configuration, si vous ne transmettez pas votre propre instance TwoWire lors de l'initialisation de la bibliothèque. Dans ces cas, vous devez examiner de plus près les fichiers de bibliothèque .cpp et voir comment transmettre votre propre instance .
+
+En effet rien ne vous interdit de créer votre propre instance de la classe TwoWire, comme le montre le code exemple suivant puis de la passer à la méthode begin de votre composant.
+
+```cpp
+    #define I2C_SDA 33
+    #define I2C_SCL 32
+
+    TwoWire wire2 = TwoWire(0);
+    
+    wire2.begin(I2C_SDA, I2C_SCL, 100000);
+    
+    status = bme.begin(0x77, &wire2);  //démarrage du BME280 avec la référence du bus I2C
+```
+
 ## Les différentes méthodes de Wire
 
-La classe **Wire** hérite de **Stream** On retrouve donc toutes les méthodes de Stream dans Wire.  
+La classe **TwoWire** hérite de **Stream** On retrouve donc toutes les méthodes de Stream dans Wire.  
 
  - read
  - available

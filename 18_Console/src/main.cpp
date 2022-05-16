@@ -1,6 +1,13 @@
 /* 
  * File:   main.cpp
- * Author: philippe
+ * Author: philippe SIMIER Touchard Washington le Mans
+ * 
+ * Bibliothèque : Console 
+ * installation : pio lib -g install "akoro/Console@^1.2.1"
+ * 
+ * Avec netbeans ajouter dans Tools -> Options -> C/C++ ->  code assistance
+ * le chemin vers la library
+ * /home/philippe/.platformio/lib/Console/src
  *
  * Created on 20 novembre 2021, 17:42
  */
