@@ -38,8 +38,8 @@
           <cTool>
             <incDir>
               <pElem>src</pElem>
-              <pElem>/home/philippe/github/Esp32/01_blink_GPIO/test_blink_platformio_ttgo_lora32_v16/include</pElem>
-              <pElem>/home/philippe/github/Esp32/01_blink_GPIO/test_blink_platformio_ttgo_lora32_v16/src</pElem>
+              <pElem>/home/philippe/github/Esp32/01_blink_GPIO/test_blink_platformio_ttgo_lora32_v21/include</pElem>
+              <pElem>/home/philippe/github/Esp32/01_blink_GPIO/test_blink_platformio_ttgo_lora32_v21/src</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/config</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include</pElem>
@@ -210,7 +210,7 @@
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp32-camera/conversions/include</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/fb_gfx/include</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/cores/esp32</pElem>
-              <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/variants/ttgo-lora32-v1</pElem>
+              <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/variants/ttgo-lora32-v21new</pElem>
               <pElem>/home/philippe/.platformio/lib/Adafruit BusIO</pElem>
               <pElem>/home/philippe/.platformio/lib/Adafruit GFX Library</pElem>
               <pElem>/home/philippe/.platformio/lib/Adafruit INA219</pElem>
@@ -267,10 +267,10 @@
             <preprocessorList>
               <Elem>ARDUINO=10812</Elem>
               <Elem>ARDUINO_ARCH_ESP32</Elem>
-              <Elem>ARDUINO_BOARD="TTGO LoRa32-OLED V1"</Elem>
+              <Elem>ARDUINO_BOARD="TTGO LoRa32-OLED v2.1.6"</Elem>
               <Elem>ARDUINO_PARTITION_default</Elem>
-              <Elem>ARDUINO_TTGO_LoRa32_V1</Elem>
-              <Elem>ARDUINO_VARIANT="ttgo-lora32-v1"</Elem>
+              <Elem>ARDUINO_TTGO_LoRa32_v21new</Elem>
+              <Elem>ARDUINO_VARIANT="ttgo-lora32-v21new"</Elem>
               <Elem>ESP32</Elem>
               <Elem>ESP_PLATFORM</Elem>
               <Elem>F_CPU=240000000L</Elem>
@@ -287,8 +287,8 @@
           <ccTool>
             <incDir>
               <pElem>src</pElem>
-              <pElem>/home/philippe/github/Esp32/01_blink_GPIO/test_blink_platformio_ttgo_lora32_v16/include</pElem>
-              <pElem>/home/philippe/github/Esp32/01_blink_GPIO/test_blink_platformio_ttgo_lora32_v16/src</pElem>
+              <pElem>/home/philippe/github/Esp32/01_blink_GPIO/test_blink_platformio_ttgo_lora32_v21/include</pElem>
+              <pElem>/home/philippe/github/Esp32/01_blink_GPIO/test_blink_platformio_ttgo_lora32_v21/src</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/config</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include</pElem>
@@ -459,7 +459,7 @@
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp32-camera/conversions/include</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/fb_gfx/include</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/cores/esp32</pElem>
-              <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/variants/ttgo-lora32-v1</pElem>
+              <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/variants/ttgo-lora32-v21new</pElem>
               <pElem>/home/philippe/.platformio/lib/Adafruit BusIO</pElem>
               <pElem>/home/philippe/.platformio/lib/Adafruit GFX Library</pElem>
               <pElem>/home/philippe/.platformio/lib/Adafruit INA219</pElem>
@@ -516,10 +516,10 @@
             <preprocessorList>
               <Elem>ARDUINO=10812</Elem>
               <Elem>ARDUINO_ARCH_ESP32</Elem>
-              <Elem>ARDUINO_BOARD="TTGO LoRa32-OLED V1"</Elem>
+              <Elem>ARDUINO_BOARD="TTGO LoRa32-OLED v2.1.6"</Elem>
               <Elem>ARDUINO_PARTITION_default</Elem>
-              <Elem>ARDUINO_TTGO_LoRa32_V1</Elem>
-              <Elem>ARDUINO_VARIANT="ttgo-lora32-v1"</Elem>
+              <Elem>ARDUINO_TTGO_LoRa32_v21new</Elem>
+              <Elem>ARDUINO_VARIANT="ttgo-lora32-v21new"</Elem>
               <Elem>ESP32</Elem>
               <Elem>ESP_PLATFORM</Elem>
               <Elem>F_CPU=240000000L</Elem>

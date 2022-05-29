@@ -4,7 +4,12 @@
  *
  * Created on 29 mai 2022, 20:20
  * 
- * Board  T3 1.6
+ * Board
+ * LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/868/915Mhz 
+ * ESP32 LoRa OLED 0.96 Inch 
+ * SD Card 
+ * Bluetooth WIFI Wireless Module ESP-32 
+ * SMA(1)
  * 
  */
 
