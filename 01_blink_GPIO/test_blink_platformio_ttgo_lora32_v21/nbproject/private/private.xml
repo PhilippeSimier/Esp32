@@ -4,4 +4,11 @@
         <activeConfTypeElem>0</activeConfTypeElem>
         <activeConfIndexElem>0</activeConfIndexElem>
     </data>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/philippe/github/Esp32/01_blink_GPIO/test_blink_platformio_ttgo_lora32_v21/platformio.ini</file>
+            <file>file:/home/philippe/github/Esp32/01_blink_GPIO/test_blink_platformio_ttgo_lora32_v21/src/main.cpp</file>
+        </group>
+    </open-files>
 </project-private>
