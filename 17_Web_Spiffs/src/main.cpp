@@ -3,6 +3,7 @@
  * Author: philippe
  *
  * Created on 11 novembre 2021, 20:12
+ * pio lib -g install 306
  */
 
 #include <Arduino.h>
