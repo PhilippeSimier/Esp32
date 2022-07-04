@@ -83,6 +83,5 @@ void loop() {
 void afficher(String message){
     display.clear();
     display.drawStringMaxWidth(0, 0, 110, message);
-
     display.display();
 }
