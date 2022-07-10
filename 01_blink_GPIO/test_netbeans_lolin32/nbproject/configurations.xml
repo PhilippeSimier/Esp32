@@ -32,14 +32,14 @@
       <makefileType>
         <makeTool>
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
-          <buildCommand>/home/philippe/.platformio/penv/bin/pio -f -c netbeans run</buildCommand>
-          <cleanCommand>/home/philippe/.platformio/penv/bin/pio -f -c netbeans run --target clean</cleanCommand>
+          <buildCommand>"/usr/local/bin/pio" -f -c netbeans run</buildCommand>
+          <cleanCommand>"/usr/local/bin/pio" -f -c netbeans run --target clean</cleanCommand>
           <executablePath></executablePath>
           <cTool>
             <incDir>
               <pElem>src</pElem>
-              <pElem>/home/philippe/Esp32/01_blink_GPIO/test_blink_platformio/include</pElem>
-              <pElem>/home/philippe/Esp32/01_blink_GPIO/test_blink_platformio/src</pElem>
+              <pElem>/home/philippe/github/Esp32/01_blink_GPIO/test_netbeans/include</pElem>
+              <pElem>/home/philippe/github/Esp32/01_blink_GPIO/test_netbeans/src</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/config</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_trace</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_update</pElem>
@@ -103,6 +103,12 @@
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/fb_gfx</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/cores/esp32</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/variants/lolin32</pElem>
+              <pElem>/home/philippe/.platformio/lib/BME280/src</pElem>
+              <pElem>/home/philippe/.platformio/lib/ESP8266 and ESP32 OLED driver for SSD1306 displays/src</pElem>
+              <pElem>/home/philippe/.platformio/lib/NeoPixelBus/src</pElem>
+              <pElem>/home/philippe/.platformio/lib/RadiationWatch/src</pElem>
+              <pElem>/home/philippe/.platformio/lib/SparkFun MAX31855K Thermocouple Digitizer/src</pElem>
+              <pElem>/home/philippe/.platformio/lib/TinyGPS</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/libraries/AzureIoT/src</pElem>
@@ -131,11 +137,11 @@
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src</pElem>
-              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32@2.50200.97/xtensa-esp32-elf/include/c++/5.2.0</pElem>
-              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32@2.50200.97/xtensa-esp32-elf/include/c++/5.2.0/xtensa-esp32-elf</pElem>
-              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32@2.50200.97/lib/gcc/xtensa-esp32-elf/5.2.0/include-fixed</pElem>
-              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32@2.50200.97/lib/gcc/xtensa-esp32-elf/5.2.0/include</pElem>
-              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32@2.50200.97/xtensa-esp32-elf/include</pElem>
+              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include/c++/5.2.0</pElem>
+              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include/c++/5.2.0/xtensa-esp32-elf</pElem>
+              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/5.2.0/include-fixed</pElem>
+              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/5.2.0/include</pElem>
+              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include</pElem>
             </incDir>
             <preprocessorList>
               <Elem>ARDUINO=10805</Elem>
@@ -148,14 +154,14 @@
               <Elem>F_CPU=240000000L</Elem>
               <Elem>HAVE_CONFIG_H</Elem>
               <Elem>MBEDTLS_CONFIG_FILE="mbedtls/esp_config.h"</Elem>
-              <Elem>PLATFORMIO=50202</Elem>
+              <Elem>PLATFORMIO=60100</Elem>
             </preprocessorList>
           </cTool>
           <ccTool>
             <incDir>
               <pElem>src</pElem>
-              <pElem>/home/philippe/Esp32/01_blink_GPIO/test_blink_platformio/include</pElem>
-              <pElem>/home/philippe/Esp32/01_blink_GPIO/test_blink_platformio/src</pElem>
+              <pElem>/home/philippe/github/Esp32/01_blink_GPIO/test_netbeans/include</pElem>
+              <pElem>/home/philippe/github/Esp32/01_blink_GPIO/test_netbeans/src</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/config</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_trace</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_update</pElem>
@@ -219,6 +225,12 @@
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/fb_gfx</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/cores/esp32</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/variants/lolin32</pElem>
+              <pElem>/home/philippe/.platformio/lib/BME280/src</pElem>
+              <pElem>/home/philippe/.platformio/lib/ESP8266 and ESP32 OLED driver for SSD1306 displays/src</pElem>
+              <pElem>/home/philippe/.platformio/lib/NeoPixelBus/src</pElem>
+              <pElem>/home/philippe/.platformio/lib/RadiationWatch/src</pElem>
+              <pElem>/home/philippe/.platformio/lib/SparkFun MAX31855K Thermocouple Digitizer/src</pElem>
+              <pElem>/home/philippe/.platformio/lib/TinyGPS</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/libraries/AzureIoT/src</pElem>
@@ -247,11 +259,11 @@
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src</pElem>
               <pElem>/home/philippe/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src</pElem>
-              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32@2.50200.97/xtensa-esp32-elf/include/c++/5.2.0</pElem>
-              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32@2.50200.97/xtensa-esp32-elf/include/c++/5.2.0/xtensa-esp32-elf</pElem>
-              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32@2.50200.97/lib/gcc/xtensa-esp32-elf/5.2.0/include-fixed</pElem>
-              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32@2.50200.97/lib/gcc/xtensa-esp32-elf/5.2.0/include</pElem>
-              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32@2.50200.97/xtensa-esp32-elf/include</pElem>
+              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include/c++/5.2.0</pElem>
+              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include/c++/5.2.0/xtensa-esp32-elf</pElem>
+              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/5.2.0/include-fixed</pElem>
+              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/5.2.0/include</pElem>
+              <pElem>/home/philippe/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include</pElem>
             </incDir>
             <preprocessorList>
               <Elem>ARDUINO=10805</Elem>
@@ -264,7 +276,7 @@
               <Elem>F_CPU=240000000L</Elem>
               <Elem>HAVE_CONFIG_H</Elem>
               <Elem>MBEDTLS_CONFIG_FILE="mbedtls/esp_config.h"</Elem>
-              <Elem>PLATFORMIO=50202</Elem>
+              <Elem>PLATFORMIO=60100</Elem>
             </preprocessorList>
           </ccTool>
         </makeTool>

@@ -20,8 +20,7 @@ void setup()
 void loop() 
 {
   digitalWrite(LED, digitalRead(LED) ^1);   // turn the LED 
-  delay(200);                       // wait for 0.2 second
+  delay(500);                       // wait for 0.2 second
   digitalWrite(LED, digitalRead(LED) ^1);    // turn the LED 
-  delay(2000);                       // wait for 2 seconds
+  delay(5000);                       // wait for 2 seconds
 }
-
