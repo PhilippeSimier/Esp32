@@ -48,6 +48,24 @@ void handleNotFound() {
     server.send(404, "text/plain", message);
 }
 
+void initWiFi() {
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(ssid, password);
+    Serial.print("Connecting to WiFi ..");
+    while (WiFi.status() != WL_CONNECTED) {
+        Serial.print('.');
+        delay(1000);
+    }
+    Serial.println(""); // affichage des paramètres 
+    Serial.println("WiFi connecté");
+    Serial.print("Adresse IP du module ESP32 : ");
+    Serial.println(WiFi.localIP());
+    Serial.print("Adresse IP de la gateway : ");
+    Serial.println(WiFi.gatewayIP());
+    Serial.print("Adresse IP du DNS : ");
+    Serial.println(WiFi.dnsIP());
+}
+
 void setup() {
     Serial.begin(115200);
     pinMode(LED, OUTPUT);
@@ -57,20 +75,7 @@ void setup() {
     Serial.print("Connexion au WiFi ");
     Serial.println(ssid);
 
-    WiFi.mode(WIFI_STA);
-    WiFi.begin(ssid, password); // connection 
-
-    while (WiFi.status() != WL_CONNECTED) { // On attend
-        delay(500);
-        Serial.print(".");
-    }
-
-    Serial.println(""); // affichage des paramètres 
-    Serial.println("WiFi connecté");
-    Serial.print("Adresse IP du module EPC: ");
-    Serial.println(WiFi.localIP());
-    Serial.print("Adresse IP de la gateway : ");
-    Serial.println(WiFi.gatewayIP());
+    initWiFi();
 
     server.on("/", pageIndex); // associe une fonction pour la méthode http GET /
     server.on("/inline", pageInLine);
