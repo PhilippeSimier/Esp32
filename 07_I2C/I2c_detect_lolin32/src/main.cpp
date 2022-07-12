@@ -52,7 +52,7 @@ void setup() {
     Serial.println("I2C scanner");
 
     Wire.begin();
-    Wire.setClock(50000);
+    Wire.setClock(100000);
     size_t clock = Wire.getClock();
     Serial.print("clock : ");
     Serial.println(clock);
