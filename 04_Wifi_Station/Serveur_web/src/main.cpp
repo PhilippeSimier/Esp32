@@ -64,13 +64,15 @@ void initWiFi() {
     Serial.println(WiFi.gatewayIP());
     Serial.print("Adresse IP du DNS : ");
     Serial.println(WiFi.dnsIP());
+    Serial.print("RRSI: ");
+    Serial.println(WiFi.RSSI());  // La force du signal
 }
 
 void setup() {
     Serial.begin(115200);
     pinMode(LED, OUTPUT);
 
-    delay(100);
+    delay(1000);
 
     Serial.print("Connexion au WiFi ");
     Serial.println(ssid);
@@ -98,7 +100,5 @@ void loop() {
             etat = false;
         }
     }
-
-
 }
 
