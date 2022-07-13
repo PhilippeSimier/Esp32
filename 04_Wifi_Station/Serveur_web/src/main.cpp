@@ -65,7 +65,7 @@ void initWiFi() {
     Serial.print("Adresse IP du DNS : ");
     Serial.println(WiFi.dnsIP());
     Serial.print("RRSI: ");
-    Serial.println(WiFi.RSSI());  // La force du signal
+    Serial.println(WiFi.RSSI());  // La force du signal  -50 Excellent -100 Pas de signal
 }
 
 void setup() {
