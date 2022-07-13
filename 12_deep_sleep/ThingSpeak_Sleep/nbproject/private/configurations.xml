@@ -12,6 +12,7 @@
       </df>
       <df name="test">
       </df>
+      <in>customPartition.csv</in>
       <in>platformio.ini</in>
     </df>
   </logicalFolder>

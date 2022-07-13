@@ -6,6 +6,7 @@
         <in>main.cpp</in>
         <in>secret.h</in>
       </df>
+      <in>customPartition.csv</in>
       <in>platformio.ini</in>
     </df>
     <logicalFolder name="ExternalFiles"
@@ -542,6 +543,8 @@
           <preBuildCommand></preBuildCommand>
         </preBuild>
       </makefileType>
+      <item path="customPartition.csv" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="platformio.ini" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
