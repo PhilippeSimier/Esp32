@@ -10,7 +10,7 @@
  */
 
 #include <Arduino.h>
-#include <freertos/portmacro.h>
+
 
 
 volatile int interruptCounter;
@@ -18,6 +18,7 @@ int totalInterruptCounter;
 int LED = 2;
 
 hw_timer_t * timer = NULL;
+
 portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
 
 

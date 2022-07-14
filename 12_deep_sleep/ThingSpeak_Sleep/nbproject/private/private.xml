@@ -6,10 +6,6 @@
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/philippe/github/Esp32/12_deep_sleep/ThingSpeak_Sleep/src/main.cpp</file>
-            <file>file:/home/philippe/github/Esp32/12_deep_sleep/ThingSpeak_Sleep/platformio.ini</file>
-            <file>file:/home/philippe/github/Esp32/12_deep_sleep/ThingSpeak_Sleep/customPartition.csv</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
