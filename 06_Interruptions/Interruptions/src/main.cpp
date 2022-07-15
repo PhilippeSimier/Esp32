@@ -1,19 +1,17 @@
 /* 
  * File:   main.cpp
- * Author: philippe
+ * Author: philippe SIMIER Touchard washington Le Mans
  *
  * Created on 14 juillet 2022, 08:59
  * 
- * nous allons vérifier comment régler un minuteur 
- * pour générer périodiquement une interruption 
- * Comment gérer l'interruption dans une fonction ISR (routine de service d’interruption).
+ * Programme de démonstration pour régler un minuteur 
+ * qui va générer périodiquement une interruption 
+ * Exemple de fonction ISR (routine de service d’interruption).
  */
 
 #include <Arduino.h>
 
-
-
-volatile int interruptCounter;
+volatile int interruption;
 int totalInterruptCounter;
 int LED = 2;
 
@@ -28,7 +26,7 @@ portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
  */
 void IRAM_ATTR onTimer() {
     portENTER_CRITICAL_ISR(&timerMux);  // Début de section critique
-    interruptCounter++;
+    interruption = 1;
     portEXIT_CRITICAL_ISR(&timerMux);   // Fin de section critique
     digitalWrite(LED, digitalRead(LED) ^ 1);
 }
@@ -37,18 +35,20 @@ void setup() {
 
     Serial.begin(115200);
     pinMode(LED, OUTPUT);
+    interruption = 0;
+    
     timer = timerBegin(0, 80, true);
     timerAttachInterrupt(timer, &onTimer, true);
-    timerAlarmWrite(timer, 1000000, true);
+    timerAlarmWrite(timer, 1000000, true);   // 1s périodique
     timerAlarmEnable(timer);
 }
 
 void loop() {
 
-    if (interruptCounter > 0) {
+    if (interruption) {
 
         portENTER_CRITICAL(&timerMux);
-        interruptCounter--;
+        interruption = 0;
         portEXIT_CRITICAL(&timerMux);
 
         totalInterruptCounter++;
