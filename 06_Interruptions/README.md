@@ -1,11 +1,11 @@
 ﻿# Les interruptions 
 
-Une interruption est un processus qui est déclenché de manière asynchrone par un événement extérieur, qui interrompt momentanément l’exécution du code en cours, pour exécuter du code plus critique.
+Une interruption est un processus qui est déclenché de manière asynchrone par un événement extérieur. Elle interrompt momentanément l’exécution du code en cours, pour exécuter du code plus critique.
 
 Les interruptions permettent de détecter un événement en temps réel tout en laissant le processeur du microcontrôleur faire d’autres tâches. Ainsi le fonctionnement d’une interruption est le suivant :
 
- -  → Détection d’un événement
- -  → Interruption du programme principal 
+ - → Détection d’un événement
+ - → Interruption du programme principal 
  - → Exécution du code de l’interruption 
  - → Le programme principal reprend là où il s’est arrêté.
 
