@@ -26,8 +26,8 @@ void setup() {
 
 void loop() {
     
-    Serial.printf("compteur : %d\r\n", C1.getValue());
-    Serial.printf("compteur : %d\r\n", C2.getValue());
+    Serial.printf("compteur 1 : %d\r\n", C1.getValue());
+    Serial.printf("compteur 2 : %d\r\n", C2.getValue());
     
     if (C1.getValue()%10 == 0) 
         digitalWrite(LED, 1);

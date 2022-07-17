@@ -80,7 +80,7 @@ nb(0)
 }
 // La méthode statique ISR 
 void IRAM_ATTR Compteur::isr(void * arg) {
-    Compteur* pt = (Compteur *)arg;   // Transforme le pointeur générique en pointeur sur Compteur
+    Compteur* pt = static_cast<Compteur*>(arg);  // cast le pointeur générique en pointeur sur Compteur
     if (millis() - pt->lastMillis > pt->debounce) { //Software anti-rebond
         ets_printf("triggered\r\n");
         pt->nb++;
