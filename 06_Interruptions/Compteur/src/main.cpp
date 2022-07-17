@@ -12,8 +12,8 @@ const int LED = 2;
 const int BP = 33;
 
 
-Compteur leCompteur(BP,250);
-
+Compteur C1(BP,250);
+Compteur C2(13,250);
 
 void setup() {
     
@@ -26,9 +26,10 @@ void setup() {
 
 void loop() {
     
-    Serial.printf("compteur : %d\r\n", leCompteur.getValue());
+    Serial.printf("compteur : %d\r\n", C1.getValue());
+    Serial.printf("compteur : %d\r\n", C2.getValue());
     
-    if (leCompteur.getValue()%10 == 0) 
+    if (C1.getValue()%10 == 0) 
         digitalWrite(LED, 1);
     else
         digitalWrite(LED, 0);

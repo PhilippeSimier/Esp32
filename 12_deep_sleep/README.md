@@ -1,4 +1,4 @@
-﻿# Économiser l’énergie 
+# Économiser l’énergie 
 
 L’ESP32 possède des modes d’économie d’énergie appelés **Deep Sleep, Light Sleep** qui permettent « d’endormir l’ESP32 ».  Pendant ces modes, l’ESP32 peut effectuer des tâches simples et se faire réveiller pour effectuer des tâches plus complexes.
 
@@ -60,7 +60,7 @@ La  fonction `esp_sleep_enable_ext1_wakeup(BUTTON_PIN_MASK, LOGIC_LEVEL)` permet
 
 Lorsqu’on utilise le mode **Deep Sleep**, il faut :
 
--   Configurer les sources de réveil de l’ESP32    
+-   Configurer les sources de réveil de l’ESP32
 -   Utiliser la fonction  `esp_deep_sleep_start()` pour rentrer dans le mode Deep Sleep.
 
 
@@ -88,3 +88,4 @@ void print_wakeup_reason(){
    }
 }
 ```
+

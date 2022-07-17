@@ -9,23 +9,21 @@
 #define COMPTEUR_H
 
 #include <Arduino.h>
+#include <esp32-hal-gpio.h>
 
 class Compteur {
     
 public:
-    Compteur(byte sensePin, int _debounce = 200);
+    Compteur(uint8_t sensePin, int _debounce = 200);
     Compteur(const Compteur& orig);
     virtual ~Compteur();
-    int getValue();
-    void reset();
+    int getValue(void);
+    void reset(void);
 
 private:
-    
-    // void  IRAM_ATTR interuption();
-    
-    static IRAM_ATTR void isr();
-    static Compteur* anchor;
-           
+            
+    static IRAM_ATTR void isr(void * arg);
+               
     int lastMillis;
     int debounce;
     volatile int nb;

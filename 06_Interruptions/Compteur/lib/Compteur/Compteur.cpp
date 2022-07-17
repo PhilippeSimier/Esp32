@@ -9,14 +9,14 @@
 
 #include "Compteur.h"
 
-Compteur::Compteur(byte sensePin, int _debounce) :
+Compteur::Compteur(uint8_t sensePin, int _debounce) :
 lastMillis(0),
 debounce(_debounce),        
 nb(0)       
 {
-    anchor = this;
+    
     pinMode(sensePin, INPUT_PULLUP);  
-    attachInterrupt(sensePin, Compteur::isr, FALLING);
+    attachInterruptArg(sensePin, Compteur::isr, this, FALLING);
 }
 
 Compteur::Compteur(const Compteur& orig) {
@@ -25,25 +25,25 @@ Compteur::Compteur(const Compteur& orig) {
 Compteur::~Compteur() {
 }
 
-void Compteur::reset() {
+void Compteur::reset(void) {
     nb = 0;
 }
 
-void IRAM_ATTR Compteur::isr() {
-    if (millis() - anchor->lastMillis > anchor->debounce) { //Software anti-rebond
+void IRAM_ATTR Compteur::isr(void * arg) {
+    Compteur* pt = (Compteur *)arg;   // Transforme le pointeur générique en pointeur sur Compteur
+    if (millis() - pt->lastMillis > pt->debounce) { //Software anti-rebond
 
         ets_printf("triggered\r\n");
-        anchor->nb++;
+        pt->nb++;
     }
-    anchor->lastMillis = millis();
+    pt->lastMillis = millis();
 }
 
 
 
-int Compteur::getValue() {
+int Compteur::getValue(void) {
     return this->nb;
 }
 
-Compteur* Compteur::anchor = NULL;
 
 
