@@ -2,7 +2,8 @@
  * File:   Compteur.cpp
  * Author: philippe
  * 
- * Attention cette classe ne peut être instanciée qu'une seule fois
+ * Cette classe permet de créer des compteurs
+ * compte les impulsions sur interruptions
  * 
  * Created on 16 juillet 2022, 09:50
  */
@@ -25,10 +26,6 @@ Compteur::Compteur(const Compteur& orig) {
 Compteur::~Compteur() {
 }
 
-void Compteur::reset(void) {
-    nb = 0;
-}
-
 void IRAM_ATTR Compteur::isr(void * arg) {
     Compteur* pt = static_cast<Compteur*>(arg);  // cast le pointeur générique en pointeur sur Compteur
     if (millis() - pt->lastMillis > pt->debounce) { //Software anti-rebond
@@ -43,6 +40,10 @@ void IRAM_ATTR Compteur::isr(void * arg) {
 
 int Compteur::getValue(void) {
     return this->nb;
+}
+
+void Compteur::reset(void) {
+    nb = 0;
 }
 
 
