@@ -26,7 +26,7 @@ On peut écrire la fonction de transfert comme un rapport de deux polynômes.
 
 L’équation peut être écrite en termes d’un nombre fini de **pôles  p**  et de **zéros  q**, comme défini par l’équation de différence linéaire à coefficient constant donnée par:
 
-![Equation de recurrence](/programmes/testFiltre/documentation/equationReccurence.png)
+![Equation de recurrence](/02_ES_Analogiques/03_Filtrage_numerique/documentation/equationReccurence.png)
 
 
 où  a(k)  et  b(k)  sont les coefficients polynomiaux du dénominateur et du numérateur du filtre, dont les racines sont respectivement égales aux  **pôles**  et aux  **zéros**  du filtre. Ainsi, une relation entre l’équation de différence et la transformée en z (fonction de transfert) peut donc être définie en utilisant la propriété de retard de la transformée en z telle que,
