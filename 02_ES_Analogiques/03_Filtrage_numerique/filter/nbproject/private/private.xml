@@ -7,9 +7,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/philippe/github/Esp32/02_ES_Analogiques/03_Filtrage_numerique/filter/lib/Filter/Filter.h</file>
+            <file>file:/home/philippe/github/Esp32/02_ES_Analogiques/03_Filtrage_numerique/filter/platformio.ini</file>
             <file>file:/home/philippe/github/Esp32/02_ES_Analogiques/03_Filtrage_numerique/filter/lib/Filter/Filter.cpp</file>
             <file>file:/home/philippe/github/Esp32/02_ES_Analogiques/03_Filtrage_numerique/filter/src/main.cpp</file>
-            <file>file:/home/philippe/github/Esp32/02_ES_Analogiques/03_Filtrage_numerique/filter/lib/Filter/Filter.h</file>
         </group>
     </open-files>
 </project-private>
