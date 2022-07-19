@@ -25,7 +25,29 @@ La méthode ISR reste **statique**,  mais cette fois elle peut recevoir un argum
 # La Fonction ISR
 La routine de service d’interruption doit être une fonction statique qui renvoie void et ne prend aucun argument ou un argument pointeur générique `void*`. Il est conseillé d’ajouter le flag `IRAM_ATTR` pour que le code de la fonction soit stocké dans la RAM (et non pas dans la Flash), afin que la fonction s’exécute plus rapidement. 
 
-Il faut garder en tête que la fonction associée à une interruption doit s’exécuter le plus rapidement possible pour ne pas perturber le programme principal. Le code doit être le plus concis possible. On ne peut pas utiliser la fonction `delay()` ni `Serial.println()` avec une interruption. On peut néanmoins afficher des messages dans le moniteur série en remplaçant `Serial.println()` par `ets_printf()` qui est compatible avec les interruptions.
+Il faut garder en tête que la fonction associée à une interruption doit s’exécuter le plus rapidement possible pour ne pas perturber le programme principal. Le code doit être le plus concis possible. 
+
+On ne peut pas utiliser la fonction `delay()` ni `Serial.println()` avec une interruption. On peut néanmoins afficher des messages dans le moniteur série en remplaçant `Serial.println()` par `ets_printf()` qui est compatible avec les interruptions.
+
+Seules les routines de service d'interruption de priorité la plus basse (c'est-à-dire le niveau 1) peuvent utiliser `float`, les interruptions de priorité supérieure ne prennent pas en charge l'utilisation du FPU.
+Le code suivant permet de travailler avec des variables à virgule flottante (type float) dans une ISR. le code enregistre l'état des registres du  FPU au début de la fonction ISR et les restaure à la fin.
+```cpp
+uint32_t cp0_regs[18];
+
+void IRAM_ATTR Filter::interuption() {
+    // Enter Critical
+    portENTER_CRITICAL_ISR(&afeCriticalMutex);
+    xthal_set_cpenable(1); // enable FPU
+	xthal_save_cp0(cp0_regs); // Save FPU registers
+
+	// Travailler avec FPU
+
+	xthal_restore_cp0(cp0_regs); // Restore FPU
+	xthal_set_cpenable(0); // and turn it back off
+	// Exit critical
+    portEXIT_CRITICAL_ISR(&afeCriticalMutex);
+}	
+```
 
 # Exemple simple avec des fonctions
 ```cpp
