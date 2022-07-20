@@ -45,9 +45,9 @@ void setup() {
 void loop() {
 
     digitalWrite(LED, digitalRead(LED) ^1); // turn the LED 
-    delay(500); // wait for 0.5 second
+    delay(100); // wait for 0.1 second
     digitalWrite(LED, digitalRead(LED) ^1); // turn the LED 
-    delay(5000); // wait for 0.5 second
+    delay(100); // wait for 0.1 second
     display.showNumber(val);
     val += 0.01;
 }
