@@ -2,11 +2,13 @@
 
 
 
-L'utilisation d'un afficheur à 7 segments avec le circuit d'interface **TM1637** réduit la charge sur le contrôleur ESP32 car tout le multiplexage est géré sur la puce d'interface.  Seulement 2 GPIO sont nécessaires pour contrôler un afficheur à 6 chiffres.
-L'alimentation peut se faire en 3.3V ou 5 V.
+L'utilisation d'un afficheur à 7 segments avec le circuit d'interface **TM1637** réduit la charge sur le contrôleur ESP32 car tout le multiplexage est géré sur la puce d'interface.  Seulement 2 GPIO sont nécessaires pour contrôler un afficheur à 6 chiffres. la communication avec le TM1637 se fait au moyen d'une interface de bus à deux fils qui à première vue,  ressemble à une interface I2C mais le circuit ne respecte pas la norme I2C. L'ordre des bits est inversé ! et il n'y a pas d'adresse de composant !
 
+![ordre des bits](/20_Afficheur_TM1637/img/TM1637_bit_ordering.png)
 
-Connecter les broches CLK et DIO aux GPIO 14 et 27 de l'ESP32, 
+L'alimentation peut se faire en 3.3V sauf pour les afficheurs de couleur bleu.
+
+Connecter les broches CLK sur GPIO 14 et DIO sur GPIO 27. 
 
 ![Câblage](/20_Afficheur_TM1637/img/cablage.jpg)
 
@@ -23,7 +25,7 @@ framework = arduino
 lib_deps = https://github.com/jasonacox/TM1637TinyDisplay
 ```
 
-Dans votre programme instancier un objet TM1637TinyDisplay6 
+Dans votre programme instancier un objet TM1637TinyDisplay 
 ```
 TM1637TinyDisplay6 display(CLK, DIO);
 ```
