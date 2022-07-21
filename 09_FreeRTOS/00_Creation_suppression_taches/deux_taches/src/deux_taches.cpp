@@ -1,8 +1,21 @@
+/*
+ * File:   deux_taches.cpp
+ * Author: Philippe SIMIER 
+ *         Lycée Touchard Washington Le Mans
+ * 
+ *  
+ *  Exemple de création de 2 tâches totalement indépendantes utilisant une même fonction nommée tache :
+ * 
+ *  Created on 20 juillet 2022, 15:42
+ */
+
+
+
 #include <Arduino.h>
 
 void tache(void * parameter);
-
 char * name;
+int  param = 20;
 
 
 void setup() {
@@ -24,7 +37,7 @@ void setup() {
             1,                 // Priority of the task
             NULL);             // Task handle
 
-    int  param = 20;
+    
     xTaskCreate(
             tache,             // Task function
             "TacheDeux",       // String with name of task
@@ -39,7 +52,10 @@ void loop() {
     delay(1000);
 }
 
-
+/**
+ * @brief la fonction qui sera instanciée sous forme de tâche
+ * @param parameter un pointeur généric (void *) 
+ */
 void tache(void * parameter) {
     
     int id = (int)parameter;          // Récupère l'argument de la tâche le nombre de tour dans la boucle
@@ -51,7 +67,7 @@ void tache(void * parameter) {
         delay(1000);
     }
     Serial.printf("Fin de  %s\n\r" , nom);
-    vTaskDelete(NULL);
+    vTaskDelete(NULL);              // Une tâche peut s'auto détruire 
 }
 
 
