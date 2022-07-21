@@ -23,7 +23,7 @@ framework = arduino
 lib_deps = https://github.com/jasonacox/TM1637TinyDisplay
 ```
 
-Dans votre programme instancier un objet TM1637TinyDisplay 
+Dans votre programme instancier un objet TM1637TinyDisplay6 
 ```
 TM1637TinyDisplay6 display(CLK, DIO);
 ```
