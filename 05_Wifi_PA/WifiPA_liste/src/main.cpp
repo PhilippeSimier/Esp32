@@ -18,7 +18,7 @@
 #include <WebServer.h>
 
 const char *ssid = "ESP32AP";
-const char *password = "toto";
+const char *password = "touchard72";
 
 WebServer server(80);
 
