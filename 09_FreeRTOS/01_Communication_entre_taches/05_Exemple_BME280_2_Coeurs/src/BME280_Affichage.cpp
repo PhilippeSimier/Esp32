@@ -68,8 +68,10 @@ void loop() {
 }
 
 
-// Tache initialisation & lecteur du capteur BME280
-
+/**
+ * Tache initialisation & lecteur du capteur BME280
+ * @param pvParameters
+ */
 void sensorTask(void * pvParameters) {
     
     Mesure_t mesureSend;
@@ -81,6 +83,8 @@ void sensorTask(void * pvParameters) {
         Serial.println("Ne peut pas trouver le capteur BME280!");
         while (1);
     }
+    TickType_t xLastWakeTime = xTaskGetTickCount();   // Initialise the xLastWakeTime variable with the current time.
+    
 
     // Boucle
     while (1) {
@@ -89,7 +93,7 @@ void sensorTask(void * pvParameters) {
         mesureSend.p = bme.readPressure() / 100.0F;
 
         xQueueSend(queue, &mesureSend, portMAX_DELAY);
-        delay(5000);
+        xTaskDelayUntil( &xLastWakeTime, pdMS_TO_TICKS( 1000 ) ); // toutes les 1000 ms
     }
 }
 
