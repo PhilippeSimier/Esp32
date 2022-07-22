@@ -9,7 +9,7 @@
  * 
  */
 
-#include <Wire.h>
+#include <Arduino.h>
 #include <Adafruit_BME280.h>
 
 typedef struct {
@@ -93,18 +93,19 @@ void sensorTask(void * pvParameters) {
         mesureSend.p = bme.readPressure() / 100.0F;
 
         xQueueSend(queue, &mesureSend, portMAX_DELAY);
-        xTaskDelayUntil( &xLastWakeTime, pdMS_TO_TICKS( 1000 ) ); // toutes les 1000 ms
+        xTaskDelayUntil( &xLastWakeTime, pdMS_TO_TICKS( 5000 ) ); // toutes les 5000 ms
     }
 }
 
-// Tache blinking led 
+// Tache périodique blinking led 
 
 void blinkTask(void * pvParameters) {
 
     pinMode(2, OUTPUT);
-
+    TickType_t xLastWakeTime = xTaskGetTickCount();   // Initialise the xLastWakeTime variable with the current time.
+    
     while (1) {
         digitalWrite(2, digitalRead(2) ^ 1);
-        delay(1000);
+        xTaskDelayUntil( &xLastWakeTime, pdMS_TO_TICKS( 1000 ) ); // toutes les 1000 ms;
     }
 }

@@ -7,7 +7,7 @@
       <df name="lib">
       </df>
       <df name="src">
-        <in>BME280_Affichage.cpp</in>
+        <in>mutex_bme280.cpp</in>
       </df>
       <df name="test">
       </df>
@@ -23,13 +23,13 @@
       </toolsSet>
       <compile>
         <compiledirpicklist>
-          <compiledirpicklistitem>.</compiledirpicklistitem>
           <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
         </compiledirpicklist>
         <compiledir>${AUTO_FOLDER}</compiledir>
         <compilecommandpicklist>
-          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
           <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
         </compilecommandpicklist>
         <compilecommand>${AUTO_COMPILE}</compilecommand>
       </compile>
@@ -51,7 +51,6 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
-          <runcommandpicklistitem></runcommandpicklistitem>
           <runcommandpicklistitem>pio run --target upload</runcommandpicklistitem>
         </runcommandpicklist>
         <runcommand>pio run --target upload</runcommand>
