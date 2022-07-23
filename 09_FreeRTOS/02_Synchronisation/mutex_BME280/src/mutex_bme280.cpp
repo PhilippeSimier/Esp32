@@ -58,7 +58,10 @@ void setup() {
 
 void loop() {
    
-    xSemaphoreTake(xMutex, portMAX_DELAY);  // début de la section critique
+     
+    
+    xSemaphoreTake(xMutex, portMAX_DELAY);   // début de la section critique
+    
     
     Serial.printf("Temp : %.1f°C", mesure.t );
     Serial.printf(" Hum  : %.1f%%",  mesure.h );
@@ -66,7 +69,7 @@ void loop() {
  
     xSemaphoreGive(xMutex);  // Fin de la section critique
     
-    delay(5000);
+    vTaskDelay( pdMS_TO_TICKS(5000) ); // passage à l'état bloquée pour 5000 ms (converti en tick)
 }
 
 
@@ -75,7 +78,6 @@ void loop() {
  * @param pvParameters
  */
 void sensorTask(void * pvParameters) {
-    
     
     Adafruit_BME280 bme;
     
@@ -96,7 +98,8 @@ void sensorTask(void * pvParameters) {
         mesure.p = bme.readPressure() / 100.0F;
 
         xSemaphoreGive(xMutex);  // Fin de la section critique
-        delay(2500);
+        
+        vTaskDelay( pdMS_TO_TICKS(2500) );
     }
 }
 
@@ -112,8 +115,7 @@ void displayTask(void * pvParameters){
     display.setBrightness(BRIGHT_HIGH); 
     display.clear();
     float temperature;
-    
-    
+        
     while (1){
         xSemaphoreTake(xMutex, portMAX_DELAY);  // Début de la section critique
         temperature = mesure.t;
@@ -121,7 +123,7 @@ void displayTask(void * pvParameters){
         
         display.showNumber(temperature);
         
-        delay(2500);
+        vTaskDelay( pdMS_TO_TICKS(2500) ); 
     }
 }
 
