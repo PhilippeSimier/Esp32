@@ -2,11 +2,14 @@
  * File:   mutex_bme280.cpp
  * Author: philippe SIMIER 
  *
+ * Exemple de programme montrant l'utilisation d'un MUTEX
+ * pour proteger une section partagée (la variable mesure)
  * Created on 22 juillet 2022, 22:17
  */
 
 #include <Arduino.h>
 #include <Adafruit_BME280.h>
+#include <TM1637TinyDisplay6.h>       // Include 6-Digit Display Class Header
 
 typedef struct {
     float t;
@@ -19,7 +22,7 @@ SemaphoreHandle_t xMutex;
 
 // Déclaration des prototypes
 void sensorTask(void * pvParameters);
-
+void displayTask(void * pvParameters);
 
 void setup() {
     
@@ -33,6 +36,17 @@ void setup() {
     xTaskCreatePinnedToCore(
             sensorTask,   // Function pour implémenter la tâche 
             "sensorTask", // le Nom de la tâche 
+            10000,        // la taille de la pile en mots
+            NULL,         // paramètre d'entrée
+            1,            // Priorité de la tâche
+            NULL,         // Tâche handle
+            1             // Core where the task should run
+            ); 
+    
+    // Création de la  tâche affichage
+    xTaskCreatePinnedToCore(
+            displayTask,   // Function pour implémenter la tâche 
+            "displayTask", // le Nom de la tâche 
             10000,        // la taille de la pile en mots
             NULL,         // paramètre d'entrée
             1,            // Priorité de la tâche
@@ -82,6 +96,31 @@ void sensorTask(void * pvParameters) {
         mesure.p = bme.readPressure() / 100.0F;
 
         xSemaphoreGive(xMutex);  // Fin de la section critique
+        delay(2500);
+    }
+}
+
+
+
+/**
+ * 
+ * @param pvParameters
+ */
+void displayTask(void * pvParameters){
+    
+    TM1637TinyDisplay6 display(14, 27); // 6-Digit Display Class (CLK = 14 DIO = 27)
+    display.setBrightness(BRIGHT_HIGH); 
+    display.clear();
+    float temperature;
+    
+    
+    while (1){
+        xSemaphoreTake(xMutex, portMAX_DELAY);  // Début de la section critique
+        temperature = mesure.t;
+        xSemaphoreGive(xMutex);  // Fin de la section critique
+        
+        display.showNumber(temperature);
+        
         delay(2500);
     }
 }
