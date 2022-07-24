@@ -1,7 +1,28 @@
 ﻿# Sémaphore de comptage
 
-## Description
-Les sémaphores sont généralement utilisés à la fois pour la synchronisation et l'exclusion mutuelle dans l'accès aux ressources. Nous allons développer une application simple où nous utiliserons un sémaphore de comptage comme barrière d'exécution.
+## Introduction
+
+Le sémaphore de comptage est généralement utilisé pour deux choses telles que le comptage des événements et la gestion des ressources.
+
+![les deux fonctions](/09_FreeRTOS/02_Synchronisation/semaphore_counting/Counting-Semaphore-types.webp)
+
+La fonction  `xSemaphoreCreateCounting()` est utilisée pour créer des sémaphores de comptage. 
+Noté que la même fonction est utilisée pour le comptage des événements et la gestion des ressources. Seule la façon dont nous utilisons les arguments d'entrée de xSemaphoreCreateCounting() l'initialise pour le comptage d'événements ou la gestion des ressources.
+
+#### Comptage des événements
+
+En cas de comptage d'événements, nous pouvons le considérer comme un compteur qui définit la valeur maximale et garde également une trace du nombre de fois où l'événement s'est produit. Habituellement, un gestionnaire d'événements est utilisé pour donner un accès au sémaphore et garder une trace de la valeur de comptage. Chaque fois qu'une tâche prend une valeur de sémaphore, la valeur de comptage est décrémentée de un.
+
+####  La gestion des ressources
+
+Dans le cas de la gestion des ressources, le sémaphore de comptage définit le  nombre de ressources partagées disponibles et pouvant être utilisées par des tâches en même temps.
+
+Par exemple, imaginons qu'il existe deux tâches FreeRTOS qui souhaitent écrire des données sur la même liaison série  via le module de communication UART.  Par conséquent, nous devons gérer les ressources du moniteur série UART  entre les deux tâches en utilisant un sémaphore de comptage pour la gestion des ressources. Il faut d'abord initialiser le sémaphore de comptage égal au nombre de ressources (ici une). Après cela, une tâche qui veut utiliser la liaison série doit prendre le sémaphore en décrémentant la valeur de comptage du sémaphore.
+Lorsque la valeur de comptage atteint zéro, toute autre tâche qui tente d'accéder au sémaphore,  entrera dans l'état de blocage jusqu'à ce que les autres tâches en cours d'exécution libèrent le sémaphore (c'est à dire libèrent la ressource).
+
+## Exemple Barrière d'exécution
+
+Nous allons développer une application simple où nous utiliserons un sémaphore de comptage comme barrière d'exécution.
 
 Dans notre programme, la fonction de setup() lancera une quantité configurable de tâches, puis elle attendra sur un sémaphore pour que toutes les tâches soient terminées. Après le lancement des tâches, la fonction de setup() essayera de tenir un sémaphore autant de fois que le nombre des tâches lancées, et continuera son exécution seulement l'exécution après ce point.
 
