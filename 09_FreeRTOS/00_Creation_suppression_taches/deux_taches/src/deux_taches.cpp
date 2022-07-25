@@ -30,6 +30,7 @@ void setup() {
     name =  pcTaskGetName(h);    // Une tâche peut interroger son propre nom en transmettant son propre handle ou NULL
     
     UBaseType_t priorite = uxTaskPriorityGet(h); // Une tâche peut connaitre son niveau de priorité
+    Serial.printf("priority %d \n\r", priorite);
     
     xTaskCreate(
             tache,             // Task function 

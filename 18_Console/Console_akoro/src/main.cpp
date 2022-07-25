@@ -22,6 +22,7 @@ Console laConsole;
 void _echo_(ArgList& L, Stream& S);
 void _adc_(ArgList& L, Stream& S);
 void _led_(ArgList& L, Stream& S);
+void _infos_(ArgList& L, Stream& S);
 void _unknown(String& L, Stream& S);
 
 void setup() {
@@ -34,31 +35,16 @@ void setup() {
     Serial.begin(115200);
 
     while (!Serial)
-        yield();
+        yield();  // yield() Passe le contrôle à d'autres tâches
 
     Serial.println(F("--- test console start"));
-
-    Serial.printf("F=%dMHz Heap=%d %02X\r\n",
-            ESP.getCpuFreqMHz(),
-            ESP.getHeapSize(),
-            ESP.getChipRevision());
-
-    Serial.printf("Flash Size = %d Flash Speed = %dHz Flash mode = %d\r\n",
-            ESP.getFlashChipSize(),
-            ESP.getFlashChipSpeed(),
-            ESP.getFlashChipMode()); // 0=QIO, 1=QOUT, 2=DIO, 3=DOUT
 
     // Console setup
     laConsole.onCmd("echo", _echo_);
     laConsole.onCmd("led", _led_);
     laConsole.onCmd("adc", _adc_);
+    laConsole.onCmd("infos", _infos_);
     laConsole.onUnknown(_unknown);
-
-    /**
-    con.onUnknown([](String& L, Stream & S) {
-        S.print("? "); S.println(L);
-    });
-     */
 
     laConsole.start();
 
@@ -102,23 +88,55 @@ void _led_(ArgList& L, Stream& S) {
     String p;
 
     if (!(p = L.getNextArg()).isEmpty()) {
-        if (p == "on") {
+        if (p.equalsIgnoreCase("ON")) { //
             digitalWrite(LED, HIGH);
-            S.printf("LED is now on\r\n");
-        } else if (p == "off") {
+            S.printf("LED is now ON\r\n");
+        } else if (p.equalsIgnoreCase("OFF")) {
             digitalWrite(LED, LOW);
-            S.printf("LED is now off\r\n");
-        }
-        else {
+            S.printf("LED is now OFF\r\n");
+        } else {
             S.printf("Unknown argument!\r\n");
         }
-    }else{
-        S.printf("Usage led on or off\r\n");
+    } else {
+        S.printf("Usage led ON or OFF\r\n");
     }
 }
-    // Commande inconnue
 
-    void _unknown(String& L, Stream & S) {
-        S.print("? ");
-        S.println(L);
-    }
+
+// Commande inconnue
+
+void _unknown(String& L, Stream & S) {
+    S.print("? ");
+    S.println(L);
+}
+
+void _infos_(ArgList& L, Stream& S) {
+    esp_chip_info_t out_info;
+    esp_chip_info(&out_info);
+    
+    S.print("CPU freq : ");
+    S.println(String(ESP.getCpuFreqMHz()) + " MHz");
+    
+    S.print("CPU cores : ");
+    S.println(String(out_info.cores));
+    
+    S.print("Flash size : ");
+    S.println(String(ESP.getFlashChipSize() / 1000000) + " MB");
+    
+    S.print("Free RAM : ");
+    S.println(String((long) ESP.getFreeHeap()) + " bytes");
+    
+    S.print("Min. free seen : "); 
+    S.println(String((long)esp_get_minimum_free_heap_size()) + " bytes");
+    
+    S.print("tsk IDLE_PRIORITY : ");
+    S.println(String((long) tskIDLE_PRIORITY));
+    
+    S.print("config MAX_PRIORITIES : ");
+    S.println(String((long) configMAX_PRIORITIES));
+    
+    S.print("config TICK_RATE_HZ : ");
+    S.println(String(configTICK_RATE_HZ) + " Hz");
+    
+    S.println();
+}
