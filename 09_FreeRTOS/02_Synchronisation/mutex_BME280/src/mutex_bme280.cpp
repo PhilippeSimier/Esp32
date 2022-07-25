@@ -113,16 +113,21 @@ void displayTask(void * pvParameters) {
     TM1637TinyDisplay6 display(14, 27); // 6-Digit Display Class (CLK = 14 DIO = 27)
     display.setBrightness(BRIGHT_HIGH);
     display.clear();
-    float temperature;
+    float temperature, humidite, pression;
 
     while (1) {
         xSemaphoreTake(xMutex, portMAX_DELAY); // Début de la section critique
         temperature = mesure.t;
+        humidite = mesure.h;
+        pression = mesure.p;
         xSemaphoreGive(xMutex); // Fin de la section critique
 
-        display.showNumber(temperature);
-
-        vTaskDelay(pdMS_TO_TICKS(2500));
+        display.showNumber(temperature,2);
+        vTaskDelay(pdMS_TO_TICKS(2000));
+        display.showNumber(humidite,2);
+        vTaskDelay(pdMS_TO_TICKS(2000));
+        display.showNumber(pression,1);
+        vTaskDelay(pdMS_TO_TICKS(2000));
     }
 }
 
