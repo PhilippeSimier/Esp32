@@ -6,9 +6,6 @@
  * https://registry.platformio.org/libraries/akoro/Console
  * installation : pio pkg install --library "akoro/Console@^1.2.1"
  * 
- * Avec netbeans ajouter dans Tools -> Options -> C/C++ ->  code assistance
- * le chemin vers la library
- * /home/philippe/.platformio/lib/Console/src
  *
  * Created on 20 novembre 2021, 17:42
  */
@@ -22,11 +19,10 @@
 
 Console laConsole;
 
-void _test_(ArgList& L, Stream& S);
+void _echo_(ArgList& L, Stream& S);
 void _adc_(ArgList& L, Stream& S);
 void _led_(ArgList& L, Stream& S);
 void _unknown(String& L, Stream& S);
-
 
 void setup() {
 
@@ -53,7 +49,7 @@ void setup() {
             ESP.getFlashChipMode()); // 0=QIO, 1=QOUT, 2=DIO, 3=DOUT
 
     // Console setup
-    laConsole.onCmd("test", _test_);
+    laConsole.onCmd("echo", _echo_);
     laConsole.onCmd("led", _led_);
     laConsole.onCmd("adc", _adc_);
     laConsole.onUnknown(_unknown);
@@ -78,11 +74,12 @@ void loop() {
 
 // Affiche tous les arguments de la ligne de commande
 
-void _test_(ArgList& L, Stream& S) {
+void _echo_(ArgList& L, Stream& S) {
+
     String p;
-    int i = 0;
     while (!(p = L.getNextArg()).isEmpty())
-        S.printf("arg%d = \"%s\"\n\r", i++, p.c_str());
+        S.printf("%s ", p.c_str());
+    S.printf("\n\r");
 }
 
 // Affiche les entrées analogiques et les capteurs
@@ -101,22 +98,27 @@ void _adc_(ArgList& L, Stream& S) {
 // Allume ou éteind la led 
 
 void _led_(ArgList& L, Stream& S) {
+
     String p;
+
     if (!(p = L.getNextArg()).isEmpty()) {
-        if (p == "1")
+        if (p == "on") {
             digitalWrite(LED, HIGH);
-        else
+            S.printf("LED is now on\r\n");
+        } else if (p == "off") {
             digitalWrite(LED, LOW);
+            S.printf("LED is now off\r\n");
+        }
+        else {
+            S.printf("Unknown argument!\r\n");
+        }
     }else{
-        S.printf("led 1 or led 0\r\n");
+        S.printf("Usage led on or off\r\n");
     }
-
-
 }
+    // Commande inconnue
 
-// Commande inconnue
-
-void _unknown(String& L, Stream& S) {
-    S.print("? ");
-    S.println(L);
-}
+    void _unknown(String& L, Stream & S) {
+        S.print("? ");
+        S.println(L);
+    }

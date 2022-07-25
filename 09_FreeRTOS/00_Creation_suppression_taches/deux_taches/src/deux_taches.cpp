@@ -29,6 +29,8 @@ void setup() {
     TaskHandle_t h = xTaskGetCurrentTaskHandle();
     name =  pcTaskGetName(h);    // Une tâche peut interroger son propre nom en transmettant son propre handle ou NULL
     
+    UBaseType_t priorite = uxTaskPriorityGet(h); // Une tâche peut connaitre son niveau de priorité
+    
     xTaskCreate(
             tache,             // Task function 
             "TacheUne",        // String with name of task
