@@ -1,3 +1,12 @@
+/* 
+ * File:   mutex_bme280.cpp
+ * Author: philippe SIMIER 
+ *
+ * Exemple de programme montrant l'utilisation de préference et de SPIFFS
+ * 
+ * Created on 22 juillet 2022, 22:17
+ */
+
 #include <Arduino.h>
 #include "SPIFFS.h"
 #include <Preferences.h>

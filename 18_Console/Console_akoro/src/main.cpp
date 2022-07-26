@@ -23,6 +23,7 @@ void _echo_(ArgList& L, Stream& S);
 void _adc_(ArgList& L, Stream& S);
 void _led_(ArgList& L, Stream& S);
 void _infos_(ArgList& L, Stream& S);
+void _help_(ArgList& L, Stream& S);
 void _unknown(String& L, Stream& S);
 
 void setup() {
@@ -44,8 +45,10 @@ void setup() {
     laConsole.onCmd("led", _led_);
     laConsole.onCmd("adc", _adc_);
     laConsole.onCmd("infos", _infos_);
+    laConsole.onCmd("help", _help_);
     laConsole.onUnknown(_unknown);
 
+    laConsole.setPrompt("esp32> "); // Pas de prompt
     laConsole.start();
 
 }
@@ -106,7 +109,7 @@ void _led_(ArgList& L, Stream& S) {
 // Commande inconnue
 
 void _unknown(String& L, Stream & S) {
-    S.print("? ");
+    S.print("Unknown command ");
     S.println(L);
 }
 
@@ -139,4 +142,13 @@ void _infos_(ArgList& L, Stream& S) {
     S.println(String(configTICK_RATE_HZ) + " Hz");
     
     S.println();
+}
+
+void _help_(ArgList& L, Stream& S){
+    
+    S.println("echo message");
+    S.println("led ON or OFF");
+    S.println("infos");
+    S.println("adc");
+    S.println("help");
 }

@@ -1,8 +1,13 @@
-/*
- * Bibliothèque TinyGPS installation
- * pio lib -g install 416
+/* 
+ * File:   GPS_Ballon.cpp
+ * Author: philippe SIMIER Lycée Touchard Washington
+ *
+ * Created on 26 juillet 2022, 08:40
+ * 
+ * pio pkg install --library mikalhart/TinyGPS
  */
 
+#include <Arduino.h>
 #include <TinyGPS.h>
 #include <HardwareSerial.h>
 
