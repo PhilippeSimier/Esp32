@@ -10,6 +10,7 @@
 #include <Arduino.h>
 #include <SPIFFS.h>
 #include <fstream>
+#include <iostream>
 
 void setup() {
 
@@ -21,8 +22,8 @@ void setup() {
     }
 
     std::ofstream flux_sortie;
-    
-    flux_sortie.open("/spiffs/test.txt");   // Ouverture d'un fichier en écriture
+
+    flux_sortie.open("/spiffs/test.txt"); // Ouverture d'un fichier en écriture dans la partition flash spiffs
 
     flux_sortie << "une première ligne dans le fichier test.txt\r\n";
     flux_sortie << "Maître corbeau sur un arbre perché\r\n";
@@ -30,12 +31,33 @@ void setup() {
 
     std::ifstream flux_entree("/spiffs/test.txt");
 
+    Serial.println("lecture fichier ligne par ligne ");
+    
+    // Lecture ligne par ligne
+    std::string line;
+    if (flux_entree.is_open()) {
+        while (getline(flux_entree, line)) {
+            std::cout << line << '\n';
+        }
+        flux_entree.close();
+    } else 
+        Serial.println( "Unable to open file");
+    
+    delay(500);
+
+    // Lecture caractère par caractère
+    flux_entree.open("/spiffs/test.txt");  // re Ouverture du fichier
     char c;
-    while (flux_entree.get(c)) {
+    if (flux_entree.is_open()) {
+        while (flux_entree.get(c)) {
 
-        Serial.print(c);
-    }
-
+            Serial.print(c);
+        }
+        flux_entree.close();
+    }else 
+        Serial.println("Unable to open file");
+    
+    
 }
 
 void loop() {
