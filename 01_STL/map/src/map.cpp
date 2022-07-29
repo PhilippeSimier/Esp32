@@ -10,6 +10,7 @@
 
 #include <Arduino.h>
 #include <map>
+#include <exception>
 
 std::map<String, int> m;
 
@@ -21,7 +22,7 @@ void afficher2(std::map<String, int> &x);
 void setup() {
 
     Serial.begin(115200);
-    
+
     // Quelques  possibilités pour insérer des éléments dans la map
     m.insert({"abc", 1});
     m.insert(std::make_pair("bcd", 2));
@@ -29,12 +30,41 @@ void setup() {
     m["def"] = 4;
 
     afficher(m);
-    
-    // suppression d'un élément
+
+    // suppression d'un élément méthode erase
     m.erase("bcd");
-    
+
     afficher2(m);
 
+    // rechercher un élément méthode find
+    auto a = m.find("abc");
+    if (a != m.end()) {
+
+        Serial.println("Element avec la clé 'abc' trouvé :");
+        Serial.print(a->first.c_str());
+        Serial.print(" : ");
+        Serial.println(a->second);
+
+    } else {
+        Serial.println("Pas d'élement avec la clé 'abc'.");
+    }
+
+    // rechercher une valeur avec la méthode at
+    try{
+        int value = m.at("bcd");
+        Serial.println(value);       
+    }
+    catch( std::exception e)
+    {
+        Serial.println(e.what());
+        Serial.println("Clé pas trouvée !");
+    }
+    
+    // rechercher une valeur avec l'opérateur []
+    int value = m["xyz"];
+    Serial.println(value);
+    Serial.println("-----------");
+    afficher(m);
 
 }
 
@@ -50,7 +80,6 @@ void afficher(std::map<String, int> &x) {
 
     std::map<String, int>::iterator it;
 
-    Serial.println("Fct affichage avec Iterator");
     for (it = x.begin(); it != x.end(); it++) {
         Serial.print(it->first);
         Serial.print(" : ");
@@ -66,9 +95,7 @@ void afficher(std::map<String, int> &x) {
  * @param x une référence vers une map
  */
 void afficher2(std::map<String, int> &x) {
-    
-    Serial.println("Range based for loop");
-    
+
     for (std::pair<String, int> element : x) {
         Serial.print(element.first.c_str());
         Serial.print(" : ");
