@@ -49,41 +49,32 @@ Cette méthode monte le système de fichiers SPIFFS et doit être appelée avant
 
 Renvoie l’objet File. Pour vérifier si le fichier a été ouvert avec succès, utilisez l’opérateur booléen.    
 
-# Enregistrer des données
+### 3 formater le système de fichiers
 
-La classe **Preferences** est proposées par Espressif pour enregistrer le contenu d'une variable dans la mémoire Flash. Il est également possible d'enregistrer des structures de données. (voir l'exemple donné avec la classe Preferences.
-
-Cette classe  facilite la lecture et le stockage des données dans la mémoire flash.
-les types suivants sont pris en charge: **char** , **uchar** , **short** , **ushort** , **int** , **uint** , **long** , **ulong** , **long64** , **ulong64** , **float** , **double** , **bool** , **String** et **bytes** .
-### Exemple de code
+Pour formater appeler la méthode format sur l' objet **SPIFFS** . Cette méthode ne prend aucun argument et renvoie en sortie une valeur booléenne indiquant si la procédure a réussi ( **true** ) ou échoué ( **false** ).
 ```cpp
-#include <Preferences.h>
+	bool formatted = SPIFFS.format();
 
-Preferences preferences;
-
-void setup() {
-    Serial.begin(115200);
-    Serial.println();
-
-    // Open Preferences with my-app namespace. Each application module, library, etc
-    // has to use a namespace name to prevent key name collisions. We will open storage in
-    // RW-mode (second parameter has to be false).
-    // Note: Namespace name is limited to 15 chars.
-
-    preferences.begin("mon-app", false);
-    // Get the counter value, if the key does not exist, return a default value of 0
-    // Note: Key name is limited to 15 chars.
-    unsigned int counter = preferences.getUInt("counter", 0);
-    counter++;
-    Serial.printf("Current counter value: %u\n", counter);
-
-    // Store the counter to the Preferences
-    preferences.putUInt("counter", counter);
-
-    // Close the Preferences
-    preferences.end();
-}
+	if(formatted){
+	    Serial.println("\n\nSuccess formatting");
+	}else{
+	    Serial.println("\n\nError formatting");
+	}	
 ```
-
+ ### 4 lister un répertoire
+La fonction suivante permet de lister un répertoire
+ ```cpp
+		void listDir(char * dir){
  
+		 File root = SPIFFS.open(dir);
+		 File file = root.openNextFile();
+ 
+		  while(file){
+			 Serial.print("FILE: ");
+		     Serial.println(file.name());
+		     file = root.openNextFile();
+		 }
+	 }
+
+ ```
 
