@@ -4,17 +4,58 @@
 
 Comme nous le savons, C++ possède des fonctionnalités riches par rapport à C, mais combien de fonctionnalités C++ pouvons-nous utiliser dans la programmation du microcontrôleur ESP32 ?
 Pour répondre à cette question, nous allons écrire des programmes tests. Sachez que la chaîne d'outils **Arduino 2.0.3 prend en charge C++17** !  Ainsi, vous pouvez commencer à utiliser le C++ moderne sans configuration supplémentaire. 
-Le code a été testé en utilisant  l'IDE netbeans et [Platformio] . Dans les deux cas, la version du noyau Arduino utilisée était **2.0.3** .
+Le code a été testé en utilisant  l'IDE netbeans et [Platformio] . Dans tous les  cas, la version du noyau Arduino utilisée était **2.0.3** . (Juillet 2022)
+
+## Utilisation des flux sur fichiers
+
+Nous allons tester l'utilisation des classes C++ **ifstream** et **ofstream** pour écrire et lire des fichiers dans la partition SPIFF.
+Notez que le noyau Arduino propose aussi des API pour travailler avec des fichiers, qui sont suffisamment flexibles pour la plupart des opérations de base.
+La première chose que nous devons faire pour utiliser les flux est d'inclure:
+```cpp
+	#include` `<SPIFFS.h>
+    #include` `<fstream>
+```
+2 puis monter le système de fichiers SPIFFS
+```cpp
+	if (!SPIFFS.begin(true)) {
+	  Serial.println("An Error has occurred while mounting SPIFFS");
+	  return;
+	}
+```
+3 créer un objet de la classe **ofstream** pour l'écriture 
+```cpp
+	std::ofstream fichier;
+```
+4 Ouvrir le fichier
+```cpp
+ fichier.open("/spiffs/test.txt");
+```
+Notez que le nom du fichier doit inclure le chemin complet qui, dans notre cas, doit commencer par « **/spiffs** », qui est le chemin racine par défaut lorsque nous montons le système de fichiers sans passer de paramètres supplémentaires (vous pouvez le vérifier [ici](https://github.com/espressif/arduino-esp32/blob/46d5afb17fb91965632dc5fef237117e1fe947fc/libraries/SPIFFS/src/SPIFFS.h#L27)).
+Dans un scénario d'application réel, **vous devez effectuer des validations d'erreur.**
+```cpp
+	 if (fichier.is_open()){
+	 // 
+	 }
+```
+
+5 Ecrire une chaîne avec l'opérateur   <<
+```cpp
+	fichier << "Une première ligne de texte\n";
+```
+6 Fermer le fichier
+```cpp
+	fichier.close();
+```
 
 ## Utilisation du type vector de la STL
 
-Mon premier test porte sur le conteneur **vector** avec **algorithm** pour le tri et **iostream** pour le flux de sortie.
+Mon deuxième test porte sur le conteneur **vector** avec **algorithm** pour le tri et **iostream** pour le flux de sortie standard.
 Le programme vector.cpp se compile et s'exécute sur la cible ESP32 sans problème.
 voir ci joint ma fiche "fiche vector.pdf"
 
 ## Utilisation du type map de la STL
 
-Mon second test porte sur le conteneur **map**  avec les exceptions.
+Mon troisième test porte sur le conteneur **map**  avec les exceptions.
 Le programme map.cpp se compile et s’exécute sur la cible ESP32 sans problème.
 
 Une map est un conteneur associatif qui stocke des éléments formés par une combinaison d'une **clé** et d'une **valeur mappée** , suivant un ordre spécifique . Les clés sur une map doivent être uniques.
