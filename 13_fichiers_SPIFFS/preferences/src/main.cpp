@@ -1,5 +1,5 @@
 /* 
- * File:   mutex_bme280.cpp
+ * File:   main.cpp
  * Author: philippe SIMIER 
  *
  * Exemple de programme montrant l'utilisation de préference et de SPIFFS
