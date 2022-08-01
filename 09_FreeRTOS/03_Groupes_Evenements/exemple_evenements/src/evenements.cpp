@@ -1,6 +1,6 @@
 /*
  * File:   evenements.cpp
- * Author: philippe
+ * Author: philippe SIMIER Lycée Touchard Le Mans
  *
  * Created on 31 juillet 2022, 20:15
  */
