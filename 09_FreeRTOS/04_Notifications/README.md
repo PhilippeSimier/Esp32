@@ -41,10 +41,56 @@ if (xTaskNotifyWait(0, ULONG_MAX, &receivedValue, 1000) == pdPASS) {
 |**&receivedValue**| Utilisé pour transmettre la valeur de notification de la tâche.|
 |**1000**| Le temps d'attente maximal dans l'état Bloqué pour qu'une notification soit reçue |
 
-**Valeur de retour :**
+**Valeur de retour  : **
 `pdTRUE` si une notification a été reçue ou si une notification était déjà en attente lorsque xTaskNotifyWait() a été appelée.
 
+
 `pdFALSE` si l'appel à xTaskNotifyWait() a expiré avant la réception d'une notification.
+
+**Autre Exemple d'utilisation :**
+```cpp
+void tache3( void *pvParameters ) 
+{ 
+uint32_t ulNotifiedValue; 
+
+    for( ;; ) 
+    { 
+        /* Bloquer indéfiniment (sans délai, donc pas besoin de vérifier la 
+        valeur de retour de la fonction) pour attendre une notification. 
+
+        Les bits de la valeur de notification de cette tâche RTOS sont définis par les tâches de notification 
+        et les interruptions pour indiquer les événements qui se sont produits. */ 
+        xTaskNotifyWaitIndexed( 0,          /* Attendre la 0ème notification. */
+                                0x00,       /* N'efface aucun bit de notification à l'entrée. */ 
+                                ULONG_MAX, /* Réinitialise la valeur de notification à 0 à la sortie. */ 
+                                &ulNotifiedValue, /* La valeur notifiée passe dans 
+                                                     ulNotifiedValue. */ 
+                                portMAX_DELAY );  /* Bloquer indéfiniment. */ 
+
+        /* Traite tous les événements qui ont été verrouillés dans la valeur notifiée. */
+ 
+        if( ( ulNotifiedValue & 0x01 ) != 0 ) 
+        { 
+            /* Le bit 0 a été défini - traite l'événement représenté par le bit 0. */ 
+            prvProcessBit0Event(); 
+        }
+
+        if( ( ulNotifiedValue & 0x02 ) != 0 ) 
+        { 
+            /* Le bit 1 a été défini - traite l'événement représenté par le bit 1. */ 
+            prvProcessBit1Event(); 
+        } 
+
+        if( ( ulNotifiedValue & 0x04 ) != 0 ) 
+        { 
+            /* Le bit 2 a été défini - traite l'événement représenté par le bit 2. */ 
+            prvProcessBit2Event(); 
+        } 
+
+        /* Etc. */ 
+    } 
+}
+```
 
 
 # Changelog
