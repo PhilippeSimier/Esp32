@@ -40,15 +40,15 @@ TimerHandle_t  timerPeriodique;
             "AutoReload", 
             pdMS_TO_TICKS(1000), 
             pdTRUE, 
-            NULL, 
+            (void*)2, 
             autoReloadTimerCallback);
     if (timerPeriodique==NULL) { 
 	    for(;;); /* échec! */  
 	}        
 ```
-Le premier paramètre est une chaîne pour le nom du temporisateur, suivi de la période (initiale) du temporisateur en ticks. 
-Le paramètre suivant avec 'pdTRUE' demande une minuterie de 'rechargement automatique', ce qui signifie que la minuterie est une minuterie périodique. 
-Ensuite,  un ID de minuterie (pointeur vers void) et enfin la chose la plus importante : le callback du timer. Le callback est la fonction qui sera appelée à l'expiration du délai.
+Le premier paramètre est une chaîne pour le nom du timer, suivi de la période (initiale) du temporisateur en ticks. 
+Le paramètre suivant avec 'pdTRUE' demande un timer avec 'rechargement automatique', ce qui signifie que le timer est un timer périodique. 
+Ensuite,  un ID de timer (pointeur vers void) et enfin la chose la plus importante : le callback du timer. Le callback est la fonction qui sera appelée à l'expiration du délai.
 Étant donné qu'une création de timer peut échouer (par exemple, manquer de mémoire), il est vivement recommandé de vérifier le descripteur de temporisateur renvoyé.
 
 ####  La fonction de callback
