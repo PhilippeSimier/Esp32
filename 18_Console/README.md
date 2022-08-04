@@ -10,7 +10,7 @@ La classe **Console** est utilisée pour analyser et gérer les commandes de l'i
 
 installation en tant que lib globale: 
 ```bash
-pio lib -g install "akoro/Console@^1.2.1"
+pio pkg install --global --library akoro/Console@^1.2.1
 ```
  
   Avec NetBeans ajouter le chemin vers la library dans 
