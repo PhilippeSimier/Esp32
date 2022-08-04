@@ -5,9 +5,13 @@
       <df name="include">
       </df>
       <df name="lib">
+        <df name="CommandeAt">
+          <in>CommandeAt.cpp</in>
+          <in>CommandeAt.h</in>
+        </df>
       </df>
       <df name="src">
-        <in>timers_logiciel.cpp</in>
+        <in>cli_at.cpp</in>
       </df>
       <df name="test">
       </df>
@@ -51,7 +55,6 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
-          <runcommandpicklistitem></runcommandpicklistitem>
           <runcommandpicklistitem>pio run --target upload</runcommandpicklistitem>
         </runcommandpicklist>
         <runcommand>pio run --target upload</runcommand>
