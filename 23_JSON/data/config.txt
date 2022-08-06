@@ -1,0 +1,4 @@
+{
+    "hostname":"philippes.ddns.net",
+    "port":80
+}
