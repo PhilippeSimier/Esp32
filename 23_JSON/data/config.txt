@@ -1,4 +1,6 @@
 {
-    "hostname":"philippes.ddns.net",
-    "port":80
+    "nom":"SIMIER",
+    "prenom":"Philippe",
+    "web":"philippes.ddns.net",
+    "age":62
 }

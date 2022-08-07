@@ -8,6 +8,10 @@
       <df name="include">
       </df>
       <df name="lib">
+        <df name="biblio">
+          <in>biblio.cpp</in>
+          <in>biblio.h</in>
+        </df>
       </df>
       <df name="src">
         <in>JsonSpiffs.cpp</in>

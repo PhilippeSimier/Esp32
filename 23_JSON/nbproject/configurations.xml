@@ -5,6 +5,12 @@
       <df name="data">
         <in>config.txt</in>
       </df>
+      <df name="lib">
+        <df name="biblio">
+          <in>biblio.cpp</in>
+          <in>biblio.h</in>
+        </df>
+      </df>
       <df name="src">
         <in>JsonSpiffs.cpp</in>
       </df>
@@ -553,6 +559,10 @@
         </preBuild>
       </makefileType>
       <item path="data/config.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/biblio/biblio.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lib/biblio/biblio.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="platformio.ini" ex="false" tool="3" flavor2="0">
       </item>
