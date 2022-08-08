@@ -9,6 +9,9 @@
 
 #include <Arduino.h>
 
+const int maxarray = 255;
+char store_char[maxarray];
+
 // Number of copies: 1 in Flash, 1 in RAM
 const char *a1 = "hello";
 const char *a2 = "hello";
@@ -18,7 +21,10 @@ const char *a2 = "hello";
 const char b1[] = "hello";
 const char b2[] = "hello";
 
-// Number of copies: 2 in Flash, 0 in RAM
+char g1[] = "hello";
+char g2[] = "hello";
+
+// Number of copies: 2 in Flash, 2 in RAM
 static const char c1[] PROGMEM = "This is a string stored in flash";
 static const char c2[] PROGMEM = "This is a string stored in flash";
 
@@ -32,33 +38,38 @@ const String d2 = "hello";
 const std::string e1 = "hello";
 const std::string e2 = "hello";
 
-// Number of copies: 2 in Flash, 0 in RAM
+// Number of copies: 1 in Flash, 1 in RAM
 const __FlashStringHelper* f1 = F("hello");
 const __FlashStringHelper* f2 = F("hello");
 
-
 void showAddresses(const char *title, const void *s1, const void *s2) {
-  Serial.println(title);
-  Serial.print(" s1 = ");
-  Serial.printf("0x%x\r\n", (intptr_t)s1);
-  Serial.print(" s2 = ");
-  Serial.printf("0x%x\r\n", (intptr_t)s2);
-  Serial.println("---------------------");
+    Serial.println(title);
+    Serial.print(" s1 = ");
+    Serial.printf("0x%x\r\n", (intptr_t) s1);
+    Serial.print(" s2 = ");
+    Serial.printf("0x%x\r\n", (intptr_t) s2);
+    Serial.println("---------------------");
 }
 
 void setup() {
-  Serial.begin(115200);
-  while (!Serial)
-    continue;
+    Serial.begin(115200);
+    while (!Serial)
+        continue;
 
-  showAddresses("const char*", a1, a2);
-  showAddresses("const char[]", b1, b2);
-  showAddresses("static const char[] PROGMEM", c1, c2);
-  showAddresses("F()", F("hello"), F("hello"));
-  showAddresses("const String", d1.c_str(), d2.c_str());
-  showAddresses("const std::string", e1.c_str(), e2.c_str());
-  showAddresses("const __FlashStringHelper*", f1, f2);
+    showAddresses("const char*", a1, a2);
+    showAddresses("const char[]", b1, b2);
+    showAddresses("char[]", g1, g2);
+    showAddresses("static const char[] PROGMEM", c1, c2);
+    showAddresses("F()", F("hello"), F("hello"));
+    showAddresses("const String", d1.c_str(), d2.c_str());
+    showAddresses("const std::string", e1.c_str(), e2.c_str());
+    showAddresses("const __FlashStringHelper*", f1, f2);
+    
+    showAddresses("store_char[255]", store_char, nullptr);
+    
 }
 
-void loop() {}
+void loop() {
+
+}
 
