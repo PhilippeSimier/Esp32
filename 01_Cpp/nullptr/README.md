@@ -46,10 +46,13 @@ Le déréférencement d'un pointeur nul entraîne un comportement indéfini.
 Chaque fois que vous utilisez des pointeurs, vous devez faire très attention à ce que votre code ne déréférence pas les pointeurs nuls ou pendants, car cela entraînera un comportement indéfini (probablement un plantage de l'application). 
 tout comme nous pouvons utiliser une condition pour tester les valeurs booléennes pour `true`ou `false`, nous pouvons utiliser une condition pour tester si un pointeur a une valeur `nullptr`ou non :
 ```cpp
-if (! ptr){
-	// déréférencement possible
-} else {
-    // Erreur 
+
+void print( int* ptr ){
+	if ( ptr ){
+		std::cout << *ptr; // déréférencement possible
+	} else {
+	    // Erreur 
+	}
 }
 ```
 
