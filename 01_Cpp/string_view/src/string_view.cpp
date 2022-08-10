@@ -23,10 +23,10 @@ void setup() {
     while (!Serial)
         continue;
 
-    std::string_view sv{ "balloon" };
-    std::string s{ "Hello, world" };
-    char  sc[] = { "stratosphérique" };
-    const char *a1 = "hello";
+    std::string_view sv { "balloon" };
+    std::string s { "Hello, world" };
+    char  sc[]  { "stratosphérique" };
+    const char *a1 { "hello" };
     
 
     printSV(sv); // ok: pass std::string_view

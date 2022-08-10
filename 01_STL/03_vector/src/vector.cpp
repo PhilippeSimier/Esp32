@@ -3,7 +3,8 @@
  * Author: philippe SIMIER Lycée Touchard Le Mans
  * 
  * Programme pour tester l'utilisation du conteneur std::vector 
- * et de quelques méthodes comme push_back, sort et find
+ * et de quelques méthodes comme push_back, sort et find, initialisation uniforme
+ * 
  * Created on 27 juillet 2022, 08:25
  */
 
@@ -13,7 +14,7 @@
 #include <iostream>      // flux de sortie
 #include <optional>
 
-std::vector<String> monVecteur = {"programme", "langage", "cpp", "esp32"};
+std::vector<String> monVecteur  {"programme", "langage", "cpp", "esp32"};
 
 // Prototype pour afficher un vecteur de String
 void afficher(const std::vector<String> &v);
