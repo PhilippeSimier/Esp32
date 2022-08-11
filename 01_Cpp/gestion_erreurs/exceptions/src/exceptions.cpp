@@ -10,7 +10,6 @@
 #include <iostream>
 #include <Throwing.h>
 
-using std::runtime_error;
 
 void setup() {
     Serial.begin(115200);
@@ -28,7 +27,7 @@ void setup() {
         std::cout << "This will not be printed" << std::endl;
         
     } 
-    catch (const runtime_error &e) {
+    catch (const std::runtime_error &e) {
         
         std::cout << "Exception caught: " << e.what() << std::endl;
         
