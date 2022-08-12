@@ -36,12 +36,20 @@ Par exemple si l'objet prix est un `std::optional<float>`
         std::cout << "  Pas de prix " << std::endl;
     }
 ```
-
+## Configuration platformio.ini 
+```
+[env:lolin32]
+platform = espressif32
+board = lolin32
+framework = arduino
+build_unflags = -std=gnu++11
+build_flags   = -std=gnu++17
+```
 
 
 # Changelog
 
-**08/08/2022 : ** Creation du README.md 
+**12/08/2022 : ** Creation du README.md 
 
 > **Notes :**
 
