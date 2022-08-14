@@ -41,7 +41,7 @@ void setup() {
         std::cout << "a -> " << "n'a pas de valeur\n";
     }
     
-    a = std::string("Hello world!");
+    a = std::string(R"(<a href="file">\spiffs\</a>)");
     std::cout << "a -> " << std::any_cast<std::string>(a) << '\n';
 
     a = {}; // On peut utiliser la méthode has_value() pour déterminer s'il y a une valeur.
