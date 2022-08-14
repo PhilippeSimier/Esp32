@@ -1,6 +1,8 @@
 /* 
  * File:   lambda.cpp
- * Author: philippe
+ * Author: philippe SIMIER Lycée Touchard Le Mans
+ * 
+ * Les fonctions lambda en action
  *
  * Created on 14 août 2022, 16:27
  */
@@ -22,6 +24,7 @@ void setup() {
     lambda("philippe");
     
     std::vector<std::string> const chaines { "Un mot", "Autre chose", "Du blabla", "Du texe", "Des lettres" };
+    
     std::for_each(std::begin(chaines), std::end(chaines), lambda);
 }
 
