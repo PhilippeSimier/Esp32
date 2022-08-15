@@ -2,7 +2,10 @@
 
 
 ## Introduction
-Une lambda est une fonction,  **potentiellement anonyme**, destinée à être utilisée pour des  **opérations locales**. Détaillons ces différentes caractéristiques.
+
+En C++11 et versions ultérieures, une expression lambda, souvent appelée _lambda_, est un moyen pratique de définir un objet  fonction anonyme (une _closure_) à l’emplacement où il est appelé ou passé en tant qu’argument à une fonction. En règle générale, les lambdas sont utilisés pour encapsuler quelques lignes de code passées à des algorithmes ou à des fonctions asynchrones. Cette section définit les lambdas et les compare à d’autres techniques de programmation. Il décrit leurs avantages et fournit quelques exemples de base.
+
+ Détaillons ces différentes caractéristiques.
 
 -   Une lambda est  **une fonction**, c’est-à-dire un regroupement de plusieurs instructions. Rien de bien nouveau.
 -   Une lambda peut être  **anonyme**. Contrairement aux fonctions classiques qui portent obligatoirement un nom, un identificateur, une lambda peut être utilisé  **sans qu’on lui donne de nom**.
@@ -56,13 +59,13 @@ std::for_each( std::begin(nombres), std::end(nombres), lambda );
 ```
 Une même lambda peut afficher deux collections de types différents.
 
-## Fonction lambda anonyme 
+## lambda encapsulée dans  une fonction asynchrone
 
 Le programme propose un exemple pratique pour la gestion du WIFi sur l'esp32. Il utilise une fonction lambda associée aux  événements de l'objet WiFi.
 Les paramètres de la fonction lambda sont : Une valeur énumérée `WiFiEvent_t event`
 et une union `arduino_event_info_t`
 Dans l'implémentation du corps, le code imprime les événements et l'adresse IP locale attribuée à l'ESP32.  Ainsi, la définition complète de lambda peut être vue ci-dessous :
-La définition de la lambda se fait directement à l'emplacement du paramètre de `WiFI.onEvent`
+La  lambda est directement encapsulée à l'emplacement du paramètre de `WiFI.onEvent`
 ```cpp
 WiFi.onEvent(
     [](WiFiEvent_t event, arduino_event_info_t info) -> void {
