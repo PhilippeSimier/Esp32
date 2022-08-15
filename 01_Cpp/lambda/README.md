@@ -22,7 +22,7 @@ La syntaxe pour déclarer une lambda a des points communs avec celles des foncti
 -   Le  **type de retour** : encore un élément qui nous est familier. Il est écrit après la flèche  `->`. Il peut être omis dans quelques cas, mais nous allons l’écrire à chaque fois dans une volonté d’écrire un code clair et explicite.
 -   Les  **instructions** : 
 
-## Quelques exemples simples
+## Quelques exemples 
 
 #### Déclaration d'une lambda
 On peut,  utiliser la syntaxe de C++ moderne, à base d’accolades `{}`, 
@@ -55,6 +55,36 @@ std::vector<int> const nombres { 3, 1, 25, 7, 51 };
 std::for_each( std::begin(nombres), std::end(nombres), lambda );
 ```
 Une même lambda peut afficher deux collections de types différents.
+
+## Fonction lambda anonyme 
+
+Le programme propose un exemple pratique pour la gestion du WIFi sur l'esp32. Il utilise une fonction lambda associée aux  événements de l'objet WiFi.
+Les paramètres de la fonction lambda sont : Une valeur énumérée `WiFiEvent_t event`
+et une union `arduino_event_info_t`
+Dans l'implémentation du corps, le code imprime les événements et l'adresse IP locale attribuée à l'ESP32.  Ainsi, la définition complète de lambda peut être vue ci-dessous :
+La définition de la lambda se fait directement à l'emplacement du paramètre de `WiFI.onEvent`
+```cpp
+WiFi.onEvent(
+    [](WiFiEvent_t event, arduino_event_info_t info) -> void {
+        switch (event) {
+            case ARDUINO_EVENT_WIFI_READY:
+                 Serial.println("Wifi ready");
+                 break;
+            case ARDUINO_EVENT_WIFI_STA_START:
+                 Serial.println("Wifi station start");
+                 break;
+            case ARDUINO_EVENT_WIFI_STA_CONNECTED:
+                 Serial.println("Wifi station connected");
+                 break;
+            case ARDUINO_EVENT_WIFI_STA_GOT_IP:
+                 Serial.print("Wifi station has got IP : ");
+                 Serial.println(WiFi.localIP());
+                 break;
+            default:
+                 break;
+        }
+   });
+```
 # Changelog
 
 **15/08/2022 : ** Creation du README.md 
