@@ -1,4 +1,4 @@
-﻿# Les fonctions lambdas
+﻿# Expressions lambda en C++
 
 
 ## Introduction
@@ -7,7 +7,7 @@ En C++11 et versions ultérieures, une expression lambda, souvent appelée _lamb
 
  Détaillons ces différentes caractéristiques.
 
--   Une lambda est  **une fonction**, c’est-à-dire un regroupement de plusieurs instructions. Rien de bien nouveau.
+-   Une _lambda_ est  **une fonction**, c’est-à-dire un regroupement de plusieurs instructions. Rien de bien nouveau.
 -   Une lambda peut être  **anonyme**. Contrairement aux fonctions classiques qui portent obligatoirement un nom, un identificateur, une lambda peut être utilisé  **sans qu’on lui donne de nom**.
 -   Une lambda s’utilise pour des  **opérations locales**. Cela signifie qu’une lambda peut être directement écrite dans une fonction ou un algorithme, au plus près de l’endroit où elle est utilisée, au contraire d’une fonction qui est à un endroit bien défini, à part.
 
