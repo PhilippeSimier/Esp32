@@ -18,14 +18,17 @@ void setup() {
     while (!Serial)
         continue;
     
-    auto lambda = [](std::string const & message) -> void { std::cout << "Message reçu : " << message << std::endl; };
+    auto lambda { [](auto const & parametre) -> void { std::cout << "Paramètre reçu : " << parametre << std::endl; }};
     
-    lambda("Hello !");
-    lambda("philippe");
+    std::string s1 = "Hello ! philippe";
+    lambda(s1);
+   
     
     std::vector<std::string> const chaines { "Un mot", "Autre chose", "Du blabla", "Du texe", "Des lettres" };
-    
     std::for_each(std::begin(chaines), std::end(chaines), lambda);
+    
+    std::vector<int> const nombres { 3, 1, 25, 7, 51 };
+    std::for_each(std::begin(nombres), std::end(nombres), lambda);
 }
 
 void loop() {
