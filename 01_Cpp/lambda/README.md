@@ -3,7 +3,7 @@
 
 ## Introduction
 
-En C++11 et versions ultérieures, une expression lambda, souvent appelée _lambda_, est un moyen pratique de définir un objet  fonction anonyme (une _closure_) à l’emplacement où il est appelé ou passé en tant qu’argument à une fonction. En règle générale, les lambdas sont utilisés pour encapsuler quelques lignes de code passées à des algorithmes ou à des fonctions asynchrones. Cette section définit les lambdas et les compare à d’autres techniques de programmation. Il décrit leurs avantages et fournit quelques exemples de base.
+En C++11 et versions ultérieures, une expression lambda, souvent appelée _lambda_, est un moyen pratique de définir une  fonction anonyme (une _closure_) à l’emplacement où elle est appelée ou passée en tant qu’argument à une fonction. En règle générale, les lambdas sont utilisées pour encapsuler quelques lignes de code passées à des algorithmes ou à des fonctions asynchrones. Cette section définit les lambdas et les compare à d’autres techniques de programmation. Il décrit leurs avantages et fournit quelques exemples de base.
 
  Détaillons ces différentes caractéristiques.
 
@@ -20,11 +20,19 @@ La syntaxe pour déclarer une lambda a des points communs avec celles des foncti
 
 ```
 
--   La  **zone de capture** : par défaut, une lambda est en totale isolation et ne peut manipuler aucune variable de l’extérieur. Grace à cette zone, la lambda va pouvoir modifier des variables extérieures.
--   Les  **paramètres de la lambda** : exactement comme pour les fonctions, les paramètres de la lambda peuvent être présents ou non, avec utilisation de références et/ou  `const`  possible.
--   Le  **type de retour** : encore un élément qui nous est familier. Il est écrit après la flèche  `->`. Il peut être omis dans quelques cas, mais nous allons l’écrire à chaque fois dans une volonté d’écrire un code clair et explicite.
--   Les  **instructions** : 
-
+ -   La  **zone de capture [ ]** : Dit au compilateur qu’il s’agit d’un type lambda et peut comporter des spécifications concernant le passage des paramètres qui vont suivre. 
+   **[&]** : passage par adresse 
+   **[=]** : passage par copie
+ -   Les  **paramètres de la lambda( )** : exactement comme pour les fonctions, les paramètres de la lambda peuvent être présents ou non, avec utilisation de références et/ou  `const`  possible.
+ -   Le  **type de retour** : encore un élément qui nous est familier. Il est écrit après la flèche  `->`. Il peut être omis dans quelques cas, mais nous allons l’écrire à chaque fois dans une volonté d’écrire un code clair et explicite.
+ -   Le code  **{ }** :  Le code de la fonction lambda.
+ 
+ ## Avantages  des lambdas
+ 
+ - La fonction est inline et donc pas d’appel en langage machine (pas de call) à une fonction avec les contraintes bien connues de travaux sur la pile à l’appel et au retour :  **plus de performance**.
+ -  La fonction  **est privée à votre code**, elle ne sera pas publiée dans un fichier header. 
+ - Pour des fonctions courtes, elle évite la création de fonctions, de publier une déclaration,  **code plus concis**.
+ - 
 ## Quelques exemples 
 
 #### Déclaration d'une lambda
