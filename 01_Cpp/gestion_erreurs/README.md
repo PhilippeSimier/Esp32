@@ -10,6 +10,7 @@ L'identification et la gestion des erreurs d'exécution sont importantes pour le
 -   Erreurs irrécupérables (fatales) :
     
     -   Assertions ayant échoué (en utilisant `assert`)
+    
 ## Assertions
 
 Le but d'une assertion est de détecter les erreurs de programmation en documentant quelque chose qui ne devrait jamais arriver. Si cela se produit, alors le programmeur a fait une erreur quelque part, et cette erreur peut être identifiée et doit être corrigée.
@@ -20,16 +21,14 @@ Une assertion est une condition pour continuer l'exécution du programme. Si l'e
 Si l'expression conditionnelle prend la valeur `false`, un message d'erreur s'affiche et le programme se termine (via `std::abort`). 
 Ce message d'erreur contient  l'expression qui a échoué sous forme de texte, ainsi que le nom du fichier de code et le numéro de ligne de l'assertion. Cela permet de dire très facilement non seulement quel était le problème, mais où dans le code le problème s'est produit. 
 
-En C++, les assertions d'exécution sont implémentées via la macro de préprocesseur assert , qui réside dans l'en-tête  `#include  <assert.h>`
+En C++, les assertions d'exécution sont implémentées via la macro de préprocesseur assert , qui réside dans l'en-tête  `#include  <cassert>`
 ```cpp
-	#include  <assert.h>
+	#include  <cassert>
 	
 	float calculateTime(float height, float gravity) {
-		assert(gravity > 0.0); // gravity doit être supérieure à 0.0
-	float res{ 0.0};
-	if (height <= 0.0) {
-		res = 0.0;
-	} else {
+	assert(gravity > 0.0); // gravity doit être supérieure à 0.0 
+	float res { 0.0 };
+	if (height > 0.0) {
 		res = std::sqrt((2.0 * height) / gravity);
 	}
 	return res;
