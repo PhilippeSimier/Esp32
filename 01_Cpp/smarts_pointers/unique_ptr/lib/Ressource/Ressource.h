@@ -19,8 +19,11 @@ public:
     
     Ressource(const std::string & _name);
     Ressource(const Ressource& orig);
+    Ressource(const Ressource *orig);
     virtual ~Ressource();
     void doSomething();
+    
+    bool operator <( const Ressource & autre ) const;
     
 private:
     std::string name;

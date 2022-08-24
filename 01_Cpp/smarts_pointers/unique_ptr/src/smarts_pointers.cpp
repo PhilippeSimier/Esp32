@@ -20,6 +20,10 @@ void setup(){
     r1->doSomething();
     Process(r1);
     
+    // Création d'une ressource r2 avec le constructeur de copie
+    RessourcePtr r2( new Ressource(r1.get()) );
+    r2->doSomething();
+    
     /*  Les lignes de code suivantes ne se compilent pas
     
     RessourcePtr r2;            // Basé sur nullptr
