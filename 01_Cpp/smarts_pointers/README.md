@@ -1,6 +1,6 @@
 ﻿#  Les smarts pointers
 
-**Remarque** : les smarts pointers proviennent du projet [Boost](http://www.boost.org/).
+**Remarque** : les smarts pointers proviennent du projet [Boost](https://www.boost.org/doc/libs/1_80_0/libs/smart_ptr/doc/html/smart_ptr.html#scoped_ptr).
 Une des principales problématiques quand on code en C++ réside dans la libération de la mémoire (et plus généralement des ressources). Le constat est sans appel : les développeurs passent beaucoup trop de temps à chasser les fuites mémoires. Il serait préférable d'utiliser ce temps pour plutôt travailler l'aspect fonctionnel des applications. Pour ce faire, il faudrait automatiser la libération des ressources.
 
 **RAII (Resource Acquisition Is Initialization)** est une technique utilisée en C++ pour relâcher automatiquement les ressources devenues inutilisées. Cette technique a été introduite par Bjarne Stroustrup (le père de C++).

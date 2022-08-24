@@ -50,14 +50,14 @@ En quelques mot, on peut dire que RAII (Resource Acquisition Is Initialisation) 
 
 Certains ajouts majeurs de la version C++11 sont liés à cette technique de développement qu'est RAII. Il s'agit notamment des trois classes suivantes : `std::unique_ptr`, `std::shared_ptr` et `std::weak_ptr`.
 
-## String_view  (économiser la mémoire)
+## std::string_view  (économiser la mémoire)
 
 C++17 introduit une autre façon d'utiliser les chaînes,  `std::string_view`
 Contrairement à `std::string`, qui conserve sa propre copie de la chaîne,  `std::string_view` fournit une _vue_ d'une chaîne qui est définie ailleurs.
 Contrairement aux chaînes de style C et `std::string`, `std::string_view`n'utilise pas de terminateurs nuls pour marquer la fin de la chaîne. Au contraire, il sait où se termine la chaîne car il garde une trace de sa longueur.
 Dans une fonction, je vous conseille de passer des chaînes en utilisant `std::string_view`(par valeur) au lieu de `const std::string&`, sauf si votre fonction appelle d'autres fonctions qui nécessitent des chaînes de style C ou des paramètres std::string.
 
-## # std::optional (être ou ne pas être un objet)
+## std::optional (être ou ne pas être un objet)
 C++17 introduit les objets optionnels `std::optional<T>` qui résout directement les problèmes qui surviennent lors du passage ou du stockage de ce qui peut ou non être actuellement un objet.
 
 
