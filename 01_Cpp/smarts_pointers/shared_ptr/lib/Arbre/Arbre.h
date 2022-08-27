@@ -67,7 +67,7 @@ int Arbre<ELEMENT>::hauteur() {
     int h {0};
 
     if (root.get() != nullptr) {
-        h = root->hauteur();
+        h = root->hauteur() -1 ;
     }
     return h;
 }

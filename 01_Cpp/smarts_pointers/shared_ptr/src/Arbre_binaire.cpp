@@ -36,6 +36,17 @@ void setup() {
     std::cout << "Hauteur = " << unArbre->hauteur() << " Taille = " << unArbre->taille() << std::endl;
     unArbre->push(first);
     std::cout << "Hauteur = " << unArbre->hauteur() << " Taille = " << unArbre->taille() << std::endl;
+    
+    // Avec des entiers
+     
+    std::shared_ptr< Arbre<int> > Arbre2( new Arbre<int>() );
+    Arbre2->push(9);
+    Arbre2->push(11);
+    Arbre2->push(7);
+    Arbre2->push(6);
+    Arbre2->push(5);
+    Arbre2->push(8);
+    std::cout << "Arbre2 Hauteur = " << Arbre2->hauteur() << " Taille = " << Arbre2->taille() << std::endl;
 
 }
 
