@@ -25,12 +25,17 @@ void setup() {
     typedef std::shared_ptr< Arbre<RessourcePtr> >   ArbrePtr;
     
     ArbrePtr unArbre( new Arbre<RessourcePtr>() );
-    unArbre->push(first);
-    unArbre->push(second);
+    std::cout << "Hauteur = " << unArbre->hauteur() << " Taille = " << unArbre->taille() << std::endl;
     unArbre->push(third);
+    std::cout << "Hauteur = " << unArbre->hauteur() << " Taille = " << unArbre->taille() << std::endl;
     unArbre->push(fourth);
-
-
+    std::cout << "Hauteur = " << unArbre->hauteur() << " Taille = " << unArbre->taille() << std::endl;
+    unArbre->push(second);
+    std::cout << "Hauteur = " << unArbre->hauteur() << " Taille = " << unArbre->taille() << std::endl;
+    unArbre->push(first);
+    std::cout << "Hauteur = " << unArbre->hauteur() << " Taille = " << unArbre->taille() << std::endl;
+    unArbre->push(first);
+    std::cout << "Hauteur = " << unArbre->hauteur() << " Taille = " << unArbre->taille() << std::endl;
 
 }
 

@@ -11,18 +11,18 @@
 #include <iostream>
 #include <memory>
 
-
 template <typename ELEMENT>
 class Noeud {
-    
-typedef std::shared_ptr<Noeud<ELEMENT>> NoeudPtr;    
+    typedef std::shared_ptr<Noeud<ELEMENT>> NoeudPtr;
 
 public:
-    
+
     Noeud(const ELEMENT & value);
     virtual ~Noeud();
-    
+
     void push(NoeudPtr node);
+    int hauteur();
+    int taille();
 
 private:
     NoeudPtr leftNode;
@@ -38,8 +38,7 @@ template <typename ELEMENT>
 Noeud<ELEMENT>::Noeud(const ELEMENT & value) :
 leftNode(),
 value(value),
-rightNode()
-{
+rightNode() {
     std::cout << "Node " << value << " created" << std::endl;
 }
 
@@ -49,7 +48,7 @@ Noeud<ELEMENT>::~Noeud() {
 }
 
 template <typename ELEMENT>
-void Noeud<ELEMENT>::push( NoeudPtr node ) {
+void Noeud<ELEMENT>::push(NoeudPtr node) {
     if (node->value < value) {
         if (leftNode.get() == nullptr) {
             leftNode = node;
@@ -61,13 +60,40 @@ void Noeud<ELEMENT>::push( NoeudPtr node ) {
         if (rightNode.get() == nullptr) {
             rightNode = node;
             std::cout << "Insert on right of " << value << std::endl;
-        }
-        else {
+        } else {
             rightNode->push(node);
         }
     }
 }
 
+template <typename ELEMENT>
+int Noeud<ELEMENT>::hauteur() {
+    int g{0};
+    int d{0};
+    if (leftNode.get() != nullptr) {
+        g = leftNode->hauteur();
 
+    }
+    if (rightNode.get() != nullptr) {
+        d = rightNode->hauteur();
+    }
+    return std::max(g, d) + 1;
+
+}
+
+template <typename ELEMENT>
+int Noeud<ELEMENT>::taille() {
+    
+    int d {0};
+    int g {0};
+    
+    if (leftNode.get() != nullptr) {
+        g = leftNode->taille();
+    }
+    if (rightNode.get() != nullptr) {
+        d = rightNode->taille();
+    }
+    return 1 + g + d;
+}
 #endif /* NOEUD_H */
 
