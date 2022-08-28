@@ -18,6 +18,8 @@ struct User {
     int age;
 };
 
+
+
 void loadConfiguration(const char *filename, User &user);
 void saveConfiguration(const char *filename, const User &user);
 void printFile(const char *filename);
