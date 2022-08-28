@@ -67,6 +67,12 @@ void setup() {
     Serial.println(WiFi.gatewayIP());
 
 
+    
+
+
+}
+
+void loop() {
     // On se place dans le rôle du  client en utilisant HTTPClient
     HTTPClient http;
 
@@ -84,11 +90,8 @@ void setup() {
     }
 
     http.end();
-
-
-}
-
-void loop() {
+    delay(10000);
+    
 }
 
 
