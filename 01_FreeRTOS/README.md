@@ -41,7 +41,7 @@ Un micro-contrôleur doit toujours avoir quelque chose à exécuter. En d'autres
 
 Une tâche est soit en **fonctionnement** (deux tâches peuvent être dans cet état car l'Esp32  possède 2 cœurs ), soit en état d'**attente de fonctionnement**, soit en état **bloqué** (en attente d'un événement pour être en attente de fonctionnement), soit en état **suspendu** (en attente de se faire réactiver).
 
-![Etats](/09_FreeRTOS/etat_tache.JPG)
+![Etats](/01_FreeRTOS/etat_tache.JPG)
 
 Dans **FreeRTOS**, il n'y a aucune variable pour spécifier explicitement l'état d'une tâche, en contrepartie FreeRTOS utilise des listes d'états. La présence de la tâche dans un type de listes d'états détermine son état (prêt, bloqué ou suspendu). Pour les tâches changeant souvent d'état, l’ordonnanceur n'aura alors qu'à déplacer la tâche (l'élément xListItem appartenant à cette même tâche) d'une liste d'états à une autre.
 
