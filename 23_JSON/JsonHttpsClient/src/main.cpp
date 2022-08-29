@@ -44,6 +44,7 @@ void setup() {
                     case ARDUINO_EVENT_WIFI_STA_DISCONNECTED:
                         Serial.print("WiFi lost connection. Reason: ");
                         Serial.println(info.wifi_sta_disconnected.reason);
+                        networkOk = false;
                         break;
                     case ARDUINO_EVENT_WIFI_STA_LOST_IP:
                         Serial.println("Lost IP address and IP address is reset to 0");
