@@ -9,10 +9,10 @@ L'exemple met en oeuvre trois tâches :
  - Une tâche arduino **loop()** consomme les valeurs placées dans la liste afin de les afficher sur la console.
  - Une tâche blinkTask() chargé de faire clignoter la led intégrée.
  
- ![enter image description here](/09_FreeRTOS/01_Communication_entre_taches/05_Exemple_BME280_2_Coeurs/schema.JPG) 
+ ![enter image description here](/01_FreeRTOS/01_Communication_entre_taches/05_Exemple_BME280_2_Coeurs/schema.JPG) 
 
 ## Câblage sur breadboard
-![Cablage sur breadboard](/09_FreeRTOS/01_Communication_entre_taches/05_Exemple_BME280_2_Coeurs/Cablage_BME280_esp32.png)
+![Cablage sur breadboard](/01_FreeRTOS/01_Communication_entre_taches/05_Exemple_BME280_2_Coeurs/Cablage_BME280_esp32.png)
 
 
 # Changelog
