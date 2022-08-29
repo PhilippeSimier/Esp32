@@ -18,8 +18,10 @@ bool networkOk {false};
 void setup() {
 
     Serial.begin(115200);
-
-
+    
+    WiFi.disconnect(true); // delete old config
+    delay(1000); 
+    
     WiFi.onEvent(
             [&](WiFiEvent_t event, arduino_event_info_t info) mutable -> void {
                 switch (event) {
@@ -30,15 +32,22 @@ void setup() {
                         Serial.println("Wifi station start");
                         break;
                     case ARDUINO_EVENT_WIFI_STA_CONNECTED:
-                        Serial.println("Wifi station connected");
+                        Serial.println("Wifi station connected to AP");
                         break;
                     case ARDUINO_EVENT_WIFI_STA_GOT_IP:
                         Serial.print("Wifi station has got IP  : ");
-                        Serial.println(WiFi.localIP());
+                        Serial.println(IPAddress(info.got_ip.ip_info.ip.addr));
                         Serial.print("Adresse IP de la gateway : ");
                         Serial.println(WiFi.gatewayIP());
                         networkOk = true;
                         break;
+                    case ARDUINO_EVENT_WIFI_STA_DISCONNECTED:
+                        Serial.print("WiFi lost connection. Reason: ");
+                        Serial.println(info.wifi_sta_disconnected.reason);
+                        break;
+                    case ARDUINO_EVENT_WIFI_STA_LOST_IP:
+                        Serial.println("Lost IP address and IP address is reset to 0");
+                        break;    
                     default:
                         break;
                 }
