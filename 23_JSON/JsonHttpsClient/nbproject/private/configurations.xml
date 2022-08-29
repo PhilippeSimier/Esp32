@@ -7,6 +7,7 @@
       <df name="lib">
       </df>
       <df name="src">
+        <in>constantes.h</in>
         <in>main.cpp</in>
       </df>
       <df name="test">
