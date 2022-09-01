@@ -1,40 +1,40 @@
+/* 
+ * File:   keypad.cpp
+ * Author: psimier Lycée touchard Washington 
+ *
+ * Created on 1 septembre 2022, 10:50
+ */
+
 #include <Arduino.h>
 #include <Keypad.h>
 
 
-const byte ROWS = 4; // Déclaration du nombre de lignes
-const byte COLS = 3; // Déclaration du nombre de  colonnes
-
 // Déclaration des caractères sur les touches
-char keys[ROWS][COLS] = {
+char keys[4][3]  {
     {'1', '2', '3'},
     {'4', '5', '6'},
     {'7', '8', '9'},
     {'*', '0', '#'}
 };
 
-//affectation des GPIO au R1,R2,R3,R4 du clavier
-byte rowPins[ROWS] = {23, 22, 3, 21};
+//affectation des GPIO aux lignes L0, L1, L2, L3 du clavier
+byte rowPins[4]  {32, 33, 25, 26};
 
-//affectation des GPIO au C1,C2,C3 du clavier
-byte colPins[COLS] = {19, 18, 5};
+//affectation des GPIO aux colonnes C0, C1, C2 du clavier
+byte colPins[3]  {4, 5, 15};
 
-Keypad clavier = Keypad((char *) keys, rowPins, colPins, ROWS, COLS);
+Keypad clavier = Keypad((char *) keys, rowPins, colPins, 4, 3);
 
 String code;
-String secret = "1234#";
-
-
+String secret  {"1234#"};
 
 
 void setup() {
-
 
     Serial.begin(115200);
     pinMode( 2, OUTPUT);   // led builtin
     delay(500);
     Serial.println("\nSetup done");
-
 
 }
 
