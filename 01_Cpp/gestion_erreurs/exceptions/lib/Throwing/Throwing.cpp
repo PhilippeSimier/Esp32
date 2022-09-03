@@ -13,7 +13,7 @@
 Throwing::Throwing(int _arg) :
 arg(_arg) {
     
-    std::cout << "In constructor, arg = " << arg << std::endl;
+    std::cout << this << " In constructor, arg = " << arg << std::endl;
     
     if (arg == 0) {
         throw std::runtime_error("Exception in constructor");
@@ -28,12 +28,12 @@ arg(_arg) {
 Throwing::Throwing(const Throwing& orig) {
     
     arg = orig.arg;
-    std::cout << "In copy constructor, arg = " << arg << std::endl;
+    std::cout << this << " In copy constructor, arg = " << arg << std::endl;
 }
 
 Throwing::~Throwing() {
     
-    std::cout << "In destructor, arg = " << arg << std::endl;
+    std::cout << this << " In destructor, arg = " << arg << std::endl;
     
 }
 

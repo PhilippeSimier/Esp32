@@ -27,7 +27,7 @@ void setup() {
         std::cout << "This will not be printed" << std::endl;
         
     } 
-    catch (const std::runtime_error &e) {
+    catch (std::exception const& e) {
         
         std::cout << "Exception caught: " << e.what() << std::endl;
         
