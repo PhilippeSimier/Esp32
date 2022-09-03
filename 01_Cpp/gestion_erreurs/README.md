@@ -61,6 +61,13 @@ Le mot-clé **catch** est utilisé pour définir un bloc de code (appelé **bloc
         std::cout << "Exception caught: " << e.what() << std::endl;     
     }
 ```
+## Les classes d’exception
+
+`std::exception`est la classe dont le seul but est de servir de classe de base dans la hiérarchie des exceptions. Elle n'a pas d'autres utilisations. En d'autres termes, conceptuellement, il s'agit d'une classe _abstraite_ (même si elle n'est pas définie comme une classe abstraite au sens C++ du terme).
+
+`std::runtime_error`est une classe plus spécialisée, issue de `std::exception`, destinée à être levée en cas d' erreurs d' _exécution diverses._ Elle a un double objectif. Elle peut être directement utilisée, ou elle peut servir de classe de base à divers types encore plus spécialisés d'exceptions d'erreur d'exécution, telles que `std::range_error`, `std::overflow_error`etc. 
+
+Vous pouvez définir vos propres classes d'exception descendant de `std::runtime_error`, ainsi que vous pouvez définir votre propre classe d'exception  descendant de `std::exception`.
 
 # Changelog
 
