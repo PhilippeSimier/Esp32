@@ -69,7 +69,7 @@ Le mot-clé **catch** est utilisé pour définir un bloc de code (appelé **bloc
 
 Vous pouvez définir vos propres classes d'exception descendant de `std::runtime_error`, ainsi que vous pouvez définir votre propre classe d'exception  descendant de `std::exception`.
 
-![Diagramme de classes](/01_Cpp/diagramme_classes.png)
+![Diagramme de classes](/01_Cpp/gestion_erreurs/diagramme_classes.png)
 
 
 # Changelog
