@@ -42,8 +42,8 @@ const char* root_ca = \
 "-----END CERTIFICATE-----\n" ;
 
 // valeurs pour le WiFi
-const char* ssid {"Livebox-5648"};
-const char* password {"vz9Lcc2RnTTmnDuD4Y"};
+const char* ssid {"SNIR03"};
+const char* password {"touchard72"};
 
 #endif /* CONSTANTES_H */
 

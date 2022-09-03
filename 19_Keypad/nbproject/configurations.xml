@@ -3,7 +3,7 @@
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
       <df name="src">
-        <in>main.cpp</in>
+        <in>keypad.cpp</in>
       </df>
       <in>platformio.ini</in>
     </df>
@@ -32,14 +32,14 @@
       <makefileType>
         <makeTool>
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
-          <buildCommand>/home/USERS/PROFS/psimier/.platformio/penv/bin/pio -f -c netbeans run</buildCommand>
-          <cleanCommand>/home/USERS/PROFS/psimier/.platformio/penv/bin/pio -f -c netbeans run --target clean</cleanCommand>
+          <buildCommand>"/usr/local/bin/pio" -f -c netbeans run</buildCommand>
+          <cleanCommand>"/usr/local/bin/pio" -f -c netbeans run --target clean</cleanCommand>
           <executablePath></executablePath>
           <cTool>
             <incDir>
               <pElem>src</pElem>
-              <pElem>/home/USERS/PROFS/psimier/2021/snir2/projets/Esp32/19_Keypad/include</pElem>
-              <pElem>/home/USERS/PROFS/psimier/2021/snir2/projets/Esp32/19_Keypad/src</pElem>
+              <pElem>/home/USERS/PROFS/psimier/github/Esp32/19_Keypad/include</pElem>
+              <pElem>/home/USERS/PROFS/psimier/github/Esp32/19_Keypad/src</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/config</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_trace</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_update</pElem>
@@ -104,8 +104,9 @@
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/cores/esp32</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/variants/lolin32</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/lib/BH1750/src</pElem>
-              <pElem>/home/USERS/PROFS/psimier/.platformio/lib/I2Cdevlib-Core</pElem>
-              <pElem>/home/USERS/PROFS/psimier/.platformio/lib/I2Cdevlib-MPU6050</pElem>
+              <pElem>/home/USERS/PROFS/psimier/.platformio/lib/ESP8266 and ESP32 OLED driver for SSD1306 displays/src</pElem>
+              <pElem>/home/USERS/PROFS/psimier/.platformio/lib/Keypad/src</pElem>
+              <pElem>/home/USERS/PROFS/psimier/.platformio/lib/NeoPixelBus/src</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/libraries/AzureIoT/src</pElem>
@@ -151,14 +152,14 @@
               <Elem>F_CPU=240000000L</Elem>
               <Elem>HAVE_CONFIG_H</Elem>
               <Elem>MBEDTLS_CONFIG_FILE="mbedtls/esp_config.h"</Elem>
-              <Elem>PLATFORMIO=50203</Elem>
+              <Elem>PLATFORMIO=60104</Elem>
             </preprocessorList>
           </cTool>
           <ccTool>
             <incDir>
               <pElem>src</pElem>
-              <pElem>/home/USERS/PROFS/psimier/2021/snir2/projets/Esp32/19_Keypad/include</pElem>
-              <pElem>/home/USERS/PROFS/psimier/2021/snir2/projets/Esp32/19_Keypad/src</pElem>
+              <pElem>/home/USERS/PROFS/psimier/github/Esp32/19_Keypad/include</pElem>
+              <pElem>/home/USERS/PROFS/psimier/github/Esp32/19_Keypad/src</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/config</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_trace</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/app_update</pElem>
@@ -223,8 +224,9 @@
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/cores/esp32</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/variants/lolin32</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/lib/BH1750/src</pElem>
-              <pElem>/home/USERS/PROFS/psimier/.platformio/lib/I2Cdevlib-Core</pElem>
-              <pElem>/home/USERS/PROFS/psimier/.platformio/lib/I2Cdevlib-MPU6050</pElem>
+              <pElem>/home/USERS/PROFS/psimier/.platformio/lib/ESP8266 and ESP32 OLED driver for SSD1306 displays/src</pElem>
+              <pElem>/home/USERS/PROFS/psimier/.platformio/lib/Keypad/src</pElem>
+              <pElem>/home/USERS/PROFS/psimier/.platformio/lib/NeoPixelBus/src</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src</pElem>
               <pElem>/home/USERS/PROFS/psimier/.platformio/packages/framework-arduinoespressif32/libraries/AzureIoT/src</pElem>
@@ -270,7 +272,7 @@
               <Elem>F_CPU=240000000L</Elem>
               <Elem>HAVE_CONFIG_H</Elem>
               <Elem>MBEDTLS_CONFIG_FILE="mbedtls/esp_config.h"</Elem>
-              <Elem>PLATFORMIO=50203</Elem>
+              <Elem>PLATFORMIO=60104</Elem>
             </preprocessorList>
           </ccTool>
         </makeTool>
@@ -281,7 +283,7 @@
       </makefileType>
       <item path="platformio.ini" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/keypad.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

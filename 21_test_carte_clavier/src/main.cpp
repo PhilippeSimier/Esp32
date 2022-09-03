@@ -24,10 +24,10 @@ char keys[4][3] = {
 };
 
 //affectation des GPIO aux lignes L0, L1, L2, L3 du clavier
-byte rowPins[4] = {32, 33, 25, 26};
+byte rowPins[4]  {32, 33, 25, 26};
 
 //affectation des GPIO aux colonnes C0, C1, C2 du clavier
-byte colPins[3] = {4, 5, 15};
+byte colPins[3]  {4, 5, 15};
 
 Keypad clavier = Keypad((char *) keys, rowPins, colPins, 4, 3);
 
