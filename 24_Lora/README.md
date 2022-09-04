@@ -5,7 +5,7 @@
 -   **915 MHz** en Australie et en Amérique du Nord 
 -   **433 Mhz**  de 433,050 MHz à 434,790 MHz (dans la bande 70cm 430 440Mhz des radio-amateurs)
 
-LoRa est  efficace, cette modulation peut transmettre des paquets de données sur une longue distance (plus de 10 km dans les zones rurales).
+LoRa est  efficace, cette modulation peut transmettre des paquets de données sur une longue distance (plus de 10 km dans les zones rurales).  la modulation LoRa permet une démodulation correcte dans des conditions de rapport signal/bruit très mauvaises.
 
 La communication **Peer to Peer** permet à deux appareils équipés de radios LoRa de se parler d'une manière similaire à la façon dont deux appareils Bluetooth communiquent, la principale différence étant  la portée augmentée.
 L'exemple utilise deux cartes **LILYGO® TTGO LoRa32 V2.1_1.6 Version 433Mhz **.  Ce  sont des cartes ESP32 avec un chipset SX1276 qui gère la communication LoRa et un écran LCD SSD1306. Dans platformIO, la carte est référencée  **ttgo-lora32-v21**
