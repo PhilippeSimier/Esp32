@@ -57,7 +57,7 @@ Le mot-clé **catch** est utilisé pour définir un bloc de code (appelé **bloc
     // bloc de code à surveiller 
          
     } 
-    catch (const std::runtime_error &e) {
+    catch (const std::exception & e) {
         std::cout << "Exception caught: " << e.what() << std::endl;     
     }
 ```
