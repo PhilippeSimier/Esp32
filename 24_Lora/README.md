@@ -1,9 +1,9 @@
 ﻿# Lora 
-**LoRa signifie Long Range** c'est une modulation étendue à faible puissance.  Cette modulation est  utilisée sur les gammes de fréquences radio qui sont :
+**LoRa signifie Long Range** c'est une modulation étendue à faible puissance.  Cette modulation est  utilisée sur les gammes de fréquences radio qui sont des bandes ISM (bande sans licence pour les applications industrielles, scientifiques et médicales)
 
--   868MHz en Europe
--   915 MHz en Australie et en Amérique du Nord
--   433 Mhz dans la bande 70cm (430 440Mhz des radio-amateurs)
+-   **868MHz** en Europe
+-   **915 MHz** en Australie et en Amérique du Nord 
+-   **433 Mhz**  de 433,050 MHz à 434,790 MHz (dans la bande 70cm 430 440Mhz des radio-amateurs)
 
 LoRa est  efficace, cette modulation peut transmettre des paquets de données sur une longue distance (plus de 10 km dans les zones rurales).
 
