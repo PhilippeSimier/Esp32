@@ -1,5 +1,12 @@
 ﻿# Lora 
-**LoRa signifie Long Range** c'est une modulation étendue à faible puissance.  Cette modulation est  utilisée sur les gammes de fréquences radio qui sont des bandes ISM (bande sans licence pour les applications industrielles, scientifiques et médicales)
+
+La technologie LoRa, aussi parfois appelée LoRa RF, désigne l’interface radio du réseau de
+communications sans fil (couche physique), alors que l’appellation LoRaWAN, parfois désignée
+également par le terme LoRa MAC désigne le protocole de communication.
+
+![couche_reseau](/24_Lora/images/couche_LoRaWan.png) 
+
+Cette modulation est  utilisée sur les gammes de fréquences radio qui sont des bandes ISM (bande sans licence pour les applications industrielles, scientifiques et médicales)
 
 -   **868MHz** en Europe
 -   **915 MHz** en Australie et en Amérique du Nord 
@@ -11,6 +18,8 @@ La communication **Peer to Peer** permet à deux appareils équipés de radios L
 L'exemple utilise deux cartes **LILYGO® TTGO LoRa32 V2.1_1.6 Version 433Mhz **.  Ce  sont des cartes ESP32 avec un chipset SX1276 qui gère la communication LoRa et un écran LCD SSD1306. Dans platformIO, la carte est référencée  **ttgo-lora32-v21**
 
 le projet  comprendra deux appareils, l'un configuré comme émetteur et l'autre comme récepteur.
+
+![board](/24_Lora/images/ESP32-LoRa32.png) 
 
 ### Configuration d'un projet pour netbeans avec platformIO 
 ```
