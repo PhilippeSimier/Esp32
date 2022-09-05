@@ -96,6 +96,71 @@ Une méthode  consiste à lire les paquets LoRa dans la boucle loop(). Première
     }
 ```
 ## Paramètres radio
+
+Bien que la technologie de l’interface radio LoRa soit propriétaire, **Semtech** communique quand même un certain nombre d’informations sur les caractéristiques du signal modulé su(t).
+
+### La bande de fréquence
+
+Changer la bande de fréquence  radio.
+```
+LoRa.setFrequency(frequency);
+```
+
+-   `frequency`- fréquence en Hz ( `433E6`, `868E6`, `915E6`)
+
+Les paramètres BW, SF et CR sont programmables, au niveau du module LoRa, et compte tenu des valeurs autorisées par la norme en Europe, on obtient 28 valeurs de débit de transmission utile, comprises entre 183 bits/s et 11 kbits/s.
+
+![debit_binaire_utile](/24_Lora/images/debit_binaire_utile.png) 
+
+
+### Largeur de bande  BW
+La variation de fréquence d’un chirp (fmax-fmin), que nous notons 2ΔF, se note en anglais
+BW pour BandWidth, soit largeur de bande en français.
+La norme prévoit 3 valeurs de BW possibles : 125 kHz, 250 kHz et 500 kHz. En Europe, seules les largeurs de bande **125 kHz** et **250 kHz** sont utilisées.
+
+Modifier la largeur de bande du signal modulé.
+```
+LoRa.setSignalBandwidth(signalBandwidth);
+```
+
+-   `signalBandwidth`- Largeur de bande du signal en Hz, par défaut à `125E3`.
+
+Les valeurs prises en charge sont `7.8E3`, `10.4E3`, `15.6E3`, `20.8E3`, `31.25E3`, `41.7E3`, `62.5E3`, `125E3`, `250E3`et `500E3`.
+
+### Facteur d'étalement SF (ou nombre de bits par symbole)
+Le constructeur définit une grandeur notée SF pour Spreading Factor (facteur d’étalement en
+français), telle que Ts = 2SF /BW, où Ts désigne la durée de transmission d’un symbole.
+Selon la norme, le facteur d’étalement SF peut prendre les 6 valeurs entières distinctes 7 à 12.
+Le facteur d’étalement SF correspond également au nombre de bits transmis pendant la durée Ts.
+
+Modifier le facteur d'étalement de la radio.
+```
+LoRa.setSpreadingFactor(spreadingFactor);
+```
+
+-   `spreadingFactor`- facteur d'étalement, par défaut à`7`
+
+Les valeurs prises en charge sont comprises entre `7`et `12`. Si un facteur d'étalement de `7`est défini, le mode d'en-tête implicite doit être utilisé pour transmettre et recevoir des paquets.
+
+### Taux de codage CR
+Le constructeur ajoute au message m(t) à transmettre des bits supplémentaires qui seront analysés en réception afin de détecter et de corriger d’éventuelles erreurs (technique classique dite FEC pour Forward Error Correction). Le nombre et la fréquence d’introduction de ces bits sont caractérisés par le taux de codage CR (pour Code Rate en anglais).
+Pour ce qui concerne la modulation LoRa, il est possible de sélectionner 4 valeurs de CR distinctes : 4/5, 4/6, 4/7 et 4/8. Ainsi, pour un taux de codage de 4/7, on introduit 7-4 = 3 bits redondants tous 4 bits d’information utiles. Plus la valeur de CR est élevée, plus la communication est considérée comme robuste.
+Et évidemment, plus la valeur du taux de codage CR est élevée, plus le nombre et la fréquence
+d’introduction de bits redondants sont élevés, et plus le débit binaire utile diminue.
+
+Modifier le taux de codage de la radio.
+
+```
+LoRa.setCodingRate4(codingRateDenominator);
+
+```
+
+-   `codingRateDenominator`- dénominateur du taux de codage, par défaut à`5`
+
+Les valeurs prises en charge sont comprises entre `5`et `8`, elles correspondent aux taux de codage de `4/5`et `4/8`. Le numérateur du taux de codage est fixé à `4`.
+
+
+
 ### RSSI de paquet
 ```
 int rssi = LoRa.packetRssi();
@@ -117,49 +182,15 @@ int rssi = LoRa.rssi();
 ```
 
 Renvoie le RSSI actuel de la radio (dBm). RSSI peut être lu à tout moment (pendant la réception des paquets ou non)
-### La fréquence
 
-Changer la fréquence de la radio.
-```
-LoRa.setFrequency(frequency);
-```
 
--   `frequency`- fréquence en Hz ( `433E6`, `868E6`, `915E6`)
 
-### Facteur d'étalement
 
-Modifier le facteur d'étalement de la radio.
-```
-LoRa.setSpreadingFactor(spreadingFactor);
-```
 
--   `spreadingFactor`- facteur d'étalement, par défaut à`7`
 
-Les valeurs prises en charge sont comprises entre `6`et `12`. Si un facteur d'étalement de `6`est défini, le mode d'en-tête implicite doit être utilisé pour transmettre et recevoir des paquets.
 
-### Bande passante des signaux
 
-Modifier la bande passante du signal de la radio.
-```
-LoRa.setSignalBandwidth(signalBandwidth);
-```
 
--   `signalBandwidth`- bande passante du signal en Hz, par défaut à `125E3`.
-
-Les valeurs prises en charge sont `7.8E3`, `10.4E3`, `15.6E3`, `20.8E3`, `31.25E3`, `41.7E3`, `62.5E3`, `125E3`, `250E3`et `500E3`.
-
-### Taux de codage
-
-Modifier le taux de codage de la radio.
-
-```
-LoRa.setCodingRate4(codingRateDenominator);
-
-```
-
--   `codingRateDenominator`- dénominateur du taux de codage, par défaut à`5`
-
-Les valeurs prises en charge sont comprises entre `5`et `8`, elles correspondent aux taux de codage de `4/5`et `4/8`. Le numérateur du taux de codage est fixé à `4`.
 
 ### Longueur du préambule
 
