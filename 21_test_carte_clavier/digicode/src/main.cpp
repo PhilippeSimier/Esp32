@@ -13,7 +13,7 @@
 #include <Afficheur.h>          // Afficheur SSD1306
 #include <Led.h>                // Les quatre Leds RGB
 
-
+#define CONNECTEUR_HAUT   // Définit la position du connecteur clavier en haut ou bas
 
 // Déclaration des caractères sur les touches
 char keys[4][3] = {
@@ -24,10 +24,18 @@ char keys[4][3] = {
 };
 
 //affectation des GPIO aux lignes L0, L1, L2, L3 du clavier
-byte rowPins[4]  {32, 33, 25, 26};
-
 //affectation des GPIO aux colonnes C0, C1, C2 du clavier
-byte colPins[3]  {4, 5, 15};
+#if defined(CONNECTEUR_BAS)  // connecteur en bas
+
+byte rowPins[4]{32, 33, 25, 26};
+byte colPins[3]{4, 5, 15};
+
+#else   // connecteur en haut
+
+byte rowPins[4]{26, 25, 33, 32};
+byte colPins[3]{15, 5, 4};
+
+#endif
 
 Keypad clavier = Keypad((char *) keys, rowPins, colPins, 4, 3);
 
