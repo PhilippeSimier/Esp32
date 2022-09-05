@@ -40,9 +40,12 @@ void initLoRa() {
         Serial.println("Failed to start LoRa network!");
         for (;;);
     }
-
+    
+    LoRa.setSpreadingFactor(12);
+    LoRa.setCodingRate4(8);
+    
     Serial.println("LoRa initialized");
-    delay(2000);
+    delay(1000);
 }
 
 void setup() {

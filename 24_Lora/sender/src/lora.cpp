@@ -44,6 +44,8 @@ void setup() {
         Serial.println("Starting LoRa failed!");
         while (1);
     }
+    LoRa.setSpreadingFactor(12);
+    LoRa.setCodingRate4(8);
     Serial.println("Setup done");
 }
 
@@ -60,7 +62,7 @@ void loop() {
 
     counter++;
     digitalWrite(LED,0); // turn the LED
-    delay(5000);
+    delay(10000);
 }
 
 
