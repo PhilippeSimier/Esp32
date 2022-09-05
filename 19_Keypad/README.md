@@ -14,7 +14,7 @@ Vous n'aurez pas besoin de résistances  externes car la bibliothèque utilise l
 **Keypad** est une bibliothèque permettant d'utiliser simplement les claviers de style matriciel.
 Elle a été créée pour améliorer la lisibilité du code tout en masquant les appels pinMode et digitalRead pour l'utilisateur.
 
-Sur platformIO  Keypad possède l'identifiant **chris--a/Keypad**. Elle s'installe en tant que bibliothèque globale en utilisant la commande suivante.
+Sur platformIO  Keypad possède l'identifiant **chris--a/Keypad**. Elle s'installe en tant que bibliothèque en utilisant la commande suivante.
 ``` 
 pio pkg search "header:Keypad.h"
 chris--a/Keypad
