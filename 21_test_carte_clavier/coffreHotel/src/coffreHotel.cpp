@@ -1,13 +1,12 @@
-
 /* 
- * File:   main.cpp
- * Author: fmartin
+ * File:   coffreHotel.cpp
+ * Author: psimier
  *
- * Created on 1 février 2022, 23:55
+ * Created on 6 septembre 2022, 14:57
  */
 
 #include <Arduino.h>
-#include "Coffre.h"
+#include <Coffre.h>
 
 Coffre *leCoffre;
 
@@ -19,3 +18,4 @@ void setup() {
 void loop() {
     leCoffre->Controler();
 }
+

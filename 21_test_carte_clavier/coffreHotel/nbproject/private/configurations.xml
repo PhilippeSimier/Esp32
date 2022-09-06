@@ -5,16 +5,22 @@
       <df name="include">
       </df>
       <df name="lib">
+        <df name="Coffre">
+          <in>Coffre.cpp</in>
+          <in>Coffre.h</in>
+        </df>
+        <df name="Ecran">
+          <in>Ecran.cpp</in>
+          <in>Ecran.h</in>
+          <in>font.h</in>
+        </df>
+        <df name="Serrure">
+          <in>Serrure.cpp</in>
+          <in>Serrure.h</in>
+        </df>
       </df>
       <df name="src">
-        <in>Coffre.cpp</in>
-        <in>Coffre.h</in>
-        <in>Ecran.cpp</in>
-        <in>Ecran.h</in>
-        <in>Serrure.cpp</in>
-        <in>Serrure.h</in>
-        <in>font.h</in>
-        <in>main.cpp</in>
+        <in>coffreHotel.cpp</in>
       </df>
       <df name="test">
       </df>
@@ -30,13 +36,13 @@
       </toolsSet>
       <compile>
         <compiledirpicklist>
-          <compiledirpicklistitem>.</compiledirpicklistitem>
           <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
         </compiledirpicklist>
         <compiledir>${AUTO_FOLDER}</compiledir>
         <compilecommandpicklist>
-          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
           <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
         </compilecommandpicklist>
         <compilecommand>${AUTO_COMPILE}</compilecommand>
       </compile>
@@ -58,6 +64,7 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem></runcommandpicklistitem>
           <runcommandpicklistitem>pio run --target upload</runcommandpicklistitem>
         </runcommandpicklist>
         <runcommand>pio run --target upload</runcommand>

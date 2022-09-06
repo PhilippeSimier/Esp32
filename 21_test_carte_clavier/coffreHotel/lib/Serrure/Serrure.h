@@ -1,16 +1,18 @@
 
 /* 
  * File:   Serrure.h
- * Author: fmartin
+ * Author: Philippe SIMIER
  *
  * Created on 2 février 2022, 01:01
+ * pio pkg install --library madhephaestus/ESP32Servo
+ * 
  */
 
 #ifndef SERRURE_H
 #define SERRURE_H
 
 #include <Arduino.h>
-#include <ESP32Servo.h>  // Bibliothèque ESP32Servo  #id 4744
+#include <ESP32Servo.h>  
 
 class Serrure {
 public:

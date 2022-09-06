@@ -1,11 +1,11 @@
 /* 
  * File:   Serrure.cpp
- * Author: fmartin
+ * Author: Philippe SIMIER
  * 
  * Created on 2 février 2022, 01:01
  */
 
-#include "Serrure.h"
+#include <Serrure.h>
 
 Serrure::Serrure(const uint8_t _brocheLedD1, const uint8_t _brocheServo) :
 brocheLedD1(_brocheLedD1),

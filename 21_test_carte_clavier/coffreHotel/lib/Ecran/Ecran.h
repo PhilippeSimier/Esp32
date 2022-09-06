@@ -1,9 +1,10 @@
 
 /* 
  * File:   Ecran.h
- * Author: fmartin
+ * Author: Philippe SIMIER
  *
  * Created on 1 février 2022, 23:57
+ * pio pkg install --library "thingpulse/ESP8266 and ESP32 OLED driver for SSD1306 displays"
  */
 
 #ifndef ECRAN_H

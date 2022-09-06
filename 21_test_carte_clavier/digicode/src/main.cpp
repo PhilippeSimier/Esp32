@@ -13,7 +13,7 @@
 #include <Afficheur.h>          // Afficheur SSD1306
 #include <Led.h>                // Les quatre Leds RGB
 
-#define CONNECTEUR_HAUT   // Définit la position du connecteur clavier en haut ou bas
+#define CONNECTEUR_BAS   // Définit la position du connecteur clavier en haut ou bas
 
 // Déclaration des caractères sur les touches
 char keys[4][3] = {

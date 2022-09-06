@@ -1,12 +1,12 @@
 
 /* 
  * File:   Ecran.cpp
- * Author: fmartin
+ * Author: Philippe SIMIER
  * 
  * Created on 1 février 2022, 23:57
  */
 
-#include "Ecran.h"
+#include <Ecran.h>
 
 Ecran::Ecran() :
 SSD1306Wire(0x3C, SDA, SCL, GEOMETRY_128_64)
