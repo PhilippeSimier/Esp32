@@ -8,9 +8,13 @@
         <in>fableLeLoup.txt</in>
         <in>fableTortue.txt</in>
       </df>
+      <df name="lib">
+        <df name="Biblio">
+          <in>biblio.cpp</in>
+          <in>biblio.h</in>
+        </df>
+      </df>
       <df name="src">
-        <in>biblio.cpp</in>
-        <in>biblio.h</in>
         <in>main.cpp</in>
       </df>
       <in>platformio.ini</in>
@@ -293,11 +297,11 @@
       </item>
       <item path="data/fableTortue.txt" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="lib/Biblio/biblio.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lib/Biblio/biblio.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="platformio.ini" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/biblio.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/biblio.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>

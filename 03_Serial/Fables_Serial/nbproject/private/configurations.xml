@@ -11,10 +11,20 @@
       <df name="include">
       </df>
       <df name="lib">
+        <df name="Afficheur">
+          <in>Afficheur.cpp</in>
+          <in>Afficheur.h</in>
+        </df>
+        <df name="Biblio">
+          <in>biblio.cpp</in>
+          <in>biblio.h</in>
+        </df>
+        <df name="Led">
+          <in>Led.cpp</in>
+          <in>Led.h</in>
+        </df>
       </df>
       <df name="src">
-        <in>biblio.cpp</in>
-        <in>biblio.h</in>
         <in>main.cpp</in>
       </df>
       <df name="test">

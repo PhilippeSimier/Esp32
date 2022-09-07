@@ -6,14 +6,6 @@
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_test_carte_clavier/coffreHotel/lib/Serrure/Serrure.cpp</file>
-            <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_test_carte_clavier/coffreHotel/src/coffreHotel.cpp</file>
-            <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_test_carte_clavier/coffreHotel/platformio.ini</file>
-            <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_test_carte_clavier/coffreHotel/lib/Ecran/Ecran.h</file>
-            <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_test_carte_clavier/coffreHotel/lib/Serrure/Serrure.h</file>
-            <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_test_carte_clavier/coffreHotel/lib/Coffre/Coffre.h</file>
-            <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_test_carte_clavier/coffreHotel/lib/Ecran/Ecran.cpp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
