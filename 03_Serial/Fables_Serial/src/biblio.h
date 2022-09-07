@@ -14,7 +14,7 @@
 
 void tacheBlink(void * parameter);
 
-void envoyerFichier(String fichier);
+void envoyerFichier(String fichier, Stream &flux);
 
 
 #endif /* BIBLIO_H */

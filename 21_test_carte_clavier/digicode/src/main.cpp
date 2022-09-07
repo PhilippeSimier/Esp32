@@ -13,7 +13,7 @@
 #include <Afficheur.h>          // Afficheur SSD1306
 #include <Led.h>                // Les quatre Leds RGB
 
-#define CONNECTEUR_BAS   // Définit la position du connecteur clavier en haut ou bas
+#define CONNECTEUR_HAUT   // Définit la position du connecteur clavier en haut ou bas
 
 // Déclaration des caractères sur les touches
 char keys[4][3] = {
@@ -62,7 +62,7 @@ void setup() {
     xTaskCreate(blinkLedBleu, "blinkLedBleu", 10000, NULL, 1, NULL);
     xTaskCreate(boutonPoussoir, "boutonpoussoir", 10000, NULL, 1, NULL);
 
-    afficheur->afficher("Setup done");
+    afficheur->afficher("Digicode");
 
 }
 
@@ -73,6 +73,7 @@ void loop() {
 
         code.concat(key);
         afficheur->afficherMdp(code);
+        com.print(key);
 
         if (key == '\n') {
             if (!code.compareTo(secret)) {
@@ -146,6 +147,7 @@ void boutonPoussoir(void * parameter) {
             led->allumer(VERT); // led 0 verte
             delay(3000);
             led->eteindre();
+            com.println("La porte se referme");
             
         }
         vTaskDelay(1); //indispensable car sinon guru ?!

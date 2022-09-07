@@ -1,6 +1,6 @@
 #include "biblio.h"
 
-void envoyerFichier(String fichier) {
+void envoyerFichier(String fichier, Stream &flux) {
 
     if (SPIFFS.exists(fichier)) {
 
@@ -8,7 +8,9 @@ void envoyerFichier(String fichier) {
 
         // Envoie le contenu du fichier sur le port série
         while (file.available()) {
-            Serial.write(file.read());
+           
+            flux.write(file.read());
+            
         }
         file.close();
         
