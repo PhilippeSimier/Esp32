@@ -130,7 +130,7 @@ void loop() {
                     envoyerFichier("/leMans.nmea", Serial);
                     envoyerFichier("/leMans.nmea", com);
                     c = clavier.getKey();
-                }while(c);
+                }while(c == NO_KEY);
                 
                 Serial.write(0x04);
                 break;    
