@@ -4,40 +4,16 @@
 #include <biblio.h>
 #include <HardwareSerial.h>
 #include <Afficheur.h>
-#include <Keypad.h>
+
+
 
 HardwareSerial com(1); // Déclaration d'une liaison série controlée part UART 1
-Afficheur *afficheur;
-
-#define CONNECTEUR_HAUT   // Définit la position du connecteur clavier en haut ou bas
-
-// Déclaration des caractères sur les touches
-char keys[4][3] = {
-    {'1', '2', '3'},
-    {'4', '5', '6'},
-    {'7', '8', '9'},
-    {'*', '0', '\n'}
-};
-
-//affectation des GPIO aux lignes L0, L1, L2, L3 du clavier
-//affectation des GPIO aux colonnes C0, C1, C2 du clavier
-#if defined(CONNECTEUR_BAS)  // connecteur en bas
-
-byte rowPins[4]{32, 33, 25, 26};
-byte colPins[3]{4, 5, 15};
-
-#else   // connecteur en haut
-
-byte rowPins[4]{26, 25, 33, 32};
-byte colPins[3]{15, 5, 4};
-
-#endif
-
-Keypad clavier = Keypad((char *) keys, rowPins, colPins, 4, 3);
+Afficheur *afficheur;  // Un afficheur Oled
+Led *led;
 
 void setup() {
 
-    pinMode(LED, OUTPUT);
+    
     Serial.begin(115200);
     delay(500);
     // Démarre le système de fichier SPIFFS
@@ -53,19 +29,20 @@ void setup() {
     afficheur = new Afficheur;
     afficheur->afficher("Liaision Série");
     
-    envoyerFichier("/fableCorbeau.txt", Serial);
-
-    // Création de la tâche blink 
-    xTaskCreate( tacheBlink, "TacheBlink", 10000, NULL, 1, NULL); 
+    led = new Led(4); // quatre leds;
+    
+    // Création des tâches blink & Clavier 
+    createTaskBlink();
+    createTaskClavier();
 }
 
 void loop() {
     
-    char c = clavier.getKey();
+    uint32_t  c;
     int t;
 
-    if (c) {
-
+    if (xTaskNotifyWait(0, ULONG_MAX, &c, 1000) == pdPASS) { // attente notification clavier
+        
         switch (c) {
             case '1':
                 afficheur->afficher("Maître Corbeau");
@@ -129,16 +106,22 @@ void loop() {
                 do{
                     envoyerFichier("/leMans.nmea", Serial);
                     envoyerFichier("/leMans.nmea", com);
-                    c = clavier.getKey();
+                    xTaskNotifyWait(0, ULONG_MAX, &c, 10);
                 }while(c == NO_KEY);
-                
                 Serial.write(0x04);
                 break;    
             case '0':
                 t = hall_sensor_read();
                 Serial.printf("H = %d\r\n", t);
+                com.printf("H = %d\r\n", t);
                 Serial.write(0x04);
                 break;
+                
+            case '#':
+                 afficheur->afficher("test Leds");
+                chenillard();
+                break;          
+                
             case '\r':
             case '\n':
                 Serial.write(0x04);
@@ -146,6 +129,7 @@ void loop() {
             default:
                 Serial.println("Commande inconnue\n");
                 Serial.write(0x04);
-        }          
+        }
+        afficheur->afficher("Entrer code");
     }
 }

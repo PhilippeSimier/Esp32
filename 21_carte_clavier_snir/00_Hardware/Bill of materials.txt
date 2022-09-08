@@ -1,0 +1,56 @@
+Bill Of Materials
+=================
+Design:   SNIR1_ESP32.DSN
+Doc. no.: <1>
+Revision: <0>
+Author:   <Touchard SNIR>
+Created:  21/05/08
+Modified: 21/01/22
+
+QTY  PART-REFS           VALUE               CODE                          
+---  ---------           -----               ----                          
+Resistors
+---------
+2    R1,R2               1K                                                
+7    R3,R5-R7,R9,R13,R14 10K                                               
+1    R4                  LDR                                               
+1    R8                  4.7K                                              
+2    R10,R11             1.8K                                              
+
+Capacitors
+----------
+2    C1,C9               10uF                                              
+13   C2-C8,C10-C15       100nF                                             
+
+Integrated Circuits
+-------------------
+1    U1                  ESP32 WROOM                                       
+1    U2                  MAX3232                                           
+1    U3                  DS18S20                                           
+
+Transistors
+-----------
+2    Q1,Q2               BC847B                                            
+
+Diodes
+------
+2    D1,D2               LED1206                                           
+2    D5,D6               1N4148                                            
+
+Miscellaneous
+-------------
+3    BP1-BP3             BP                                                
+1    GND                 POINT TEST                                        
+1    J1                  ALIM                                              
+1    J2                  CONN-D9M                                          
+7    J3,J8,J9,J11-J14    CONN-SIL3                                         
+1    J4                  OLED                                              
+1    J5                  CONN-SIL5                                         
+2    J6,J7                                                                 
+1    J10                 CONN-SIL4                                         
+1    KEYPAD              K1                                                
+4    LED0-LED3           WS2812                                            
+4    PT10-PT13           ENTRETOISE                                        
+2    RL1,RL2             G5V-1                                             
+1    RV1                 10K                                               
+1    SW1                 SW-SPDT-MOM  
