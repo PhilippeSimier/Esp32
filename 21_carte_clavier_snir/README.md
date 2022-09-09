@@ -2,7 +2,7 @@
 ![le clavier](/21_carte_clavier_snir/carte_snir.jpg) 
 ## Description
 
-Cette carte multi usage sur la base d’un ESP32, intègre directement un certains nombres de périphériques, sans avoir aucun câblage à effectuer. Elle dispose également de connecteurs pour ajouter des composants externes (I2C, RS232, ruban DEL RGB, servo moteur). La carte possèdent deux relais qui permettent de contrôler des actionneurs alimentés en 12V, 24V ou avec la tension secteur. 
+Cette carte multi usage sur la base d’un ESP32, intègre directement un certains nombres de périphériques, sans avoir aucun câblage à effectuer. Elle dispose également de connecteurs pour ajouter des composants externes (I2C, RS232, ruban DEL RGB, servo moteur). La carte possèdent deux relais qui permettent de contrôler des actionneurs alimentés en tension continu ou alternatif 12V, 24V. 
 
 Les connectivités WiFi et Bluetooth de l’ESP32 sont  accessibles et permettent de créer un serveur Web pour contrôler la carte à distance.
 
