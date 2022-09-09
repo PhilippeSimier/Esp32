@@ -11,7 +11,10 @@
 Led::Led(word _numPixels): 
 NeoPixelBus<NeoRgbFeature, Neo800KbpsMethod>(_numPixels, PIN_RGB)       
 {
-    Begin();  
+    
+    Begin();
+    // cela réinitialise tous les leds couleurs à un état désactivé
+    Show();
 }
 
 
@@ -23,7 +26,7 @@ Led::~Led() {
  * @param couleur RgbColor une couleur 
  */
 
-void Led::allumer(const RgbColor &couleur, word id){
+void Led::allumer(const RgbColor &couleur, const word id){
     SetPixelColor(id, couleur);
     Show();
 }

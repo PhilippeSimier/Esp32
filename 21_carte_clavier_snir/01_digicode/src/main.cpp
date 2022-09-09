@@ -46,7 +46,7 @@ Led *led;
 
 HardwareSerial com(1); // Déclaration d'une liaison série controlée part UART 1
 
-void blinkLedBleu(void * parameter);   // Tâche pour faire clignoter la led bleu en position 3
+void blinkLedBleu(void * parameter); // Tâche pour faire clignoter la led bleu en position 3
 void boutonPoussoir(void * parameter); // Tâche pour ouvrir la porte avec les boutons poussoirs 
 
 void setup() {
@@ -57,7 +57,7 @@ void setup() {
 
     afficheur = new Afficheur;
     led = new Led(4); // quatre leds
-    
+
     // Création des tâches blink et BP
     xTaskCreate(blinkLedBleu, "blinkLedBleu", 10000, NULL, 1, NULL);
     xTaskCreate(boutonPoussoir, "boutonpoussoir", 10000, NULL, 1, NULL);
@@ -105,18 +105,20 @@ void loop() {
 
 }
 
-// Tâche pour faire clignoter la led bleu en quatrième position
+// Tâche pour faire clignoter la led bleu builtin
 
 void blinkLedBleu(void * parameter) {
+    
+    const int LED {2};
+    pinMode(LED, OUTPUT);
 
+    // loop
     while (1) {
-        led->allumer(BLEU, 3);
-        delay(200);
-        led->eteindre(3);
+        digitalWrite(LED, digitalRead(LED) ^1); // turn the LED 
+        delay(200); // wait for a second
+        digitalWrite(LED, digitalRead(LED) ^1); // turn the LED 
         delay(1000);
-        vTaskDelay(1); //indispensable car sinon guru ?!
     }
-
     vTaskDelete(NULL);
 }
 
@@ -136,23 +138,23 @@ void boutonPoussoir(void * parameter) {
         bool bp1 = !digitalRead(39);
         bool bp2 = !digitalRead(34);
         bool bp3 = !digitalRead(35);
-        
+
         // Traitement combinatoire  
-        
+
         bool porte = (bp1 || (bp2 && bp3));
-        
+
         // traitement postérieur Ecriture des sorties
-        if (porte){
+        if (porte) {
             com.println("La porte s'ouvre");
             led->allumer(VERT); // led 0 verte
             delay(3000);
             led->eteindre();
             com.println("La porte se referme");
-            
+
         }
         vTaskDelay(1); //indispensable car sinon guru ?!
     }
-    
+
     vTaskDelete(NULL);
 
 }

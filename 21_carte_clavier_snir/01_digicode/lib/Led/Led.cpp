@@ -11,7 +11,9 @@
 Led::Led(word _numPixels): 
 NeoPixelBus<NeoGrbFeature, NeoEsp32Rmt0800KbpsMethod>(_numPixels, PIN_RGB)       
 {
-    Begin();  
+    Begin(); 
+    // cela réinitialise tous les leds couleurs à un état désactivé
+    Show();
 }
 
 

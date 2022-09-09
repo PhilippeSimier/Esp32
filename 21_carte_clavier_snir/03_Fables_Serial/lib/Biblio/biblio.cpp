@@ -123,22 +123,23 @@ static void taskClavier(void *pvParameters) {
 void chenillard(void) {
     
     extern Led* led;
-       
-    for(word i=0 ; i< 4; i++ ){
+    word i {0};
+    
+    for( i=0 ; i< 4; i++ ){
         
         led->allumer(VERT, i); // led 0 verte
         delay(200);
         led->eteindre(i); // led 0 verte  
         
     }
-    for(word i=0 ; i< 4; i++ ){
+    for(i=0 ; i< 4; i++ ){
         
         led->allumer(BLEU, i); // led 0 verte
         delay(200);
         led->eteindre(i); // led 0 verte  
         
     }
-    for(word i=0 ; i< 4; i++ ){
+    for(i=0 ; i< 4; i++ ){
         
         led->allumer(ROUGE, i); // led 0 verte
         delay(200);
