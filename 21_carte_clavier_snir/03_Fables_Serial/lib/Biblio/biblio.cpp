@@ -78,7 +78,7 @@ void createTaskClavier(void) {
  */
 static void taskClavier(void *pvParameters) {
 
-    extern TaskHandle_t loopTaskHandle;
+    extern TaskHandle_t loopTaskHandle;   // Le handle de la loopTask (programme principal)
 
     // Déclaration des caractères sur les touches
     char keys[4][3] = {

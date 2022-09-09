@@ -1,3 +1,16 @@
+/* 
+ * File:   main.cpp
+ * Author: philippe SIMIER Touchard Washington
+ * 
+ * Programme Pour les TP sur la Liaison série
+ * Ce programme écrit un texte sur la liaison série RS232
+ * A Chaque touche du clavier correspond un texte différent
+ * La touche # permet de tester le fonctionnement des 4 ledq RGB
+ * La touche * permet de simuler des trames NMEA délivrées par un capteur GPS
+ * 
+ * Created on 14 février 2022, 12:05
+ */
+
 #include <Arduino.h>
 #include <SPIFFS.h>
 #include <driver/adc.h>
@@ -13,22 +26,26 @@ Led *led;
 
 void setup() {
 
-    
+    // Démarre la liaison série 115200 bauds prise USB
     Serial.begin(115200);
-    delay(500);
+    while (!Serial);
+     
     // Démarre le système de fichier SPIFFS
     if (!SPIFFS.begin()) {
         Serial.println("Une errreur est apparue pendant le montage de SPIFFS");
         return;
     }
     
-    com.begin(9600, SERIAL_8N1, 16, 17); // Rx -> GPIO16 Tx -> GPIO17
+    // Démarre la deuxième liaison série RS232 9600 bauds Rx -> GPIO16 Tx -> GPIO17
+    com.begin(9600, SERIAL_8N1, 16, 17); 
     com.println("Setup com série done");
     Serial.println("Setup com série done");
     
+    // Création d'un afficheur Oled
     afficheur = new Afficheur;
     afficheur->afficher("Liaision Série");
     
+    // Création de 4 leds couleurs RVB
     led = new Led(4); // quatre leds;
     
     // Création des tâches blink & Clavier 
@@ -41,7 +58,7 @@ void loop() {
     uint32_t  c;
     int t;
 
-    if (xTaskNotifyWait(0, ULONG_MAX, &c, 1000) == pdPASS) { // attente notification clavier
+    if (xTaskNotifyWait(0, ULONG_MAX, &c, 1000) == pdPASS) { // attente une notification de la tâche clavier
         
         switch (c) {
             case '1':
@@ -95,7 +112,7 @@ void loop() {
                 Serial.write(0x04);
                 break;    
             case '9':
-                afficheur->afficher("les hirondelles");
+                afficheur->afficher("Hirondelles");
                 envoyerFichier("/les_hirondelles.txt", Serial);
                 envoyerFichier("/les_hirondelles.txt", com);
                 Serial.write(0x04);
