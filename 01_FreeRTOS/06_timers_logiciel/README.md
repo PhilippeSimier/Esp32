@@ -10,7 +10,7 @@ _Remarque :_  les temporisateurs logiciels sont implémentés par FreeRTOS et so
 ## Principe de fonctionnement
 Le schéma suivant donne un aperçu de la manière dont les timers logiciels dans FreeRTOS sont implémentés :
 
-![freestos-software-timers](/09_FreeRTOS/06_timers_logiciel/freertos-software-timers.webp)
+![freestos-software-timers](/01_FreeRTOS/06_timers_logiciel/freertos-software-timers.webp)
 
 Une tâche dédiée au service des timers **Tmr Svc** est chargée de gérer tous les timers logiciels FreeRTOS du système.
 Elle maintient une liste ordonnée des timers logiciels,  La tâche Timer Service ne s'exécute pas en continu car à partir de la liste des timers, elle connaît l'heure à laquelle elle doit se réveiller (correspondant à l'expiration d'un timer). Lorsqu'un timer a expiré, la tâche du service des timers appelle sa fonction callback.
@@ -24,7 +24,7 @@ Les timers logiciels FreeRTOS prennent en charge deux types de timers logiciels 
 -   **One-Shot** : lorsque le timer expire, il n'est pas redémarré automatiquement. Toutefois on peut toujours le redémarrer par programme ultérieurement.
 -   **Redémarrage automatique** : ce timer sera automatiquement redémarré lorsqu'il expirera, ce qui le rend idéal pour effectuer des actions périodiques.
 
-![freestos-software-timers](/09_FreeRTOS/06_timers_logiciel/timers_state.png)
+![freestos-software-timers](/01_FreeRTOS/06_timers_logiciel/timers_state.png)
  
 ## Usage
 ####  Création d'un timer logiciel
