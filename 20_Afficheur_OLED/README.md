@@ -17,7 +17,7 @@ Pour piloter un écran OLED  il existe des librairies toutes faites.
 
 Installation de la librairie avec platformIO
 
-    pio lib -g install 2978
+    `pio pkg install --library "thingpulse/ESP8266 and ESP32 OLED driver for SSD1306 displays@^4.3.0"`
 
 Il suffit simplement d’insérer les lignes suivantes dans le haut de votre programme pour créer un objet **display**
 
