@@ -22,7 +22,7 @@
 #define VERT    RgbColor(0,8,0)
 #define GREEN   RgbColor(0,8,0)
 
-class Led : public NeoPixelBus<NeoGrbFeature, NeoEsp32Rmt0800KbpsMethod> // Spécialisation de NeoPixelBus 
+class Led : public NeoPixelBus<NeoRgbFeature, NeoEsp32Rmt0800KbpsMethod> // Spécialisation de NeoPixelBus 
 {
 
 public:

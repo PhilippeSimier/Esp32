@@ -6,7 +6,7 @@
  * Ce programme écrit un texte sur la liaison série RS232
  * A Chaque touche du clavier correspond un texte différent
  * La touche # permet de tester le fonctionnement des 4 ledq RGB
- * La touche 0 permet de tester le capteur de température
+ * La touche 0 permet de tester le capteur de température & LDR
  * La touche * permet de simuler des trames NMEA délivrées par un capteur GPS
  * 
  * Created on 14 février 2022, 12:05
@@ -20,6 +20,8 @@
 #include <Afficheur.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
+#include <driver/adc.h>
+
 
 
 
@@ -59,7 +61,13 @@ void setup() {
     Serial.print("Trouvé ");
     Serial.print(sensors.getDeviceCount(), DEC);
     Serial.println(" capteur(s).");
-    
+
+    // Configure entrée Analogique pour LDR
+    // plage de valeurs de 0 à 4095. (ADC_WIDTH_BIT_12)
+    adc1_config_width(ADC_WIDTH_BIT_12);
+    //11 dB pour une tension d’entrée de 0.15v à 3.6v sur l'entrée analogique
+    adc1_config_channel_atten(ADC1_CHANNEL_0, ADC_ATTEN_DB_11);
+
     // Création des tâches blink & Clavier 
     createTaskBlink();
     createTaskClavier();
@@ -140,14 +148,21 @@ void loop() {
                 Serial.write(0x04);
                 break;
             case '0':
-                
+
                 do {
                     sensors.requestTemperatures();
                     temperatureC = sensors.getTempCByIndex(0);
                     Serial.print(temperatureC);
                     Serial.println(" ºC : ");
-                    afficheur->afficherFloat("Temp " , temperatureC, " °C");
-                    xTaskNotifyWait(0, ULONG_MAX, &c, 1000);
+                    afficheur->afficherFloat("Temp ", temperatureC, " °C");
+                    delay(2000);
+                    // Lecture de l'entrée analogique GPIO 36 => ADC1_CHANNEL_0
+                    int value = adc1_get_raw(ADC1_CHANNEL_0);
+                    // Mise à l'échelle
+                    int y = map(value, 0, 4095, 0, 100);
+                    afficheur->afficherFloat("Lum   ", y, " %");
+                    delay(2000);
+                    xTaskNotifyWait(0, ULONG_MAX, &c, 10);
                 } while (c == NO_KEY);
 
 

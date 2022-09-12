@@ -15,6 +15,7 @@
 #include <SPIFFS.h>
 #include <Keypad.h>
 #include <Led.h>                // Les quatre Leds RGB
+#include <Afficheur.h>
 
 void createTaskBlink(void);
 static void tacheBlink(void * parameter);
