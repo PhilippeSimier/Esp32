@@ -29,6 +29,7 @@ lib_deps =
 ```
 Créez les instances nécessaires
 ```cpp
+#define  ONE_WIRE_BUS  18  // Gpio 18 sur la carte clavier SNIR
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 ```
