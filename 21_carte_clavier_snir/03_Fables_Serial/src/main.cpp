@@ -71,6 +71,7 @@ void setup() {
     // Création des tâches blink & Clavier 
     createTaskBlink();
     createTaskClavier();
+    createTaskLed1Led2();
 }
 
 void loop() {

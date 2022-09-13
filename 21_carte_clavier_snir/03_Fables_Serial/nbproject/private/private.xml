@@ -7,10 +7,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_carte_clavier_snir/03_Fables_Serial/lib/Led/Led.cpp</file>
+            <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_carte_clavier_snir/03_Fables_Serial/lib/Biblio/biblio.h</file>
             <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_carte_clavier_snir/03_Fables_Serial/lib/Biblio/biblio.cpp</file>
             <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_carte_clavier_snir/03_Fables_Serial/src/main.cpp</file>
-            <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_carte_clavier_snir/03_Fables_Serial/platformio.ini</file>
+            <file>file:/home/USERS/PROFS/psimier/github/Esp32/21_carte_clavier_snir/03_Fables_Serial/lib/Led/Led.h</file>
         </group>
     </open-files>
 </project-private>

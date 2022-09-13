@@ -25,6 +25,9 @@ void envoyerFichier(String fichier, Stream &flux);
 void createTaskClavier(void);
 static void taskClavier(void *pvParameters);
 
+void createTaskLed1Led2(void);
+static void taskLed1Led2(void *pvParameters);
+
 void chenillard(void);
 
 
