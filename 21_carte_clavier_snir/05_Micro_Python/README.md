@@ -47,7 +47,7 @@ Lors du premier lancement on peut choisir la langue "Français"
 puis dans le menu **Exécuter > Sélectionner l’interpréteur** et  choisir l'interpréteur MycroPython (ESP32) 
 sélectionner le port de communication /dev/ttyUSB0.
 
-![le clavier](/21_carte_clavier_snir/04_Micro_Python/Options_interpreteur.png) 
+![le clavier](/21_carte_clavier_snir/05_Micro_Python/Options_interpreteur.png) 
 
 ## Premier script Micro-Python sur ESP32
 
