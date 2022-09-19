@@ -78,7 +78,7 @@ void createTaskClavier(void) {
  */
 static void taskClavier(void *pvParameters) {
 
-    extern TaskHandle_t loopTaskHandle;   // Le handle de la loopTask (programme principal)
+    extern TaskHandle_t loopTaskHandle; // Le handle de la loopTask (programme principal)
 
     // Déclaration des caractères sur les touches
     char keys[4][3] = {
@@ -121,31 +121,79 @@ static void taskClavier(void *pvParameters) {
  * Fonction pour tester les quatre leds couleurs
  */
 void chenillard(void) {
-    
+
     extern Led* led;
-    word i {0};
-    
-    for( i=0 ; i< 4; i++ ){
-        
+    extern Afficheur* afficheur;
+    word i{0};
+
+    for (i = 0; i < 4; i++) {
+        afficheur->afficher("couleur Verte");
         led->allumer(VERT, i); // led 0 verte
-        delay(200);
+        delay(500);
         led->eteindre(i); // led 0 verte  
-        
+
     }
-    for(i=0 ; i< 4; i++ ){
-        
+    for (i = 0; i < 4; i++) {
+        afficheur->afficher("couleur Bleue");
         led->allumer(BLEU, i); // led 0 verte
-        delay(200);
+        delay(500);
         led->eteindre(i); // led 0 verte  
-        
+
     }
-    for(i=0 ; i< 4; i++ ){
-        
+    for (i = 0; i < 4; i++) {
+        afficheur->afficher("couleur rouge");
         led->allumer(ROUGE, i); // led 0 verte
-        delay(200);
+        delay(500);
         led->eteindre(i); // led 0 verte  
-        
+
     }
-  
+
 }
 
+void createTaskLed1Led2(void) {
+    xTaskCreatePinnedToCore(taskLed1Led2, // task function
+            "taskLed1Led2", // taskname
+            8192, // stack size
+            NULL, // pointer for task2 parameters
+            2, // priority
+            NULL, // handle for task
+            1 // run in core 1
+            );
+
+}
+
+/**
+ * @brief Tache pour tester les led D1 (GPIO13) et D2 (GPIO12)
+ * @param pvParameters
+ */
+static void taskLed1Led2(void *pvParameters) {
+
+    // setup
+    const int D1 = 13;
+    const int D2 = 12;
+    const int BP1 = 39;
+    const int BP2 = 34;
+    const int BP3 = 35;
+
+    pinMode(D1, OUTPUT);
+    pinMode(D2, OUTPUT);
+    pinMode(BP1, INPUT);
+    pinMode(BP2, INPUT);
+    pinMode(BP3, INPUT);
+
+
+    // loop
+    while (1) {
+
+        bool bp1 = !digitalRead(BP1);
+        bool bp2 = !digitalRead(BP2);
+        bool bp3 = !digitalRead(BP3);
+
+
+        digitalWrite(D1,bp1); // turn the LED 
+        digitalWrite(D2,bp2); // turn the LED 
+        delay(10);
+    }
+
+
+}

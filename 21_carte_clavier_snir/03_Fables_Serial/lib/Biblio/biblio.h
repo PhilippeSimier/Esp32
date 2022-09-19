@@ -15,6 +15,7 @@
 #include <SPIFFS.h>
 #include <Keypad.h>
 #include <Led.h>                // Les quatre Leds RGB
+#include <Afficheur.h>
 
 void createTaskBlink(void);
 static void tacheBlink(void * parameter);
@@ -23,6 +24,9 @@ void envoyerFichier(String fichier, Stream &flux);
 
 void createTaskClavier(void);
 static void taskClavier(void *pvParameters);
+
+void createTaskLed1Led2(void);
+static void taskLed1Led2(void *pvParameters);
 
 void chenillard(void);
 
