@@ -65,8 +65,9 @@ while True:
   p2.off()
   time.sleep_ms(500)
 ```
+## Documentation de référence pour ESP32
 
-
+[Documentation de référence ESP32](https://docs.micropython.org/en/latest/esp32/quickref.html)
 
 # Changelog
 
