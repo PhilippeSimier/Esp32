@@ -16,7 +16,8 @@ Des activités pratiques de programmation en C++ sont proposés. Vous trouverez 
 
 ## Programmation en MicroPython
 
-MicroPython fonctionne également sur ESP32. 
+La carte est programmable en langage MicroPython avec EDI Thonny.
+![EDI Thonny](/21_carte_clavier_snir/EDI_Thonny.png) 
 
 ## La carte dispose  des périphériques :
 
