@@ -52,22 +52,29 @@ sélectionner le port de communication /dev/ttyUSB0.
 ## Premier script Micro-Python sur ESP32
 
 Le premier script fait clignoter la led builtin de le carte ESP32 (présente sur le pin GPIO2).
+Ctrl C dans la console permet de quitter le programme.
 ```python
-from time import sleep_ms
 from machine import Pin
+from time import sleep_ms
+import sys
 
-print("Programme Blink")
-p2 = Pin(2,Pin.OUT)
+led1 = Pin(2,Pin.OUT)
 
-while True:
-  p2.on()
-  time.sleep_ms(500)
-  p2.off()
-  time.sleep_ms(500)
+print('Programme test led builtin')
+while (True):
+    try:
+        led1.on()   
+        sleep_ms(500)
+        led1.off()    
+        sleep_ms(500)
+    except KeyboardInterrupt:
+        print('Ctrl-C pressed...exiting')
+        sys.exit()
 ```
+
 ## Quelques commandes utiles en console
 
-Micro-python dispose de nombreux modules pré installés. la commande help("modules") permet de les lister.  Elle est aussi susceptible de s’allonger au fur et à mesure du développement du langage Micro-python.
+Micro-python dispose de nombreux modules pré installés. la commande help("modules") permet de les lister.  Cette liste est aussi susceptible de s’allonger au fur et à mesure du développement du langage micro-python.
 ```python
 >>> help("modules") 
 __main__          gc                ubluetooth        upysh
