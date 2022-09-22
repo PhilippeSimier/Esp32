@@ -29,6 +29,7 @@ HardwareSerial com(1); // Déclaration d'une liaison série controlée part UART
 Afficheur *afficheur; // Un afficheur Oled
 Led *led;
 #define ONE_WIRE_BUS 18   // Gpio 18 sur la carte clavier SNIR
+
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 
@@ -54,7 +55,7 @@ void setup() {
     afficheur->afficher("Liaision Série");
 
     // Création de 4 leds couleurs RVB
-    led = new Led(4); // quatre leds;
+    led = new Led(NBLED); // quatre leds;
 
     // Démarre le temperature sensor
     sensors.begin();
@@ -171,7 +172,10 @@ void loop() {
 
             case '#':
                 afficheur->afficher("test Leds");
-                chenillard();
+                do {
+                    chenillard();
+                    xTaskNotifyWait(0, ULONG_MAX, &c, 10);
+                } while (c == NO_KEY);
                 break;
 
             case '\r':
