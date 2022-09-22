@@ -47,13 +47,13 @@ Lors du premier lancement on peut choisir la langue "Français"
 puis dans le menu **Exécuter > Sélectionner l’interpréteur** et  choisir l'interpréteur MycroPython (ESP32) 
 sélectionner le port de communication /dev/ttyUSB0.
 
-![le clavier](/21_carte_clavier_snir/05_Micro_Python/Options_interpreteur.png) 
+![Interpreteur](/21_carte_clavier_snir/05_Micro_Python/Options_interpreteur.png) 
 
 ## Premier script Micro-Python sur ESP32
 
 Le premier script fait clignoter la led builtin de le carte ESP32 (présente sur le pin GPIO2).
 ```python
-import time
+from time import sleep_ms
 from machine import Pin
 
 print("Programme Blink")
@@ -65,9 +65,33 @@ while True:
   p2.off()
   time.sleep_ms(500)
 ```
+## Quelques commandes utiles en console
+
+Micro-python dispose de nombreux modules pré installés. la commande help("modules") permet de les lister.  Elle est aussi susceptible de s’allonger au fur et à mesure du développement du langage Micro-python.
+```python
+>>> help("modules") 
+__main__          gc                ubluetooth        upysh
+_boot             inisetup          ucollections      urandom
+_onewire          math              ucryptolib        ure
+_thread           micropython       uctypes           urequests
+_uasyncio         neopixel          uerrno            uselect
+_webrepl          network           uhashlib          usocket
+apa106            ntptime           uheapq            ussl
+btree             onewire           uio               ustruct
+builtins          uarray            ujson             usys
+cmath             uasyncio/__init__ umachine          utime
+dht               uasyncio/core     umqtt/robust      utimeq
+ds18x20           uasyncio/event    umqtt/simple      uwebsocket
+esp               uasyncio/funcs    uos               uzlib
+esp32             uasyncio/lock     upip              webrepl
+flashbdev         uasyncio/stream   upip_utarfile     webrepl_setup
+framebuf          ubinascii         uplatform         websocket_helper
+Plus any modules on the filesystem
+```
 ## Documentation de référence pour ESP32
 
 [Documentation de référence ESP32](https://docs.micropython.org/en/latest/esp32/quickref.html)
+
 
 # Changelog
 
