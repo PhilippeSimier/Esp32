@@ -10,9 +10,10 @@ Après l'installation d'une blibliothèque faire un reset de la carte
 import network
 
 # user data
-ssid = "xxxxxxxxxx" # wifi router name
-pw = "xxxxxxxxxxx" # wifi router password
+ssid = "SNIR03" # wifi router name
+pw = "touchard72" # wifi router password
 
+print('Connexion au PA Wifi')
 # wifi connection station mode
 wifi = network.WLAN(network.STA_IF)
 wifi.active(True)
@@ -23,10 +24,11 @@ while not wifi.isconnected():
     pass
 
 # wifi connected
+print('Wifi connecté')
 print(wifi.ifconfig())
 
 import upip
-upip.install('micropython-ssd1306')
+#upip.install('micropython-ssd1306')
 
 
 
