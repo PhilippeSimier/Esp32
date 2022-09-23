@@ -22,6 +22,9 @@
 #define VERT    RgbColor(0,8,0)
 #define GREEN   RgbColor(0,8,0)
 
+#define NOIR    RgbColor(0,0,0)
+
+
 class Led : public NeoPixelBus<NeoRgbFeature, Neo800KbpsMethod> // Spécialisation de NeoPixelBus 
 {
 
@@ -31,11 +34,14 @@ public:
     virtual ~Led();
     
     void allumer(const RgbColor &couleur, word id = 0);
-    void eteindre(word id = 0);
-    
+    void eteindre(const word id = 0);
+    void cheniller(const RgbColor &couleur, word nb = 4);
+    void chenillerInverse(const RgbColor &couleur, word nb = 4);
+    void setDelay(const int nb);
 
 private:
-
+    word numPixels;
+    int  nb_ms;
 };
 
 

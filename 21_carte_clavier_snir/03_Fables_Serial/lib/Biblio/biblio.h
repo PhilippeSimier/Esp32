@@ -9,7 +9,6 @@
 #define BIBLIO_H
 
 #define CONNECTEUR_HAUT   // Définit la position du connecteur clavier en haut ou bas
-#define NBLED 4           // Définit le nombre de leds du rubant
 #define LED 2
 
 #include <Arduino.h>
@@ -29,7 +28,7 @@ static void taskClavier(void *pvParameters);
 void createTaskLed1Led2(void);
 static void taskLed1Led2(void *pvParameters);
 
-void chenillard(void);
+void chenillard(const word nb = 4);
 
 
 #endif /* BIBLIO_H */

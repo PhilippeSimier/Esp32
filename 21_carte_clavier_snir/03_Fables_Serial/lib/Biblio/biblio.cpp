@@ -118,41 +118,26 @@ static void taskClavier(void *pvParameters) {
 }
 
 /*
- * Fonction pour tester les quatre leds couleurs
+ * Fonction pour tester le ruban des leds couleurs
  */
-void chenillard(void) {
+void chenillard(const word nb) {
 
     extern Led* led;
     extern Afficheur* afficheur;
-    word i{0};
-
-    for (i = 0; i < NBLED; i++) {
-        afficheur->afficher("couleur Verte");
-        led->allumer(VERT, i); // led 0 verte
-        delay(100);
+    word i {0};
+    
+    afficheur->afficher("couleur verte");
+    led->cheniller(VERT, nb);
+    led->chenillerInverse(NOIR, nb);
         
-
-    }
-    for (i = 0; i < NBLED; i++) {
-        afficheur->afficher("couleur Bleue");
-        led->allumer(BLEU, i); // led 0 verte
-        delay(100);
-        
-
-    }
-    for (i = 0; i < NBLED; i++) {
-        afficheur->afficher("couleur rouge");
-        led->allumer(ROUGE, i); // led 0 verte
-        delay(100);
-       
-
-    }
-    for (i = 0; i < NBLED; i++) {
-        delay(100);
-        led->eteindre(i); // etteindre 
-
-    }
-
+    afficheur->afficher("couleur Bleue");
+    led->cheniller(BLEU, nb);
+    led->chenillerInverse(NOIR, nb);
+    
+    afficheur->afficher("couleur rouge");
+    led->cheniller(ROUGE, nb);
+    led->chenillerInverse(NOIR, nb);
+    delay(200);
 }
 
 void createTaskLed1Led2(void) {

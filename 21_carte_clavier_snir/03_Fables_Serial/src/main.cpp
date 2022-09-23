@@ -22,13 +22,15 @@
 #include <DallasTemperature.h>
 #include <driver/adc.h>
 
-
+#define NBLED 5           // Définit le nombre de leds du rubant
+#define DELAY 200           // Temps d'attente en ms pour cheniller
+#define ONE_WIRE_BUS 18   // Gpio 18 sur la carte clavier SNIR
 
 
 HardwareSerial com(1); // Déclaration d'une liaison série controlée part UART 1
 Afficheur *afficheur; // Un afficheur Oled
 Led *led;
-#define ONE_WIRE_BUS 18   // Gpio 18 sur la carte clavier SNIR
+
 
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
@@ -56,7 +58,8 @@ void setup() {
 
     // Création de 4 leds couleurs RVB
     led = new Led(NBLED); // quatre leds;
-
+    led->setDelay(DELAY);
+    
     // Démarre le temperature sensor
     sensors.begin();
     Serial.print("Trouvé ");
@@ -173,7 +176,7 @@ void loop() {
             case '#':
                 afficheur->afficher("test Leds");
                 do {
-                    chenillard();
+                    chenillard(NBLED);
                     xTaskNotifyWait(0, ULONG_MAX, &c, 10);
                 } while (c == NO_KEY);
                 break;
