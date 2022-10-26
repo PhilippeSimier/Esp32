@@ -48,7 +48,7 @@ lib_deps = sandeepmistry/LoRa@^0.8.0
 ```
 ### Diagramme de classes
 
-![board](/24_Lora/diagramme classe Lora.png) 
+![diagramme de classes](/24_Lora/diagramme_classe_Lora.png) 
 
 La classe `LoraClass` hérite de la classe `Stream` qui elle même hérite de la classe `Print`.
 
