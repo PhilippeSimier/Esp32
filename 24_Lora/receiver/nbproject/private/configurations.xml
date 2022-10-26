@@ -5,6 +5,10 @@
       <df name="include">
       </df>
       <df name="lib">
+        <df name="Afficheur">
+          <in>Afficheur.cpp</in>
+          <in>Afficheur.h</in>
+        </df>
       </df>
       <df name="src">
         <in>receiver.cpp</in>

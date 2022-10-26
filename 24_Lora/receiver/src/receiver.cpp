@@ -17,6 +17,7 @@
 
 #include <Arduino.h>
 #include <LoRa.h>
+#include <Afficheur.h>
 
 
 // LoRa pins
@@ -30,6 +31,8 @@
 // Green led 
 #define LED 25 
 
+Afficheur *afficheur;
+
 void initLoRa() {
     Serial.println("Initializing LoRa....");
     SPI.begin(LORA_SCK, LORA_MISO, LORA_MOSI, LORA_CS);
@@ -40,10 +43,13 @@ void initLoRa() {
         Serial.println("Failed to start LoRa network!");
         for (;;);
     }
-    
+
     LoRa.setSpreadingFactor(12);
     LoRa.setCodingRate4(8);
-    
+
+    afficheur = new Afficheur;
+    afficheur->afficher("Receiver");
+
     Serial.println("LoRa initialized");
     delay(1000);
 }
@@ -59,8 +65,8 @@ void setup() {
 
 void loop() {
 
-    String data {""};
-    
+    String data{""};
+
     int packetSize = LoRa.parsePacket();
     if (packetSize) {
         //received a packet
@@ -76,5 +82,5 @@ void loop() {
             Serial.printf(" SNR : %.2f dB\r\n", snr);
         }
     }
-}    
+}
 

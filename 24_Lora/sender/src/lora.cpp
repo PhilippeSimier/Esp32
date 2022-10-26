@@ -14,6 +14,7 @@
 
 #include <SPI.h>
 #include <LoRa.h>
+#include <Afficheur.h>
 
 
 // LoRa pins
@@ -28,6 +29,8 @@
 #define LED 25 
 
 int counter = 0;
+Afficheur *afficheur;
+char message[255];
 
 void setup() {
     
@@ -38,12 +41,16 @@ void setup() {
     SPI.begin(LORA_SCK, LORA_MISO, LORA_MOSI, LORA_CS);
     LoRa.setPins(LORA_CS, LORA_RST, LORA_IRQ);
     
+    afficheur = new Afficheur;   
+    afficheur->afficher("Sender"); 
+    
     Serial.println("LoRa Sender");
 
     if (!LoRa.begin(433775000)) { // Initialize LoRa with the specified frequency 433,775 Mhz.
         Serial.println("Starting LoRa failed!");
         while (1);
     }
+    
     LoRa.setSpreadingFactor(12);
     LoRa.setCodingRate4(8);
     Serial.println("Setup done");
@@ -54,11 +61,15 @@ void loop() {
     digitalWrite(LED,1); // turn the LED
     Serial.println(counter);
 
+    snprintf(message, sizeof (message), "Sender hello %03d", counter);
+    
     // send packet
     LoRa.beginPacket();   // Démarre la séquence d'envoi d'un paquet.
-    LoRa.print("hello "); // Ecriture des données. Chaque paquet peut contenir jusqu'à 255 octets. 
-    LoRa.print(counter);
+    LoRa.print(message); // Ecriture des données. Chaque paquet peut contenir jusqu'à 255 octets. 
     LoRa.endPacket();     // Termine la séquence d'envoi d'un paquet.
+     
+    afficheur->afficher(message);
+
 
     counter++;
     digitalWrite(LED,0); // turn the LED
