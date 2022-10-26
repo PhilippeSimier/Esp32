@@ -32,6 +32,7 @@
 #define LED 25 
 
 Afficheur *afficheur;
+char message[255];
 
 void initLoRa() {
     Serial.println("Initializing LoRa....");
@@ -47,9 +48,6 @@ void initLoRa() {
     LoRa.setSpreadingFactor(12);
     LoRa.setCodingRate4(8);
 
-    afficheur = new Afficheur;
-    afficheur->afficher("Receiver");
-
     Serial.println("LoRa initialized");
     delay(1000);
 }
@@ -60,6 +58,10 @@ void setup() {
     Serial.begin(115200);
 
     initLoRa();
+    
+    afficheur = new Afficheur;
+    afficheur->afficher("Receiver","");
+    
     Serial.println("Setup done");
 }
 
@@ -76,10 +78,14 @@ void loop() {
         while (LoRa.available()) {
             data = LoRa.readString();
             Serial.print(data);
+           
             int rssi = LoRa.packetRssi();
-            Serial.printf(" RSSI : %d dBm", rssi);
+            snprintf(message, sizeof (message), "%d dBm", rssi);
+            Serial.printf(" RSSI = ");
+            Serial.printf(message);
             float snr = LoRa.packetSnr();
             Serial.printf(" SNR : %.2f dB\r\n", snr);
+            afficheur->afficher(data,message);
         }
     }
 }

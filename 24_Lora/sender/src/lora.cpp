@@ -42,7 +42,7 @@ void setup() {
     LoRa.setPins(LORA_CS, LORA_RST, LORA_IRQ);
     
     afficheur = new Afficheur;   
-    afficheur->afficher("Sender"); 
+    afficheur->afficher("Sender", "Done"); 
     
     Serial.println("LoRa Sender");
 
@@ -61,14 +61,14 @@ void loop() {
     digitalWrite(LED,1); // turn the LED
     Serial.println(counter);
 
-    snprintf(message, sizeof (message), "Sender hello %03d", counter);
+    snprintf(message, sizeof (message), "Hello %03d", counter);
     
     // send packet
     LoRa.beginPacket();   // Démarre la séquence d'envoi d'un paquet.
     LoRa.print(message); // Ecriture des données. Chaque paquet peut contenir jusqu'à 255 octets. 
     LoRa.endPacket();     // Termine la séquence d'envoi d'un paquet.
      
-    afficheur->afficher(message);
+    afficheur->afficher("Sender", message);
 
 
     counter++;

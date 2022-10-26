@@ -21,7 +21,7 @@ public:
     Afficheur();
     virtual ~Afficheur();
     
-    void afficher(String message);
+    void afficher(String message1, String message2);
     void afficherFloat(String message, float valeur, String unite, int precision=1);
     
 private:

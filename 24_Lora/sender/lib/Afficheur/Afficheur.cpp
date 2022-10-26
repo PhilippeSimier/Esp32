@@ -24,9 +24,10 @@ Afficheur::~Afficheur() {
  * Méthode pour afficher un message
  * @param message String le message à afficher
  */
-void Afficheur::afficher(String message) {
+void Afficheur::afficher(String message1, String message2) {
     clear();
-    drawStringMaxWidth(0, 0, 110, message);
+    drawString(0,0, message1 );
+    drawStringMaxWidth(0, 32, 110, message2);
     display();
 }
 
