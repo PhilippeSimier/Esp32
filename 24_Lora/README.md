@@ -46,6 +46,11 @@ board = ttgo-lora32-v21
 framework = arduino
 lib_deps = sandeepmistry/LoRa@^0.8.0
 ```
+### Diagramme de classes
+
+![board](/24_Lora/diagramme classe Lora.png) 
+
+La classe `LoraClass` hérite de la classe `Stream` qui elle même hérite de la classe `Print`.
 
 ## Le Programme sender
 vous devez inclure les entêtes suivants
