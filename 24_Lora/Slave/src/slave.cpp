@@ -44,7 +44,7 @@ long lastSendTime = 0; // last send time
 int interval = 6000; // interval between sends
 
 void sendMessage(String outgoing, byte destination);
-void onReceive(int packetSize);
+void onReceive();
 
 void setup() {
 
@@ -74,7 +74,10 @@ void setup() {
 void loop() {
     
     // parse for a packet, and call onReceive with the result:
-    onReceive(LoRa.parsePacket());
+    if (LoRa.parsePacket()){
+        onReceive();
+    }
+    
 }
 
 void sendMessage(String outgoing, byte destination) {
@@ -92,10 +95,8 @@ void sendMessage(String outgoing, byte destination) {
     digitalWrite(LED,0);
 }
 
-void onReceive(int packetSize) {
+void onReceive() {
    
-    if (packetSize == 0) return; // if there's no packet, return
-
     // read packet header bytes:
     int recipient = LoRa.read(); // recipient address
     byte sender = LoRa.read(); // sender address

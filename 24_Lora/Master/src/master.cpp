@@ -35,16 +35,14 @@
 
 Afficheur *afficheur;
 
-String requete = "QSA?";
+
 byte id = 0; // count of outgoing messages
 byte localAddress = 0x00; // address of this device Master
 byte broadcast = 0xFF; // destination to send to broadcast
-byte destination = 0x99; // address of slave
-long lastSendTime = 0; // last send time
-int interval = 6000; // interval between sends
+SemaphoreHandle_t xMutex;
 
 void sendMessage(String outgoing, byte destination);
-void onReceive(int packetSize);
+void onReceive(void * parameter);
 
 
 void setup() {
@@ -68,31 +66,35 @@ void setup() {
     LoRa.setSpreadingFactor(12);
     LoRa.setCodingRate4(8);
 
-
-
     Serial.println("Lora Master Setup done");
     afficheur->afficher("Lora", "Master");
+    
+    xMutex = xSemaphoreCreateMutex();
+    xTaskCreate(onReceive, "onReceive", 10000, NULL, 2, NULL);
 }
 
 void loop() {
-    if (millis() - lastSendTime > interval) {
 
-        sendMessage(requete, destination);
-        afficheur->afficher("TX : " + String(destination, HEX), requete);
-        Serial.println("TX : " + String(destination, HEX) + " " + requete);
+    String requete = "QSA?";
+    byte destination = 0x99; // address of slave
 
-        lastSendTime = millis(); // timestamp the message
-        interval = random(2000) + 9000; // 4-6 seconds
-    }
+    sendMessage(requete, destination);
+    afficheur->afficher("TX : " + String(destination, HEX), requete);
+    Serial.println("TX : " + String(destination, HEX) + " " + requete);
+    delay(5000);
+    
+    sendMessage(requete, destination+1);
+    afficheur->afficher("TX : " + String(destination+1, HEX), requete);
+    Serial.println("TX : " + String(destination+1, HEX) + " " + requete);
+    delay(5000);
 
-    // parse for a packet, and call onReceive with the result:
-    onReceive(LoRa.parsePacket());
 }
 
 void sendMessage(String outgoing, byte destination) {
 
+    xSemaphoreTake(xMutex, portMAX_DELAY);
+    
     digitalWrite(LED, 1);
-
     LoRa.beginPacket(); // start packet
     LoRa.write(destination); // add destination address
     LoRa.write(localAddress); // add sender address
@@ -102,44 +104,55 @@ void sendMessage(String outgoing, byte destination) {
     LoRa.endPacket(); // finish packet and send it
     id++; // increment message ID
     digitalWrite(LED, 0);
+    
+    xSemaphoreGive(xMutex);
 }
 
-void onReceive(int packetSize) {
+void onReceive(void * parameter) {
 
-    if (packetSize == 0) return; // if there's no packet, return
+    for (;;) {
+        xSemaphoreTake(xMutex, portMAX_DELAY);
+        if (LoRa.parsePacket()) {
+            
+            
+            // read packet header bytes:
+            int recipient = LoRa.read(); // recipient address
+            byte sender = LoRa.read(); // sender address
+            byte incomingMsgId = LoRa.read(); // incoming msg ID
+            byte incomingLength = LoRa.read(); // incoming msg length
 
-    // read packet header bytes:
-    int recipient = LoRa.read(); // recipient address
-    byte sender = LoRa.read(); // sender address
-    byte incomingMsgId = LoRa.read(); // incoming msg ID
-    byte incomingLength = LoRa.read(); // incoming msg length
+            String incoming = "";
 
-    String incoming = "";
+            while (LoRa.available()) {
+                incoming += (char) LoRa.read();
+            }
+            
+            
+            if (incomingLength != incoming.length()) { // check length for error
+                Serial.println("error: message length does not match length");
+                return; // skip rest of function
+            }
 
-    while (LoRa.available()) {
-        incoming += (char) LoRa.read();
+            // if the recipient isn't this device or broadcast,
+            if (recipient != localAddress && recipient != 0xFF) {
+                Serial.println("This message is not for me.");
+                return; // skip rest of function
+            }
+
+            // if message is for this device, or broadcast, print details:
+            Serial.println("\r\nReceived from: 0x" + String(recipient, HEX));
+            Serial.println("Sent to: 0x" + String(sender, HEX));
+            Serial.println("Message ID: " + String(incomingMsgId));
+            Serial.println("Message length: " + String(incomingLength));
+            Serial.println("Message: " + incoming);
+            Serial.println("RSSI: " + String(LoRa.packetRssi()));
+            Serial.println("Snr: " + String(LoRa.packetSnr()));
+            Serial.println();
+            afficheur->afficher("RX : " + String(sender, HEX), incoming);
+        }
+        xSemaphoreGive(xMutex);
+        delay(1);
     }
-
-    if (incomingLength != incoming.length()) { // check length for error
-        Serial.println("error: message length does not match length");
-        return; // skip rest of function
-    }
-
-    // if the recipient isn't this device or broadcast,
-    if (recipient != localAddress && recipient != 0xFF) {
-        Serial.println("This message is not for me.");
-        return; // skip rest of function
-    }
-
-    // if message is for this device, or broadcast, print details:
-    Serial.println("\r\nReceived from: 0x" + String(recipient, HEX));
-    Serial.println("Sent to: 0x" + String(sender, HEX));
-    Serial.println("Message ID: " + String(incomingMsgId));
-    Serial.println("Message length: " + String(incomingLength));
-    Serial.println("Message: " + incoming);
-    Serial.println("RSSI: " + String(LoRa.packetRssi()));
-    Serial.println("Snr: " + String(LoRa.packetSnr()));
-    Serial.println();
-    afficheur->afficher("RX : " + String(sender, HEX), incoming);
+    vTaskDelete(NULL);
 }
 
