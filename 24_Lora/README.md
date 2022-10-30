@@ -14,6 +14,8 @@ Cette modulation est  utilisée sur les gammes de fréquences radio qui sont des
 
 LoRa est  efficace, cette modulation peut transmettre des paquets de données sur une longue distance (plus de 10 km dans les zones rurales).  la modulation LoRa permet une démodulation correcte dans des conditions de rapport signal/bruit très mauvaises.
 
+![modulation LoRa](/24_Lora/images/modulation_lora_1.png) 
+
 La communication **Peer to Peer** permet à deux appareils équipés de radios LoRa de se parler d'une manière similaire à la façon dont deux appareils Bluetooth communiquent, la principale différence étant  la portée augmentée.
 L'exemple utilise deux cartes **LILYGO® TTGO LoRa32 V2.1_1.6 Version 433Mhz **.  Ce  sont des cartes ESP32 avec un chipset SX1276 qui gère la communication LoRa et un écran LCD SSD1306. Dans platformIO, la carte est référencée  **ttgo-lora32-v21**
 
@@ -48,7 +50,7 @@ lib_deps = sandeepmistry/LoRa@^0.8.0
 ```
 ### Diagramme de classes
 
-![diagramme de classes](/24_Lora/diagramme_classe_Lora.png) 
+![diagramme de classes](/24_Lora/images/diagramme_classe_Lora.png) 
 
 La classe `LoraClass` hérite de la classe `Stream` qui elle même hérite de la classe `Print`.
 
