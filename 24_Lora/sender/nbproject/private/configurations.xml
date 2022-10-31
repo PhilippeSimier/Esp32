@@ -11,7 +11,7 @@
         </df>
       </df>
       <df name="src">
-        <in>lora.cpp</in>
+        <in>sender.cpp</in>
       </df>
       <df name="test">
       </df>

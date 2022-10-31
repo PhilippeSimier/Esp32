@@ -78,14 +78,17 @@ void loop() {
     String requete = "QSA?";
     byte destination = 0x99; // address of slave
 
+    
+    afficheur->afficher(String(destination, HEX) + " << " + String(localAddress, HEX), requete);
+    Serial.println(String(destination, HEX) + " << " + String(localAddress, HEX) + " : " + requete);
     sendMessage(requete, destination);
-    afficheur->afficher("TX : " + String(destination, HEX), requete);
-    Serial.println("TX : " + String(destination, HEX) + " " + requete);
     delay(5000);
     
-    sendMessage(requete, destination+1);
-    afficheur->afficher("TX : " + String(destination+1, HEX), requete);
-    Serial.println("TX : " + String(destination+1, HEX) + " " + requete);
+    destination++;
+    
+    afficheur->afficher(String(destination, HEX) + " << " + String(localAddress, HEX), requete);
+    Serial.println(String(destination, HEX) + " << " + String(localAddress, HEX) + " : " + requete);
+    sendMessage(requete, destination);
     delay(5000);
 
 }
@@ -140,15 +143,16 @@ void onReceive(void * parameter) {
             }
 
             // if message is for this device, or broadcast, print details:
-            Serial.println("\r\nReceived from: 0x" + String(recipient, HEX));
-            Serial.println("Sent to: 0x" + String(sender, HEX));
-            Serial.println("Message ID: " + String(incomingMsgId));
+            
+           
+            Serial.println("\r\nMessage ID: " + String(incomingMsgId));
             Serial.println("Message length: " + String(incomingLength));
-            Serial.println("Message: " + incoming);
+            Serial.println(String(sender, HEX) + " >> " + String(localAddress, HEX) + " : " + incoming);
             Serial.println("RSSI: " + String(LoRa.packetRssi()));
             Serial.println("Snr: " + String(LoRa.packetSnr()));
             Serial.println();
-            afficheur->afficher("RX : " + String(sender, HEX), incoming);
+            
+            afficheur->afficher(String(sender, HEX) + " >> " + String(localAddress, HEX), incoming);
         }
         xSemaphoreGive(xMutex);
         delay(1);

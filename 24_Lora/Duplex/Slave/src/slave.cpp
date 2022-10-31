@@ -122,20 +122,21 @@ void onReceive() {
 
     // if message is for this device, or broadcast, print details:
     Serial.println("\r\nPacket recu");
-    Serial.println("Destination: 0x" + String(recipient, HEX));
-    Serial.println("Source: 0x" + String(sender, HEX));
     Serial.println("Message ID: " + String(incomingMsgId));
     Serial.println("Message length: " + String(incomingLength));
-    Serial.println("Message: " + incoming);
+    Serial.println(String(sender, HEX) + " >> " + String(localAddress, HEX) + " : " + incoming);
+    afficheur->afficher(String(sender, HEX) + " >> " + String(localAddress, HEX), incoming);
     Serial.println("RSSI: " + String(LoRa.packetRssi()));
     Serial.println("Snr: " + String(LoRa.packetSnr()));
     Serial.println();
-    afficheur->afficher("RX : " + String(sender, HEX), incoming);
-    // Send ACK to sender
-    Serial.println("\r\nRéponse envoyée");
+    
+    // Send réponse to master
     sendMessage(String(LoRa.packetRssi()) + " dBm", sender );
+    
     Serial.println("RSSI " + String(LoRa.packetRssi()) + " dBm");
-    afficheur->afficher("TX : " + String(sender, HEX),  String(LoRa.packetRssi()) + " dBm");
+        
+    afficheur->afficher(String(sender, HEX) + " << " + String(localAddress, HEX), String(LoRa.packetRssi()) + " dBm");
+    Serial.println(String(sender, HEX) + " << " + String(localAddress, HEX) + " : " + String(LoRa.packetRssi()) + " dBm");
 }
 
 

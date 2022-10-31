@@ -1,5 +1,5 @@
 /* 
- * File:   lora.cpp
+ * File:   slave.cpp
  * Author: philippe SIMIER
  *
  * Created on 4 septembre 2022, 09:43
