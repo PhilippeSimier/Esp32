@@ -26,7 +26,7 @@ L'adresse 0xFF correspond à l'adresse de diffusion.
 Le dialogue est basé sur une structure hiérarchisée entre un maître et plusieurs esclaves.
 Le maître gère les échanges de données avec les autres  par une cyclique (polling).  Au  cours d‘un cycle, des données sont échangés. Le temps de cycle dépend du nombre d'esclaves et de la taille des données échangées
 
-![protocol](/24_Lora/Duplex/images/protocol.png) 
+![protocol](/24_Lora/Duplex/protocol.png) 
 
 -   Le maître envoie une **demande** et attend une **réponse**.
 -   Deux esclaves ne peuvent dialoguer ensemble.
