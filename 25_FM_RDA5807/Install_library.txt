@@ -1,0 +1,8 @@
+
+
+psimier@b106tu4p4:~$ pio pkg install --global --library "pu2clr/PU2CLR RDA5807"
+Library Manager: Installing pu2clr/PU2CLR RDA5807
+Downloading  [####################################]  100%
+Unpacking  [####################################]  100%
+Library Manager: PU2CLR RDA5807@1.0.5 has been installed!
+psimier@b106tu4p4:~$
