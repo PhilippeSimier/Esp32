@@ -15,7 +15,7 @@ et donc la fréquence médiane est 88 + 10 = 108 Mhz.
 Lambda = 300 / F(Mhz)  
 La longueur d'onde dans notre cas : 300/108 = 2,77 mètres.  
 Pour  une antenne verticale 1/4 d'onde  2,77 m / 4 = 0,69 m.  
-Nous avons donc besoin d'une antenne verticale de +/- 69 cm pour obtenir la meilleur accord de réception possible.
+Nous avons donc besoin d'une antenne verticale de +/- 69 cm pour obtenir le meilleur accord de réception possible.
 
 
 
