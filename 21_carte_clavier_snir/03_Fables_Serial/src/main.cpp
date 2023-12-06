@@ -34,6 +34,7 @@ Led *led;
 
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
+String message;
 
 void setup() {
 
@@ -59,7 +60,7 @@ void setup() {
     // Création de 4 leds couleurs RVB
     led = new Led(NBLED); // quatre leds;
     led->setDelay(DELAY);
-    
+
     // Démarre le temperature sensor
     sensors.begin();
     Serial.print("Trouvé ");
@@ -76,6 +77,7 @@ void setup() {
     createTaskBlink();
     createTaskClavier();
     createTaskLed1Led2();
+    message = "";
 }
 
 void loop() {
@@ -83,7 +85,7 @@ void loop() {
     uint32_t c;
     float temperatureC;
 
-    if (xTaskNotifyWait(0, ULONG_MAX, &c, 1000) == pdPASS) { // attente une notification de la tâche clavier
+    if (xTaskNotifyWait(0, ULONG_MAX, &c, 100) == pdPASS) { // attente une notification de la tâche clavier
 
         switch (c) {
             case '1':
@@ -103,44 +105,51 @@ void loop() {
             case '3':
                 afficheur->afficher("la Grenouille");
                 envoyerFichier("/fableGrenouille.txt", Serial);
-                envoyerFichier("/fableGrenouille.txt", com);
                 Serial.write(0x04);
+                envoyerFichier("/fableGrenouille.txt", com);
+                com.write(0x04);
                 break;
             case '4':
                 afficheur->afficher("la Tortue");
                 envoyerFichier("/fableTortue.txt", Serial);
-                envoyerFichier("/fableTortue.txt", com);
                 Serial.write(0x04);
+                envoyerFichier("/fableTortue.txt", com);
+                com.write(0x04);
                 break;
             case '5':
                 afficheur->afficher("le loup");
                 envoyerFichier("/fableLeLoup.txt", Serial);
-                envoyerFichier("/fableLeLoup.txt", com);
                 Serial.write(0x04);
+                envoyerFichier("/fableLeLoup.txt", com);
+                com.write(0x04);
                 break;
             case '6':
                 afficheur->afficher("C'est du chinois");
                 envoyerFichier("/chinois.txt", Serial);
-                envoyerFichier("/chinois.txt", com);
                 Serial.write(0x04);
+                envoyerFichier("/chinois.txt", com);
+                com.write(0x04);
                 break;
             case '7':
                 afficheur->afficher("Chinois traduit");
                 envoyerFichier("/chinois_traduit.txt", Serial);
-                envoyerFichier("/chinois_traduit.txt", com);
                 Serial.write(0x04);
+                envoyerFichier("/chinois_traduit.txt", com);
+                com.write(0x04);
                 break;
             case '8':
                 afficheur->afficher("Beauté");
                 envoyerFichier("/Beaute.txt", Serial);
-                envoyerFichier("/Beaute.txt", com);
                 Serial.write(0x04);
+                envoyerFichier("/Beaute.txt", com);
+                com.write(0x04);
                 break;
             case '9':
                 afficheur->afficher("Hirondelles");
                 envoyerFichier("/les_hirondelles.txt", Serial);
-                envoyerFichier("/les_hirondelles.txt", com);
                 Serial.write(0x04);
+                envoyerFichier("/les_hirondelles.txt", com);
+                com.write(0x04);
                 break;
 
             case '*':
@@ -151,6 +160,7 @@ void loop() {
                     xTaskNotifyWait(0, ULONG_MAX, &c, 10);
                 } while (c == NO_KEY);
                 Serial.write(0x04);
+                com.write(0x04);
                 break;
             case '0':
 
@@ -184,6 +194,7 @@ void loop() {
             case '\r':
             case '\n':
                 Serial.write(0x04);
+                com.write(0x04);
                 break;
             default:
                 Serial.println("Commande inconnue\n");
@@ -191,4 +202,18 @@ void loop() {
         }
         afficheur->afficher("Entrer code");
     }
+
+    // Affichage sur l'ecran OLED des caratères reçus
+    char car;
+    
+    if (Serial.available() > 0) {
+        car = Serial.read();
+        afficheur->afficher(car);    
+    }
+    
+    if (com.available() > 0) {
+        car = com.read();
+        afficheur->afficher(car);    
+    }
+
 }

@@ -16,6 +16,7 @@ SSD1306Wire(0x3c, SDA, SCL, GEOMETRY_128_64) {
     init();
     setFont(ArialMT_Plain_24);
     flipScreenVertically();
+    message = "";
 }
 
 Afficheur::~Afficheur() {
@@ -32,15 +33,34 @@ void Afficheur::afficher(const String message) {
 }
 
 /**
+ * Méthode pour afficher les caractères 
+ * @param car le caractère à placer sur l'afficheur
+ */
+void Afficheur::afficher(const char car) {
+    switch (car) {
+        case 0x7F:
+            message = "";
+            break;
+        case '\b':
+            message = message.substring(0, message.length() - 1);
+            break;
+        default:
+            message += String(car);
+    }
+    afficher(message);
+
+}
+
+/**
  * Méthode pour afficher un mot de passe
  * @param message le mot de passe
  */
-void Afficheur::afficherMdp(const String message){
+void Afficheur::afficherMdp(const String message) {
     clear();
     String psd;
-    for (int i = 0; i<message.length(); i++){
+    for (int i = 0; i < message.length(); i++) {
         psd += "*";
-        
+
     }
     drawStringMaxWidth(0, 0, 110, psd);
     display();
@@ -55,7 +75,7 @@ void Afficheur::afficherMdp(const String message){
 void Afficheur::afficherFloat(const String message, const float valeur, const String unite) {
 
     char sz[32];
-    snprintf(sz, sizeof(sz), "%.1f", valeur);
+    snprintf(sz, sizeof (sz), "%.1f", valeur);
     String valst(sz);
     afficher(message + valst + unite);
 

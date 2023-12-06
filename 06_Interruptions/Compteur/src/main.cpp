@@ -12,8 +12,8 @@ const int LED = 2;
 const int BP = 33;
 
 
-Compteur C1(BP,250);
-Compteur C2(13,250);
+Compteur C1(39,250);
+Compteur C2(34,250);
 
 void setup() {
     

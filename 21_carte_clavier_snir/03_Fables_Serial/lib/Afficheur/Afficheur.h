@@ -20,10 +20,12 @@ public:
     virtual ~Afficheur();
     
     void afficher(const String message);
+    void afficher(const char car);
     void afficherMdp(const String message);
     void afficherFloat(const String message, const float valeur, const String unite);
     
 private:
+    String message;
 
 };
 

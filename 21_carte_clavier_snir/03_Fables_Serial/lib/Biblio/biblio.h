@@ -8,7 +8,7 @@
 #ifndef BIBLIO_H
 #define BIBLIO_H
 
-#define CONNECTEUR_HAUT   // Définit la position du connecteur clavier en haut ou bas
+#define CONNECTEUR_BAS   // Définit la position du connecteur clavier en haut ou bas
 #define LED 2
 
 #include <Arduino.h>
