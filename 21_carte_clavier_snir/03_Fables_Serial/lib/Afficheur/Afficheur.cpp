@@ -2,7 +2,8 @@
  * File:   Afficheur.cpp
  * Author: philippe Simier Touchard Washington
  * 
- * Created on 14 février 2022, 12:18
+ * Created on 14 février 2022, 12:18 V1.0
+ * improved on 30 November 2023
  */
 
 #include "Afficheur.h"
@@ -33,8 +34,8 @@ void Afficheur::afficher(const String message) {
 }
 
 /**
- * Méthode pour afficher les caractères 
- * @param car le caractère à placer sur l'afficheur
+ * Méthode pour afficher les 10 derniers caractères reçus
+ * @param car le caractère suivant à placer sur l'afficheur
  */
 void Afficheur::afficher(const char car) {
     switch (car) {
@@ -47,7 +48,13 @@ void Afficheur::afficher(const char car) {
         default:
             message += String(car);
     }
-    afficher(message);
+    
+    if (message.length() > 10){
+        message = message.substring(1);
+    }
+    clear();
+    drawString(0, 0, message);
+    display();
 
 }
 

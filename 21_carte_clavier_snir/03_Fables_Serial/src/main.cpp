@@ -167,16 +167,25 @@ void loop() {
                 do {
                     sensors.requestTemperatures();
                     temperatureC = sensors.getTempCByIndex(0);
+                    
                     Serial.print(temperatureC);
-                    Serial.println(" ºC : ");
+                    Serial.print(" ºC : ");
+                    com.print(temperatureC);                   
+                    com.print(" °C : ");
+                    
                     afficheur->afficherFloat("Temp ", temperatureC, " °C");
-                    delay(2000);
+                    delay(1000);
                     // Lecture de l'entrée analogique GPIO 36 => ADC1_CHANNEL_0
                     int value = adc1_get_raw(ADC1_CHANNEL_0);
                     // Mise à l'échelle
                     int y = map(value, 0, 4095, 0, 100);
                     afficheur->afficherFloat("Lum   ", y, " %");
-                    delay(2000);
+                    Serial.print(y);
+                    Serial.print(" %\n");
+                    com.print(y);                   
+                    com.print(" %\n");
+                    
+                    delay(1000);
                     xTaskNotifyWait(0, ULONG_MAX, &c, 10);
                 } while (c == NO_KEY);
 
