@@ -217,12 +217,14 @@ void loop() {
     
     if (Serial.available() > 0) {
         car = Serial.read();
-        afficheur->afficher(car);    
+        afficheur->afficher(car);
+        Serial.write(car);
     }
     
     if (com.available() > 0) {
         car = com.read();
-        afficheur->afficher(car);    
+        afficheur->afficher(car);  
+        com.write(car);
     }
 
 }
