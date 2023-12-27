@@ -8,6 +8,9 @@
         <in>fableLeLoup.txt</in>
         <in>fableTortue.txt</in>
       </df>
+      <df name="include">
+        <in>esp32_snir.h</in>
+      </df>
       <df name="lib">
         <df name="Biblio">
           <in>biblio.cpp</in>
@@ -296,6 +299,8 @@
       <item path="data/fableLeLoup.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="data/fableTortue.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/esp32_snir.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="lib/Biblio/biblio.cpp" ex="false" tool="1" flavor2="0">
       </item>

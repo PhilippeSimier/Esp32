@@ -9,6 +9,7 @@
         <in>fableTortue.txt</in>
       </df>
       <df name="include">
+        <in>esp32_snir.h</in>
       </df>
       <df name="lib">
         <df name="Afficheur">

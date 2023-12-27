@@ -85,7 +85,7 @@ static void taskClavier(void *pvParameters) {
         {'1', '2', '3'},
         {'4', '5', '6'},
         {'7', '8', '9'},
-        {'*', '0', '#'}
+        {'*', '0', '\n'}
     };
 
     //affectation des GPIO aux lignes L0, L1, L2, L3 du clavier
@@ -159,12 +159,6 @@ void createTaskLed1Led2(void) {
 static void taskLed1Led2(void *pvParameters) {
 
     // setup
-    const int D1 = 13;
-    const int D2 = 12;
-    const int BP1 = 39;
-    const int BP2 = 34;
-    const int BP3 = 35;
-
     pinMode(D1, OUTPUT);
     pinMode(D2, OUTPUT);
     pinMode(BP1, INPUT);
@@ -180,8 +174,8 @@ static void taskLed1Led2(void *pvParameters) {
         bool bp3 = !digitalRead(BP3);
 
 
-        digitalWrite(D1,bp1); // turn the LED 
-        digitalWrite(D2,bp2); // turn the LED 
+        digitalWrite(D1, bp1);         // turn the LED 
+        digitalWrite(D2, bp2 || bp3);  // turn the LED
         delay(10);
     }
 
