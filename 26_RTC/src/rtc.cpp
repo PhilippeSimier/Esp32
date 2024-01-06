@@ -9,7 +9,7 @@
 
 #include <Arduino.h>
 #include <Afficheur.h>
-#include "RTClib.h"
+#include <RTClib.h>
 
 #define LED 2
 
@@ -35,20 +35,9 @@ void setup() {
 
 void loop() {
     
-    DateTime now = rtc.now();
-   
-    char date[13];
-    snprintf(date, sizeof(date), "%02d:%02d:%4d ", now.day(), now.month(), now.year());
-    char time[11];
-    snprintf(time, sizeof(time), "%02d:%02d:%02d", now.hour(), now.minute(), now.second());
-    String message = date;
-    message += time;
+    DateTime now = rtc.now(); 
+    afficheur->afficherDateTime(now);
     
-    afficheur->afficher(message);
-    
-    Serial.print(daysOfTheWeek[now.dayOfTheWeek()]);   
-    Serial.print(" ");
-    Serial.println(message);
-    
+    Serial.println(daysOfTheWeek[now.dayOfTheWeek()]);      
     delay(1000);
 }

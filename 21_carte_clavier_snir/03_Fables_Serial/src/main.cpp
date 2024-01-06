@@ -20,13 +20,15 @@
 #include <Afficheur.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
-#include <driver/adc.h>
+#include <RTClib.h>
 #include <esp32_snir.h>
 
 
 
 HardwareSerial com(1); // Déclaration d'une liaison série controlée part UART 1
 Afficheur *afficheur; // Un afficheur Oled
+RTC_DS3231 rtc; // Une horloge temps réel
+bool rtcOk = false;
 Led *led;
 
 
@@ -42,10 +44,19 @@ void setup() {
 
     // Démarre le système de fichier SPIFFS
     if (!SPIFFS.begin()) {
-        Serial.println("Une errreur est apparue pendant le montage de SPIFFS");
+        Serial.println("Une erreur est apparue pendant le montage de SPIFFS");
         return;
     }
-
+    // Démarre l'horloge temps réel
+    if (rtc.begin()) {
+        if (rtc.lostPower()) {
+            Serial.println("RTC lost power, let's set the time!");
+            rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+        }
+        rtcOk = true;
+    } else {
+        Serial.println("Une erreur est apparue pendant le démarrage de l'horloge");
+    }
     // Démarre la deuxième liaison série RS232 9600 bauds Rx -> GPIO16 Tx -> GPIO17
     com.begin(9600, SERIAL_8N1, RX_RS232, TX_RS232);
     Serial.println("Setup com série done");
@@ -54,6 +65,7 @@ void setup() {
     pinMode(SW, INPUT);
     // Création d'un afficheur Oled
     afficheur = new Afficheur;
+
 
     if (digitalRead(SW))
         afficheur->afficher("Liaision Série");
@@ -76,10 +88,12 @@ void setup() {
     //11 dB pour une tension d’entrée de 0.15v à 3.6v sur l'entrée analogique
     adc1_config_channel_atten(ADC1_CHANNEL_0, ADC_ATTEN_DB_11);
 
-    // Création des tâches blink & Clavier 
+    // Création des tâches blink, bridge, Clavier, led1led2 
     createTaskBlink();
+    createTaskBridge();
     createTaskClavier();
     createTaskLed1Led2();
+    
     message = "";
 }
 
@@ -148,11 +162,16 @@ void loop() {
                     com.write(0x04);
                     break;
                 case '9':
-                    afficheur->afficher("Hirondelles");
-                    envoyerFichier("/les_hirondelles.txt", Serial);
-                    Serial.write(0x04);
-                    envoyerFichier("/les_hirondelles.txt", com);
-                    com.write(0x04);
+
+                    do {
+                        if (rtcOk) {
+                            afficheur->afficherDateTime(rtc.now());
+                        } else {
+                            afficheur->afficher("No RTC");
+                        }
+                        xTaskNotifyWait(0, ULONG_MAX, &c, 1000);
+                    } while (c == NO_KEY);
+
                     break;
 
                 case '*':
@@ -208,26 +227,11 @@ void loop() {
                     Serial.write(0x04);
             }
             afficheur->afficher("Entrer code");
-        }else{
+        } else {
             com.write(c);
             Serial.write(c);
             afficheur->afficher(c);
         }
-    }
-
-    // Affichage sur l'ecran OLED des caratères reçus sur Serial
-    // Bridge entre com et Serial
-    char car;
-
-    if (Serial.available() > 0) {
-        car = Serial.read();
-        afficheur->afficher(car);
-        com.write(car);
-    }
-
-    if (com.available() > 0) {
-        car = com.read();
-        Serial.write(car);
     }
 
 }

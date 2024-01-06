@@ -27,6 +27,9 @@
 void createTaskBlink(void);
 static void tacheBlink(void * parameter);
 
+void createTaskBridge(void);
+static void tacheBridge(void * parameter);
+
 void envoyerFichier(String fichier, Stream &flux);
 
 void createTaskClavier(void);

@@ -15,7 +15,7 @@
 Afficheur::Afficheur() :
 SSD1306Wire(0x3c, SDA, SCL, GEOMETRY_128_64) {
     init();
-    setFont(Dialog_plain_19);
+    setFont(ArialMT_Plain_24);
     flipScreenVertically();
     message = "";
 }
@@ -88,3 +88,20 @@ void Afficheur::afficherFloat(const String message, const float valeur, const St
 
 }
 
+/**
+ * Méthode pour afficher une date et l'heure
+ * @param dateTime
+ */
+void Afficheur::afficherDateTime(const DateTime dateTime){
+    
+    char date[13];
+    snprintf(date, sizeof(date), "%02d:%02d:%4d", dateTime.day(), dateTime.month(), dateTime.year());
+    char time[11];
+    snprintf(time, sizeof(time), "%02d:%02d:%02d", dateTime.hour(), dateTime.minute(), dateTime.second());
+    char message[26];
+    snprintf(message, sizeof(message), "%s\n%s", date, time);
+    
+    setFont(Dialog_plain_19);
+    afficher(message);
+    setFont(ArialMT_Plain_24);
+}

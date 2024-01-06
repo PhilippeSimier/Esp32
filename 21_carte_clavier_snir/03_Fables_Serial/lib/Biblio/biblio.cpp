@@ -57,6 +57,47 @@ void tacheBlink(void * parameter) {
     vTaskDelete(NULL);
 }
 
+void createTaskBridge(void){
+    xTaskCreatePinnedToCore(tacheBridge, // task function
+            "taskBridge", // taskname
+            8192,         // stack size
+            NULL,         // pointer for task2 parameters
+            2,            // priority
+            NULL,         // handle for task
+            1             // run in core 1
+            );
+}
+
+/**
+ * Fonction pour créer un pont entre les deux liaisons séries.
+ * les caratères reçus sur Serial sont affichés sur l'écran OLED
+ * @param parameter
+ */
+void tacheBridge(void * parameter) {
+
+
+    extern HardwareSerial com;
+    extern Afficheur* afficheur;
+    
+    char car;
+
+
+    // loop
+    while (1) {
+        while (Serial.available() > 0) {
+            car = Serial.read();
+            afficheur->afficher(car);
+            com.write(car);
+        }
+
+        while (com.available() > 0) {
+            car = com.read();
+            Serial.write(car);
+        }
+        delay(10);
+    }
+}
+
 /**
  * Fonction pour créer la tâche scrutation Clavier
  */
@@ -124,16 +165,16 @@ void chenillard(const word nb) {
 
     extern Led* led;
     extern Afficheur* afficheur;
-    word i {0};
-    
+    word i{0};
+
     afficheur->afficher("couleur verte");
     led->cheniller(VERT, nb);
     led->chenillerInverse(NOIR, nb);
-        
+
     afficheur->afficher("couleur Bleue");
     led->cheniller(BLEU, nb);
     led->chenillerInverse(NOIR, nb);
-    
+
     afficheur->afficher("couleur rouge");
     led->cheniller(ROUGE, nb);
     led->chenillerInverse(NOIR, nb);
@@ -174,10 +215,9 @@ static void taskLed1Led2(void *pvParameters) {
         bool bp3 = !digitalRead(BP3);
 
 
-        digitalWrite(D1, bp1);         // turn the LED 
-        digitalWrite(D2, bp2 || bp3);  // turn the LED
+        digitalWrite(D1, bp1); // turn the LED 
+        digitalWrite(D2, bp2 || bp3); // turn the LED
         delay(10);
     }
-
-
 }
+

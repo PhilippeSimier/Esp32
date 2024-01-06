@@ -29,6 +29,7 @@ Afficheur::~Afficheur() {
  */
 void Afficheur::afficher(const String message) {
     clear();
+    setFont(ArialMT_Plain_24);
     drawStringMaxWidth(0, 0, 110, message);
     display();
 }
@@ -42,6 +43,9 @@ void Afficheur::afficher(const char car) {
         case 0x7F:
             message = "";
             break;
+        case '\r':
+            message += String('\n');
+            break;
         case '\b':
             message = message.substring(0, message.length() - 1);
             break;
@@ -53,6 +57,7 @@ void Afficheur::afficher(const char car) {
         message = message.substring(1);
     }
     clear();
+    setFont(ArialMT_Plain_24);
     drawString(0, 0, message);
     display();
 
@@ -64,6 +69,7 @@ void Afficheur::afficher(const char car) {
  */
 void Afficheur::afficherMdp(const String message) {
     clear();
+    setFont(ArialMT_Plain_24);
     String psd;
     for (int i = 0; i < message.length(); i++) {
         psd += "*";
@@ -86,5 +92,23 @@ void Afficheur::afficherFloat(const String message, const float valeur, const St
     String valst(sz);
     afficher(message + valst + unite);
 
+}
+
+/**
+ * Méthode pour afficher une date et l'heure
+ * @param dateTime
+ */
+void Afficheur::afficherDateTime(const DateTime dateTime){
+    
+    char message[26];
+    snprintf(message, sizeof(message), "%02d:%02d:%4d\n%02d:%02d:%02d", 
+            dateTime.day(), dateTime.month(), dateTime.year(), 
+            dateTime.hour(), dateTime.minute(), dateTime.second());
+    
+    clear();
+    setFont(Dialog_plain_19);
+    drawStringMaxWidth(0, 0, 110, message);
+    display();
+    
 }
 

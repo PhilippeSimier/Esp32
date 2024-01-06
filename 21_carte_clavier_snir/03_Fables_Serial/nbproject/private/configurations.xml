@@ -15,6 +15,7 @@
         <df name="Afficheur">
           <in>Afficheur.cpp</in>
           <in>Afficheur.h</in>
+          <in>Dialog_plain_19.h</in>
         </df>
         <df name="Biblio">
           <in>biblio.cpp</in>

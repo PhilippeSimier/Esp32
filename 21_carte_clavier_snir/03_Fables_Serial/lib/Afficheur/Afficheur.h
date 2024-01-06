@@ -10,6 +10,8 @@
 
 #include <Arduino.h>
 #include <SSD1306Wire.h>
+#include <RTClib.h>
+#include "Dialog_plain_19.h"
 
 
 class Afficheur : public SSD1306Wire
@@ -23,6 +25,7 @@ public:
     void afficher(const char car);
     void afficherMdp(const String message);
     void afficherFloat(const String message, const float valeur, const String unite);
+    void afficherDateTime(const DateTime dateTime);
     
 private:
     String message;
