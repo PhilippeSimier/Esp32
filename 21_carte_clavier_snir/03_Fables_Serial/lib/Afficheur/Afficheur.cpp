@@ -37,6 +37,7 @@ void Afficheur::afficher(const String message) {
 /**
  * Méthode pour afficher les 10 derniers caractères reçus
  * @param car le caractère suivant à placer sur l'afficheur
+ * indexOf() pour trouver un caractère dans le String
  */
 void Afficheur::afficher(const char car) {
     switch (car) {

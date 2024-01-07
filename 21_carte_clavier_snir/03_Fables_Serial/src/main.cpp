@@ -7,7 +7,14 @@
  * A Chaque touche du clavier correspond un texte différent
  * La touche # permet de tester le fonctionnement des 4 ledq RGB
  * La touche 0 permet de tester le capteur de température & LDR
+ * La touche 9 affiche la date et l'heure sur L'écran OLED
  * La touche * permet de simuler des trames NMEA délivrées par un capteur GPS
+ * 
+ * Configuration Serial 115200 bauds, 8 bits, pas de parité, 1 bit de stop
+ *               RS232  9600 bauds, 8 bits, pas de parité, 1 bit de stop  
+ * 
+ * Bridge Serials
+ * Toutes les données provenant de la broche RX du Serial sont transmises au COM RS232 et vice versa.
  * 
  * Created on 14 février 2022, 12:05
  */

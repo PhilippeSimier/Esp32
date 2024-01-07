@@ -85,9 +85,9 @@ void tacheBridge(void * parameter) {
     // loop
     while (1) {
         while (Serial.available() > 0) {
-            car = Serial.read();
-            afficheur->afficher(car);
+            car = Serial.read();            
             com.write(car);
+            afficheur->afficher(car);
         }
 
         while (com.available() > 0) {
