@@ -10,13 +10,14 @@
 
 #include "afficheur.h"
 #include "esp32_snir.h"
+#include <math.h>
 
 #define INTERVAL 5000 // mesure de la température toutes les 5s
 #define HYSTERESIS 1
 
-void InitialiserThermostat(void);
-float FixerConsigne(const float _consigne);
-bool RegulerTemperature(const float _consigne, const float _temperature, const int _hysteresis);
+void initialiserThermostat(void);
+float fixerConsigne(const float _consigne);
+bool regulerTemperature(const float _consigne, const float _temperature, const int _hysteresis);
 
 #endif /* THERMOSTAT_H */
 

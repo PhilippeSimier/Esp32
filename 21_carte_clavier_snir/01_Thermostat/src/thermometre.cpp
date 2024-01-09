@@ -3,12 +3,12 @@
 OneWire onWire(TEMP);
 DallasTemperature capteurTemp(&onWire);
 
-void InitialiserCapteurTemperature(void)
+void initialiserCapteurTemperature(void)
 {
     capteurTemp.begin();
 }
 
-bool ObtenirTemperature(int *_temperature, int * _dixiemes, const int _numCapteur)
+bool obtenirTemperature(int *_temperature, int * _dixiemes, const int _numCapteur)
 {
     bool retour = false;
     capteurTemp.requestTemperatures();

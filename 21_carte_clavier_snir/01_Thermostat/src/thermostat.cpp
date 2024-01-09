@@ -1,7 +1,7 @@
 #include "thermostat.h"
 
 
-void InitialiserThermostat(void)
+void initialiserThermostat(void)
 {
     pinMode(BP1, INPUT); // bouton +
     pinMode(BP2, INPUT); // bouton -
@@ -12,7 +12,7 @@ void InitialiserThermostat(void)
     digitalWrite(D2, LOW);
 }
 
-float FixerConsigne(const float _consigne)
+float fixerConsigne(const float _consigne)
 {
     float consigne = _consigne;
     int dixiemes;
@@ -31,7 +31,7 @@ float FixerConsigne(const float _consigne)
     return consigne;
 }
 
-bool RegulerTemperature(const float _consigne, const float _temperature, const int _hysteresis)
+bool regulerTemperature(const float _consigne, const float _temperature, const int _hysteresis)
 {
     bool retour = false;
     if (_temperature < (_consigne - _hysteresis/2.0))

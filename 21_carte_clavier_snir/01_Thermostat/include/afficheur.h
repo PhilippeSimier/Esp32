@@ -1,5 +1,5 @@
 /* 
- * File:   afiicheur.h
+ * File:   afficheur.h
  * Author: pcruchet
  *
  * Created on 29 novembre 2023, 13:21

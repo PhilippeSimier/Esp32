@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <math.h>
 #include "afficheur.h"
 #include "thermometre.h"
 #include "thermostat.h"
@@ -11,8 +10,8 @@ unsigned long precedent;
 void setup()
 {
     InitialiserAfficheur();
-    InitialiserCapteurTemperature();
-    InitialiserThermostat();
+    initialiserCapteurTemperature();
+    initialiserThermostat();
 
     pinMode(SW, INPUT);
     pinMode(RELAY_1,OUTPUT);
@@ -26,7 +25,7 @@ void loop()
 
     if (digitalRead(SW) == LOW)
     {
-        consigne = FixerConsigne(consigne);
+        consigne = fixerConsigne(consigne);
     }
     else
     {
@@ -34,10 +33,10 @@ void loop()
         if (courant - precedent >= INTERVAL)
         {
             precedent = courant;
-            if (ObtenirTemperature(&unite, &dixiemes) == true)
+            if (obtenirTemperature(&unite, &dixiemes) == true)
                 AfficherTemperature(unite, dixiemes);
 
-            if(RegulerTemperature(consigne, unite + dixiemes / 10, HYSTERESIS) == true)
+            if(regulerTemperature(consigne, unite + dixiemes / 10, HYSTERESIS) == true)
                 digitalWrite(RELAY_1,HIGH);
             else
                 digitalWrite(RELAY_1,LOW);

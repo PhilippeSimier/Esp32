@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="97">
+<configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
       <in>platformio.ini</in>
@@ -24,7 +24,6 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <codeAssistance>
-        <buildAnalyzer>true</buildAnalyzer>
         <includeAdditional>true</includeAdditional>
       </codeAssistance>
       <makefileType>
@@ -281,23 +280,23 @@
               <pElem>/home/USERS/PROFS/pcruchet/.platformio/packages/toolchain-xtensa-esp32/xtensa-esp32-elf/include</pElem>
             </incDir>
             <preprocessorList>
-                <Elem>PLATFORMIO=60111</Elem>
-                <Elem>ARDUINO_LOLIN32</Elem>
-                <Elem>HAVE_CONFIG_H</Elem>
-                <Elem>MBEDTLS_CONFIG_FILE=&quot;mbedtls/esp_config.h&quot;</Elem>
-                <Elem>UNITY_INCLUDE_CONFIG_H</Elem>
-                <Elem>WITH_POSIX</Elem>
-                <Elem>_GNU_SOURCE</Elem>
-                <Elem>IDF_VER=&quot;v4.4.2&quot;</Elem>
-                <Elem>ESP_PLATFORM</Elem>
-                <Elem>_POSIX_READER_WRITER_LOCKS</Elem>
-                <Elem>ARDUINO_ARCH_ESP32</Elem>
-                <Elem>ESP32</Elem>
-                <Elem>F_CPU=240000000L</Elem>
-                <Elem>ARDUINO=10812</Elem>
-                <Elem>ARDUINO_VARIANT=&quot;lolin32&quot;</Elem>
-                <Elem>ARDUINO_BOARD=&quot;WEMOS LOLIN32&quot;</Elem>
-                <Elem>ARDUINO_PARTITION_default</Elem>
+              <Elem>ARDUINO=10812</Elem>
+              <Elem>ARDUINO_ARCH_ESP32</Elem>
+              <Elem>ARDUINO_BOARD="WEMOS LOLIN32"</Elem>
+              <Elem>ARDUINO_LOLIN32</Elem>
+              <Elem>ARDUINO_PARTITION_default</Elem>
+              <Elem>ARDUINO_VARIANT="lolin32"</Elem>
+              <Elem>ESP32</Elem>
+              <Elem>ESP_PLATFORM</Elem>
+              <Elem>F_CPU=240000000L</Elem>
+              <Elem>HAVE_CONFIG_H</Elem>
+              <Elem>IDF_VER="v4.4.2"</Elem>
+              <Elem>MBEDTLS_CONFIG_FILE="mbedtls/esp_config.h"</Elem>
+              <Elem>PLATFORMIO=60111</Elem>
+              <Elem>UNITY_INCLUDE_CONFIG_H</Elem>
+              <Elem>WITH_POSIX</Elem>
+              <Elem>_GNU_SOURCE</Elem>
+              <Elem>_POSIX_READER_WRITER_LOCKS</Elem>
             </preprocessorList>
           </cTool>
           <ccTool>
@@ -548,23 +547,23 @@
               <pElem>/home/USERS/PROFS/pcruchet/.platformio/packages/toolchain-xtensa-esp32/xtensa-esp32-elf/include</pElem>
             </incDir>
             <preprocessorList>
-                <Elem>PLATFORMIO=60111</Elem>
-                <Elem>ARDUINO_LOLIN32</Elem>
-                <Elem>HAVE_CONFIG_H</Elem>
-                <Elem>MBEDTLS_CONFIG_FILE=&quot;mbedtls/esp_config.h&quot;</Elem>
-                <Elem>UNITY_INCLUDE_CONFIG_H</Elem>
-                <Elem>WITH_POSIX</Elem>
-                <Elem>_GNU_SOURCE</Elem>
-                <Elem>IDF_VER=&quot;v4.4.2&quot;</Elem>
-                <Elem>ESP_PLATFORM</Elem>
-                <Elem>_POSIX_READER_WRITER_LOCKS</Elem>
-                <Elem>ARDUINO_ARCH_ESP32</Elem>
-                <Elem>ESP32</Elem>
-                <Elem>F_CPU=240000000L</Elem>
-                <Elem>ARDUINO=10812</Elem>
-                <Elem>ARDUINO_VARIANT=&quot;lolin32&quot;</Elem>
-                <Elem>ARDUINO_BOARD=&quot;WEMOS LOLIN32&quot;</Elem>
-                <Elem>ARDUINO_PARTITION_default</Elem>
+              <Elem>ARDUINO=10812</Elem>
+              <Elem>ARDUINO_ARCH_ESP32</Elem>
+              <Elem>ARDUINO_BOARD="WEMOS LOLIN32"</Elem>
+              <Elem>ARDUINO_LOLIN32</Elem>
+              <Elem>ARDUINO_PARTITION_default</Elem>
+              <Elem>ARDUINO_VARIANT="lolin32"</Elem>
+              <Elem>ESP32</Elem>
+              <Elem>ESP_PLATFORM</Elem>
+              <Elem>F_CPU=240000000L</Elem>
+              <Elem>HAVE_CONFIG_H</Elem>
+              <Elem>IDF_VER="v4.4.2"</Elem>
+              <Elem>MBEDTLS_CONFIG_FILE="mbedtls/esp_config.h"</Elem>
+              <Elem>PLATFORMIO=60111</Elem>
+              <Elem>UNITY_INCLUDE_CONFIG_H</Elem>
+              <Elem>WITH_POSIX</Elem>
+              <Elem>_GNU_SOURCE</Elem>
+              <Elem>_POSIX_READER_WRITER_LOCKS</Elem>
             </preprocessorList>
           </ccTool>
         </makeTool>

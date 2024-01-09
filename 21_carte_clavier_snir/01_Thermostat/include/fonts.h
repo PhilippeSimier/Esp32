@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/file.h to edit this template
- */
-
 /* 
  * File:   fonts.h
  * Author: pcruchet
@@ -15,8 +10,7 @@
 
 #include <Arduino.h>
 
-// Created by http://oleddisplay.squix.ch/ Consider a donation
-// In case of problems make sure that you are using the font file with the correct version!
+
 const uint8_t DejaVu_Sans_Mono_32[] PROGMEM = {
 	0x13, // Width: 19
 	0x26, // Height: 38
