@@ -11,10 +11,10 @@
 #include <Arduino.h>
 #include <SSD1306.h>
 #include <string.h>
-#include "fonts.h"
+#include "DejaVu_Sans_Mono_32.h"
 
-void InitialiserAfficheur(void);
-void AfficherTemperature(const int _temperature, const int _dixiemes);
+void initialiserAfficheur(void);
+void afficherTemperature(const int _temperature, const int _dixiemes);
 
 #endif /* AFFICHEUR_H */
 

@@ -9,7 +9,6 @@
         <in>fableTortue.txt</in>
       </df>
       <df name="include">
-        <in>esp32_snir.h</in>
       </df>
       <df name="lib">
         <df name="Afficheur">
@@ -20,6 +19,9 @@
         <df name="Biblio">
           <in>biblio.cpp</in>
           <in>biblio.h</in>
+        </df>
+        <df name="esp32_snir">
+          <in>esp32_snir.h</in>
         </df>
         <df name="Led">
           <in>Led.cpp</in>

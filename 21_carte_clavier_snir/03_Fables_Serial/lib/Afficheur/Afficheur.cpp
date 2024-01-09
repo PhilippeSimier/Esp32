@@ -54,7 +54,7 @@ void Afficheur::afficher(const char car) {
             message += String(car);
     }
     
-    if (message.length() > 10){
+    if (getStringWidth(message) > 127){
         message = message.substring(1);
     }
     clear();

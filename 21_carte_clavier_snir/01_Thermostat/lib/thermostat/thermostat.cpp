@@ -25,7 +25,7 @@ float fixerConsigne(const float _consigne)
 
     dixiemes = (int) (round((consigne - floor(consigne))*10));
     unite = (int) floor(consigne);
-    AfficherTemperature(unite, dixiemes);
+    afficherTemperature(unite, dixiemes);
     delay(200);
 
     return consigne;

@@ -1,7 +1,7 @@
 #include <Arduino.h>
-#include "afficheur.h"
-#include "thermometre.h"
-#include "thermostat.h"
+#include <afficheur.h>
+#include <thermometre.h>
+#include <thermostat.h>
 
 float temperature = 0;
 float consigne = 0;
@@ -9,7 +9,7 @@ unsigned long precedent;
 
 void setup()
 {
-    InitialiserAfficheur();
+    initialiserAfficheur();
     initialiserCapteurTemperature();
     initialiserThermostat();
 
@@ -34,7 +34,7 @@ void loop()
         {
             precedent = courant;
             if (obtenirTemperature(&unite, &dixiemes) == true)
-                AfficherTemperature(unite, dixiemes);
+                afficherTemperature(unite, dixiemes);
 
             if(regulerTemperature(consigne, unite + dixiemes / 10, HYSTERESIS) == true)
                 digitalWrite(RELAY_1,HIGH);

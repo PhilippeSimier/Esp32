@@ -10,7 +10,7 @@
 // Constructeur de Led
 
 Led::Led(word _numPixels) :
-NeoPixelBus<NeoRgbFeature, Neo800KbpsMethod>(_numPixels, PIN_RGB),
+NeoPixelBus<NeoRgbFeature, Neo800KbpsMethod>(_numPixels, DATALEDS),
 numPixels(_numPixels),
 nb_ms(100) {
     Begin();

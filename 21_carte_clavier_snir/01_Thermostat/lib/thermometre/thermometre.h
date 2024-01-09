@@ -11,8 +11,7 @@
 #include <Arduino.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
-
-#include "esp32_snir.h"
+#include <esp32_snir.h>
 
 void initialiserCapteurTemperature(void);
 bool obtenirTemperature(int *_temperature, int * _dixiemes, const int _numCapteur=0);

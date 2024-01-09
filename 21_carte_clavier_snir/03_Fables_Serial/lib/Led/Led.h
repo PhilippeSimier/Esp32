@@ -9,9 +9,7 @@
 #define LED_H
 
 #include <NeoPixelBus.h>  // Led RGB WS2812
-
-#define PIN_RGB     19    // GPIO19 pour carte Clavier SNIR 
-#define NUMPIXELS   4     // Quatre leds pour carte Clavier SNIR
+#include <esp32_snir.h>
 
 #define ROUGE   RgbColor(8,0,0)
 #define RED 	RgbColor(8,0,0)
@@ -30,7 +28,7 @@ class Led : public NeoPixelBus<NeoRgbFeature, Neo800KbpsMethod> // Spécialisati
 
 public:
     
-    Led(word _numPixels = NUMPIXELS );
+    Led(word _numPixels = DATALEDS );
     virtual ~Led();
     
     void allumer(const RgbColor &couleur, word id = 0);

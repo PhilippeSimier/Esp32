@@ -1,6 +1,6 @@
 /* 
  * File:   esp32_snir.h
- * Author: philippe SIMIER Lycée Touchard Washington
+ * Author: philippe CRUCHET Lycée Touchard Washington
  *
  * Created on 26 décembre 2023, 17:27
  */

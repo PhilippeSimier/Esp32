@@ -3,19 +3,27 @@
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
       <df name="include">
-        <in>afficheur.h</in>
-        <in>esp32_snir.h</in>
-        <in>fonts.h</in>
-        <in>thermometre.h</in>
-        <in>thermostat.h</in>
       </df>
       <df name="lib">
+        <df name="afficheur">
+          <in>DejaVu_Sans_Mono_32.h</in>
+          <in>afficheur.cpp</in>
+          <in>afficheur.h</in>
+        </df>
+        <df name="esp32_snir">
+          <in>esp32_snir.h</in>
+        </df>
+        <df name="thermometre">
+          <in>thermometre.cpp</in>
+          <in>thermometre.h</in>
+        </df>
+        <df name="thermostat">
+          <in>thermostat.cpp</in>
+          <in>thermostat.h</in>
+        </df>
       </df>
       <df name="src">
-        <in>afficheur.cpp</in>
         <in>main..cpp</in>
-        <in>thermometre.cpp</in>
-        <in>thermostat.cpp</in>
       </df>
       <df name="test">
       </df>

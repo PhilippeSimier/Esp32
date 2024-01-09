@@ -2,13 +2,13 @@
 
 SSD1306 afficheurOLED(0x3C, SDA, SCL);
 
-void InitialiserAfficheur(void)
+void initialiserAfficheur(void)
 {
     afficheurOLED.init();
     afficheurOLED.flipScreenVertically();
 }
 
-void AfficherTemperature(const int _temperature, const int _dixiemes)
+void afficherTemperature(const int _temperature, const int _dixiemes)
 {
     afficheurOLED.clear();
     afficheurOLED.drawRect(0, 0, 127, 63);

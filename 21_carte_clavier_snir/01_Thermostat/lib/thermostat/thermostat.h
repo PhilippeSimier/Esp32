@@ -9,7 +9,7 @@
 #define THERMOSTAT_H
 
 #include "afficheur.h"
-#include "esp32_snir.h"
+#include <esp32_snir.h>
 #include <math.h>
 
 #define INTERVAL 5000 // mesure de la température toutes les 5s
