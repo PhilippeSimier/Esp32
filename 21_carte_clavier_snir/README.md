@@ -1,4 +1,4 @@
-﻿# Carte ESP32 CIEL  
+﻿# Carte ESP32 SNIR  
 ![le clavier](/21_carte_clavier_snir/carte_snir.jpg) 
 ## Description
 
@@ -11,11 +11,11 @@ Les fonctionnalités WiFi et Bluetooth de l'ESP32 sont accessibles, offrant la p
 
  -  1 Écran OLED 128 x 64,  **SSD1306**
  -  1 Clavier matricé 12 touches,
- -  4 LED RGB, extensible sur connecteur
- -  1 Capteur de température **DS18B20**.
+ -  4 LED RGB **WS2812**, extensible sur connecteur
+ -  1 Capteur de température **DS18S20**.
  -  1 Capteur de lumière LDR
  -  3 boutons poussoirs 
- -  1 interrupteur 
+ -  1 interrupteur  ou Interruption RTC
  -  1 Potentiomètre à glissière
  -  2 relais 
  -  1 Une horloge temps réel RTC **DS3231** 
@@ -36,7 +36,8 @@ Des travaux pratiques de programmation en C++ sont disponibles, comprenant quelq
 
 1.  Digicode pour le contrôle d'accès 
 2.  Coffre-fort d'hôtel
-3.  Simulation d'un capteur GPS
+3. Thermostat
+4.  Simulation d'un capteur GPS
 
 ## Programmation en MicroPython
 
@@ -54,6 +55,7 @@ MicroPython sur l'ESP32 offre une solution puissante et accessible pour les proj
 # Changelog
 
 **04/09/2022 : ** Creation du README.md 
+
 **08/01/2023 : ** Actualisation de la présentation
 
 > **Notes :**
@@ -62,6 +64,7 @@ MicroPython sur l'ESP32 offre une solution puissante et accessible pour les proj
 > - Licence : **licence publique générale** ![enter image description here](https://img.shields.io/badge/licence-GPL-green.svg)
 > - Auteur **Philippe SIMIER** Lycée Touchard Le Mans
 >  ![enter image description here](https://img.shields.io/badge/built-passing-green.svg)
+
 <!-- TOOLBOX 
 
 Génération des badges : https://shields.io/
