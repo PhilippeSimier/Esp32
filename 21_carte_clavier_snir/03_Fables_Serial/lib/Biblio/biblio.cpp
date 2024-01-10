@@ -94,7 +94,7 @@ void tacheBridge(void * parameter) {
             car = com.read();
             Serial.write(car);
         }
-        delay(10);
+        vTaskDelay(1);
     }
 }
 
