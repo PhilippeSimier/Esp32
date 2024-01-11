@@ -2,7 +2,7 @@
 
 ## Description
 
-ESP32 utilise une minuterie matérielle dans le but de conserver l'heure du système. L'heure du système peut être conservée dans différents modes de veille tant que ESP32 reste sous tension.
+L'ESP32 emploie une minuterie matérielle pour maintenir l'heure du système, permettant ainsi la conservation de l'heure dans divers modes de veille tant que l'ESP32 demeure alimenté.
 
 ## Obtenir l'heure actuelle
 
