@@ -5,6 +5,10 @@
       <df name="include">
       </df>
       <df name="lib">
+        <df name="DateTimeManager">
+          <in>DateTimeManager.cpp</in>
+          <in>DateTimeManager.h</in>
+        </df>
       </df>
       <df name="src">
         <in>main.cpp</in>

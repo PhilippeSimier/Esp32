@@ -24,12 +24,12 @@ void setup() {
     Serial.begin(115200);
     
     struct timeval new_time;
-    new_time.tv_sec = 1704981007; // 11th January 2024 13:50:07
+    new_time.tv_sec = 1704981007; // 11 Janvier 2024 13:50:07
     if (settimeofday(&new_time, NULL) == 0) {
         Serial.printf("La mise à jour de la date et de l'heure a réussi.\r\n");
     }
     
-    // Définir la timezone sur Paris (Europe/Paris)
+    // Définir la timezone sur Paris (Central European Time)
     if (setenv("TZ", "CET-1CEST,M3.5.0,M10.5.0/3", 1) != 0) {
         Serial.printf("Erreur lors de la définition de la timezone");
        
