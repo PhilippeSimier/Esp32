@@ -16,12 +16,19 @@
 #include <Arduino.h>
 
 class DateTimeManager {
+
 public:
+    
     DateTimeManager();
-    void setCurrentTime(struct timeval new_time);
-    void printCurrentTime();
     virtual ~DateTimeManager();
+    
+    int setCurrentTime(unsigned long epoch);
+    unsigned long getCurrentTime() const;
+    void printCurrentTime(Stream &flux = Serial) const;
+    
+
 private:
+    
 
 };
 
