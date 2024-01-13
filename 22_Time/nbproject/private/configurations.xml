@@ -5,6 +5,11 @@
       <df name="include">
       </df>
       <df name="lib">
+        <df name="Afficheur">
+          <in>Afficheur.cpp</in>
+          <in>Afficheur.h</in>
+          <in>Dialog_plain_19.h</in>
+        </df>
         <df name="DateTimeManager">
           <in>DateTimeManager.cpp</in>
           <in>DateTimeManager.h</in>

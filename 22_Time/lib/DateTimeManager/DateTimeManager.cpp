@@ -48,7 +48,7 @@ unsigned long DateTimeManager::getCurrentTime() const {
 }
 
 /**
- * @brief Méthode pour écrire la date et l'heure locale courante
+ * @brief Méthode pour écrire la date et l'heure courante Central European Time (CET)
  *        en français. 
  * @param flux un objet dérivant de Stream (par exemple Serial) 
  */
@@ -83,7 +83,8 @@ void DateTimeManager::printCurrentTime(Stream &flux) const {
             months[timeInfo.tm_mon],
             timeInfo.tm_year + 1900);
 
-    flux.println(&timeInfo, "%H:%M:%S");
+    flux.print(&timeInfo, "%H:%M:%S");
+    flux.println(" CET");
 
 }
 
