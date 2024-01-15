@@ -24,7 +24,7 @@ public:
     void afficher(const char car);
     void afficherMdp(const String message);
     void afficherFloat(const String message, const float valeur, const String unite);
-    void afficherDateTime(const struct tm dateTime);
+    void afficherDateTime(const time_t _time);
     
 private:
     String message;

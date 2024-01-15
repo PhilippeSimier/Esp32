@@ -7,31 +7,68 @@
  */
 
 #include <Arduino.h>
+#include <WiFi.h>
+#include <NTPClient.h>
+#include <WiFiUdp.h>
 #include <DateTimeManager.h>
 #include <Afficheur.h>
 
 
 DateTimeManager dtm;
 Afficheur *afficheur; // Un afficheur Oled
-struct tm timeInfo;
-time_t now;
+
+const char *ssid     = "Votre_SSID";
+const char *password = "Votre_Mot_De_Passe";
+WiFiUDP ntpUDP;
+const char *ntpServerName = "ntp-p1.obspm.fr";
+NTPClient timeClient(ntpUDP, ntpServerName);
 
 void setup() {
 
     Serial.begin(115200);
-       
-    if (dtm.setCurrentTime(946684800) == 0)  // Unixtime for Sat Jan 01 2000 00:00:00 GMT+0000
-        Serial.println("La mise à jour de la date et de l'heure a réussie"); 
-    
     afficheur = new Afficheur;
+    unsigned long maintenant;
+    
+    WiFi.begin(ssid, password);
+
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+        afficheur->afficher('.');
+    }
+    Serial.println("Connecté au réseau WiFi");
+
+    
+    timeClient.begin();
+    
+    while ( !timeClient.update()){
+        
+        Serial.print("!");
+        afficheur->afficher('!');
+        delay(500);
+    }
+    maintenant = timeClient.getEpochTime();
+    Serial.println(maintenant);
+    if (dtm.setCurrentTime(maintenant) == 0){
+        Serial.println("La mise à jour de la date et de l'heure a réussie");
+        afficheur->afficher("Synchro\nTime OK");
+
+    }
 }
 
 void loop() {
 
-    dtm.printCurrentTime();
+    // time_t Type arithmétique le nombre de secondes depuis 00h00, le 1er janvier 1970 UTC
+    time_t now;
+
+    // renvoie l'heure actuelle du système sous forme de temps depuis l'époque
     time(&now);
-    localtime_r(&now, &timeInfo);
-    afficheur->afficherDateTime(timeInfo);
+
+
+    dtm.printCurrentTime(now, Serial);
+    afficheur->afficherDateTime(now);
+
+    
     
     delay(1000);
 }

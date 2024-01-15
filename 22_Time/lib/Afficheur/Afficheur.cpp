@@ -99,9 +99,12 @@ void Afficheur::afficherFloat(const String message, const float valeur, const St
  * Méthode pour afficher la date et l'heure
  * @param struct tm
  */
-void Afficheur::afficherDateTime(const struct tm dateTime){
+void Afficheur::afficherDateTime(const time_t _time){
     
+    struct tm dateTime;
     char message[26];
+    
+    localtime_r(&_time, &dateTime);
     snprintf(message, sizeof (message), "%02d:%02d:%04d\n%02d:%02d:%02d", 
             dateTime.tm_mday,
             dateTime.tm_mon + 1,

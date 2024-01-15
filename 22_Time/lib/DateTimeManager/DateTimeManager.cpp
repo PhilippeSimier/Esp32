@@ -21,6 +21,7 @@ int DateTimeManager::setCurrentTime(unsigned long epoch) {
     int retour;
     struct timeval new_time;
     new_time.tv_sec = epoch;
+    new_time.tv_usec = 0;
     
     retour = settimeofday(&new_time, NULL); 
 
@@ -50,9 +51,11 @@ unsigned long DateTimeManager::getCurrentTime() const {
 /**
  * @brief Méthode pour écrire la date et l'heure courante Central European Time (CET)
  *        en français. 
- * @param flux un objet dérivant de Stream (par exemple Serial) 
+ * @param time_t Type arithmétique le nombre de secondes depuis 00h00, le 1er janvier 1970 (UTC)
+ *        flux un objet dérivant de Stream (par exemple Serial) 
  */
-void DateTimeManager::printCurrentTime(Stream &flux) const {
+void DateTimeManager::printCurrentTime(const time_t _time, Stream &flux) const 
+{
 
     const char * months[] = {
         "Janv.", "Févr.", "Mars", "Avr.", "Mai", "Juin", "Juil.",
@@ -65,17 +68,8 @@ void DateTimeManager::printCurrentTime(Stream &flux) const {
 
     struct tm timeInfo;
 
-    // time_t Type arithmétique le nombre de secondes 
-    // depuis 00h00, le 1er janvier 1970 UTC
-    time_t now;
-
-    // renvoie l'heure actuelle du système  
-    // sous forme de temps depuis l'époque
-    time(&now);
-
-
     // convertit l'heure depuis l'époque en heure calendaire exprimée en heure locale
-    localtime_r(&now, &timeInfo);
+    localtime_r(&_time, &timeInfo);
 
     flux.printf("%s %d %s %d ",
             days[timeInfo.tm_wday],

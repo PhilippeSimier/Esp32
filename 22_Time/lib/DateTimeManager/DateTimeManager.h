@@ -24,7 +24,7 @@ public:
     
     int setCurrentTime(unsigned long epoch);
     unsigned long getCurrentTime() const;
-    void printCurrentTime(Stream &flux = Serial) const;
+    void printCurrentTime(const time_t _time , Stream &flux = Serial) const;
     
 
 private:
