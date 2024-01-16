@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/class.h to edit this template
- */
-
 /* 
  * File:   DateTimeManager.h
- * Author: psimier
+ * Author: Philippe SIMIER Lycée Touchard le Mans
  *
  * Created on 11 janvier 2024, 17:40
  */
@@ -14,6 +9,8 @@
 #define DATETIMEMANAGER_H
 
 #include <Arduino.h>
+#include <NTPClient.h>
+#include <WiFiUdp.h>
 
 class DateTimeManager {
 
@@ -25,9 +22,13 @@ public:
     int setCurrentTime(unsigned long epoch);
     unsigned long getCurrentTime() const;
     void printCurrentTime(const time_t _time , Stream &flux = Serial) const;
+    bool synchroniser();
     
 
 private:
+    
+    WiFiUDP   *ntpUDP;
+    NTPClient *timeClient;
     
 
 };

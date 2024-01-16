@@ -5,15 +5,39 @@
  * Created on 11 janvier 2024, 17:40
  */
 
-#include <stdlib.h>
-
 #include "DateTimeManager.h"
 
 DateTimeManager::DateTimeManager() {
+    
+    ntpUDP = new WiFiUDP;
+    const char *ntpServerName = "ntp-p1.obspm.fr";
+    timeClient = new NTPClient(*ntpUDP, ntpServerName);
 
 }
 
 DateTimeManager::~DateTimeManager() {
+    delete ntpUDP;
+    delete timeClient;
+}
+
+bool DateTimeManager::synchroniser(){
+    
+    unsigned long maintenant;
+    bool retour = false;
+    
+    timeClient->begin();
+    while ( !timeClient->update()){
+        
+        Serial.print("!");
+        delay(500);
+    }
+    maintenant = timeClient->getEpochTime();
+    Serial.println(maintenant);
+    if (setCurrentTime(maintenant) == 0){
+        retour = true;
+    }
+    timeClient->end();
+    return retour;
 }
 
 int DateTimeManager::setCurrentTime(unsigned long epoch) {
