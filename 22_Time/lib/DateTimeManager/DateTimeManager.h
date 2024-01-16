@@ -9,8 +9,7 @@
 #define DATETIMEMANAGER_H
 
 #include <Arduino.h>
-#include <NTPClient.h>
-#include <WiFiUdp.h>
+
 
 class DateTimeManager {
 
@@ -27,8 +26,8 @@ public:
 
 private:
     
-    WiFiUDP   *ntpUDP;
-    NTPClient *timeClient;
+    String ntpServerName;
+    String timeZone;
     
 
 };

@@ -68,7 +68,14 @@ La partie "CEST,M3.5.0,M10.5.0/3" spécifie les règles de changement d'heure d'
 
 En résumé, cette valeur de la variable TZ indique que le système est configuré pour le fuseau horaire de l'Europe centrale, avec un ajustement automatique pour l'heure d'été. Cela signifie que le système prend en compte les changements d'heure d'été et d'heure standard conformément aux règles spécifiées.
 
+## Synchroniser avec NTP
 
+Le NTP (Network Time Protocol) est un protocole Internet qui permet de synchroniser l' horloge, à travers le réseau internet.
+Aucune librairie additionnelle n’est requise, tout est intégré de base dans `time.h` 
+
+la fonction `configTime` est utilisée pour configurer le module ESP32 afin de synchroniser l'heure à partir d'un serveur NTP (Network Time Protocol).
+
+[configTime](https://github.com/espressif/arduino-esp32/blob/master/cores/esp32/esp32-hal-time.c#L48)
 
 
 # Changelog

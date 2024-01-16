@@ -1,6 +1,6 @@
 /* 
  * File:   main.cpp
- * Author: philippe SIMIER
+ * Author: philippe SIMIER Lycée Touchard
  *
  * Created on 20 mars 2022, 12:24
  * 
@@ -23,7 +23,6 @@ void setup() {
 
     Serial.begin(115200);
     afficheur = new Afficheur;
-    unsigned long maintenant;
     
     WiFi.begin(ssid, password);
 

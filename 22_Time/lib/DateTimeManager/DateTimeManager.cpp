@@ -9,35 +9,37 @@
 
 DateTimeManager::DateTimeManager() {
     
-    ntpUDP = new WiFiUDP;
-    const char *ntpServerName = "ntp-p1.obspm.fr";
-    timeClient = new NTPClient(*ntpUDP, ntpServerName);
-
+    ntpServerName = "ntp-p1.obspm.fr";
+    timeZone      = "CET-1CEST,M3.5.0,M10.5.0/3";
 }
 
 DateTimeManager::~DateTimeManager() {
-    delete ntpUDP;
-    delete timeClient;
+
 }
 
-bool DateTimeManager::synchroniser(){
+/**
+ * @brief   Methode pour synchroniser la RTC avec un serveur de temps
+ *          elle permet aussi de définir une timeZone.
+ * @return  true si la synchronisation réussie
+ */
+bool DateTimeManager::synchroniser() {
+
+    struct tm timeinfo;
+    int retour;
     
-    unsigned long maintenant;
-    bool retour = false;
+    configTime(0, 0, ntpServerName.c_str(), "pool.ntp.org");  // connexion aux serveurs NTP, avec un offset nul. Temps UTC
+    while (!getLocalTime(&timeinfo)) {
+        Serial.println("!");
+    }
+    // Définir la timezone 
+    retour = setenv("TZ", timeZone.c_str(), 1);
+
+    // Mettre à jour la variable d'environnement TZ
+    tzset();
     
-    timeClient->begin();
-    while ( !timeClient->update()){
-        
-        Serial.print("!");
-        delay(500);
-    }
-    maintenant = timeClient->getEpochTime();
-    Serial.println(maintenant);
-    if (setCurrentTime(maintenant) == 0){
-        retour = true;
-    }
-    timeClient->end();
-    return retour;
+    if (retour == 0)
+        return true;
+    else return false;
 }
 
 int DateTimeManager::setCurrentTime(unsigned long epoch) {
@@ -46,15 +48,9 @@ int DateTimeManager::setCurrentTime(unsigned long epoch) {
     struct timeval new_time;
     new_time.tv_sec = epoch;
     new_time.tv_usec = 0;
-    
-    retour = settimeofday(&new_time, NULL); 
 
-    // Définir la timezone sur Paris (Central European Time)
-    retour = setenv("TZ", "CET-1CEST,M3.5.0,M10.5.0/3", 1); 
+    retour = settimeofday(&new_time, NULL);
 
-    // Mettre à jour la variable d'environnement TZ
-    tzset();
-    
     return retour;
 
 }
@@ -64,12 +60,12 @@ int DateTimeManager::setCurrentTime(unsigned long epoch) {
  * @return le temps epoch 
  */
 unsigned long DateTimeManager::getCurrentTime() const {
-    
+
     struct timeval current_time;
     gettimeofday(&current_time, NULL);
-    
+
     return current_time.tv_sec;
-    
+
 }
 
 /**
@@ -78,8 +74,7 @@ unsigned long DateTimeManager::getCurrentTime() const {
  * @param time_t Type arithmétique le nombre de secondes depuis 00h00, le 1er janvier 1970 (UTC)
  *        flux un objet dérivant de Stream (par exemple Serial) 
  */
-void DateTimeManager::printCurrentTime(const time_t _time, Stream &flux) const 
-{
+void DateTimeManager::printCurrentTime(const time_t _time, Stream &flux) const {
 
     const char * months[] = {
         "Janv.", "Févr.", "Mars", "Avr.", "Mai", "Juin", "Juil.",
