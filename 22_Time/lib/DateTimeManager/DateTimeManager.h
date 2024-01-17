@@ -20,13 +20,13 @@ public:
     
     int setCurrentTime(unsigned long epoch);
     unsigned long getCurrentTime() const;
-    void printCurrentTime(const time_t _time , Stream &flux = Serial) const;
+    void printDateTime(const time_t _time , Stream &flux = Serial) const;
     bool synchroniser();
     
 
 private:
     
-    String ntpServerName;
+    String ntpServerName[3];
     String timeZone;
     
 

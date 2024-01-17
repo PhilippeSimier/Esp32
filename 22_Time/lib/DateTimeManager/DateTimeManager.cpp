@@ -9,8 +9,9 @@
 
 DateTimeManager::DateTimeManager() {
     
-    ntpServerName = "ntp-p1.obspm.fr";
-    timeZone      = "CET-1CEST,M3.5.0,M10.5.0/3";
+    ntpServerName[0] = "ntp-p1.obspm.fr";
+    ntpServerName[1] = "pool.ntp.org";
+    timeZone         = "CET-1CEST,M3.5.0,M10.5.0/3";
 }
 
 DateTimeManager::~DateTimeManager() {
@@ -27,7 +28,7 @@ bool DateTimeManager::synchroniser() {
     struct tm timeinfo;
     int retour;
     
-    configTime(0, 0, ntpServerName.c_str(), "pool.ntp.org");  // connexion aux serveurs NTP, avec un offset nul. Temps UTC
+    configTime(0, 0, ntpServerName[0].c_str(), ntpServerName[1].c_str());  // connexion aux serveurs NTP, avec un offset nul. Temps UTC
     while (!getLocalTime(&timeinfo)) {
         Serial.println("!");
     }
@@ -42,6 +43,12 @@ bool DateTimeManager::synchroniser() {
     else return false;
 }
 
+/**
+ * @brief Méthode pour actualiser 
+ *        l'heure et la date de la rtc
+ * @param epoch
+ * @return 
+ */
 int DateTimeManager::setCurrentTime(unsigned long epoch) {
 
     int retour;
@@ -51,8 +58,7 @@ int DateTimeManager::setCurrentTime(unsigned long epoch) {
 
     retour = settimeofday(&new_time, NULL);
 
-    return retour;
-
+    return retour;   
 }
 
 /**
@@ -69,12 +75,12 @@ unsigned long DateTimeManager::getCurrentTime() const {
 }
 
 /**
- * @brief Méthode pour écrire la date et l'heure courante Central European Time (CET)
+ * @brief Méthode pour écrire la date et l'heure calendaire locale
  *        en français. 
  * @param time_t Type arithmétique le nombre de secondes depuis 00h00, le 1er janvier 1970 (UTC)
  *        flux un objet dérivant de Stream (par exemple Serial) 
  */
-void DateTimeManager::printCurrentTime(const time_t _time, Stream &flux) const {
+void DateTimeManager::printDateTime(const time_t _time, Stream &flux) const {
 
     const char * months[] = {
         "Janv.", "Févr.", "Mars", "Avr.", "Mai", "Juin", "Juil.",

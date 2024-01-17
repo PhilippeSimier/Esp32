@@ -10,13 +10,15 @@
 #include <WiFi.h>
 #include <DateTimeManager.h>
 #include <Afficheur.h>
+#include <RTClib.h>
 
 
 DateTimeManager dtm;
-Afficheur *afficheur; // Un afficheur Oled
+Afficheur *afficheur;    // Un afficheur Oled
+RTC_DS3231 rtc_DS3231;   // Une horloge temps réel DS3231
 
-const char *ssid     = "Livebox-5648";
-const char *password = "vz9Lcc2RnTTmnDuD4Y";
+const char *ssid     = "PA_philippe";
+const char *password = "ygyc3556";
 
 
 void setup() {
@@ -36,6 +38,15 @@ void setup() {
     if (dtm.synchroniser()){
         Serial.println("La mise à jour de la date et de l'heure a réussi");
     }
+    
+    // Synchronise l'horloge temps réel DS3231
+    if (rtc_DS3231.begin()) {
+        time_t now;
+        time(&now);
+        rtc_DS3231.adjust(DateTime((uint32_t)now));
+    }  else {
+        Serial.println("Une erreur est apparue pendant le démarrage de la RTC DS3231");
+    }
 
 }
 
@@ -47,11 +58,13 @@ void loop() {
     // renvoie l'heure actuelle du système sous forme de temps depuis l'époque
     time(&now);
 
-
-    dtm.printCurrentTime(now, Serial);
+    dtm.printDateTime(now);
     afficheur->afficherDateTime(now);
-
     
+    delay(1000);
+    // Affichage de l'heure renvoyée par la rtc DS3231
+    dtm.printDateTime(rtc_DS3231.now().unixtime());
+    afficheur->afficherDateTime(rtc_DS3231.now().unixtime());
     
     delay(1000);
 }
