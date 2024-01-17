@@ -20,8 +20,8 @@ const char * days[] = {
 
 struct tm timeInfo;
 time_t now;    // time_t Type arithmétique le nombre de secondes depuis 00h00, le 1er janvier 1970 UTC
-time(&now);   // renvoie l'heure actuelle du système sous forme de temps depuis l'époque
-localtime_r(&now, &timeInfo);  // convertit l'heure depuis l'époque en heure calendaire exprimée en heure locale
+time(&now);   // renvoie l'heure actuelle du système sous forme de temps Epoch
+localtime_r(&now, &timeInfo);  // convertit le temps Epoch en temps calendaire exprimée en heure locale
     
     Serial.printf("%s %d %s %d ",
             days[timeInfo.tm_wday],
@@ -31,17 +31,33 @@ localtime_r(&now, &timeInfo);  // convertit l'heure depuis l'époque en heure ca
 
     Serial.println(&timeInfo, "%H:%M:%S");
 ```
-## Mise à jour de la date et de l'heure
+## Mettre à jour la date et  l'heure
 
-Pour mettre à jour la date et l'heure il suffit d'utiliser la fonction `settimeofday`
+Pour mettre à jour la date et l'heure à partir du temps Epoch (temps Unix, mesuré en secondes depuis le 1er janvier 1970), il suffit d'utiliser la fonction `settimeofday`
 ```cpp
 struct timeval new_time;
 new_time.tv_sec = 1704981007; // 11th January 2024 13:50:07
+new_time.tv_usec = 0;
+
 if (settimeofday(&new_time, NULL) == 0) {
    Serial.printf("La mise à jour de la date et de l'heure a réussi.\r\n");
     } 
 
 ```
+Pour convertir l'heure calendaire stockée dans une variable de type `struct tm` en temps Epoch (temps Unix, mesuré en secondes depuis le 1er janvier 1970), vous pouvez utiliser la fonction `mktime` de la bibliothèque.
+
+```cpp
+	struct tm calenderTime; 
+	calenderTime.tm_year = 2024 - 1900; // année - 1900 
+	calenderTime.tm_mon = 0; // mois (0-11) 
+	calenderTime.tm_mday = 17; // jour du mois 
+	calenderTime.tm_hour = 12; // heure 
+	calenderTime.tm_min = 0; // minute 
+	calenderTime.tm_sec = 0; // seconde  
+	// Conversion de la structure tm en temps Epoch  
+	time_t epochTime = mktime(&calenderTime);
+```
+
 ## Définir la time zone
 
 définir la timezone sur **Paris** en utilisant la fonction `setenv`.
@@ -68,7 +84,7 @@ La partie "CEST,M3.5.0,M10.5.0/3" spécifie les règles de changement d'heure d'
 
 En résumé, cette valeur de la variable TZ indique que le système est configuré pour le fuseau horaire de l'Europe centrale, avec un ajustement automatique pour l'heure d'été. Cela signifie que le système prend en compte les changements d'heure d'été et d'heure standard conformément aux règles spécifiées.
 
-## Synchroniser avec NTP
+## Synchroniser avec un serveur NTP
 
 Le NTP (Network Time Protocol) est un protocole Internet qui permet de synchroniser l' horloge, à travers le réseau internet.
 Aucune librairie additionnelle n’est requise, tout est intégré de base dans `time.h` 
@@ -77,12 +93,21 @@ la fonction `configTime` est utilisée pour configurer le module ESP32 afin de s
 
 [configTime](https://github.com/espressif/arduino-esp32/blob/master/cores/esp32/esp32-hal-time.c#L48)
 
+Voici un exemple de code
+```cpp
+	struct tm timeinfo;
+    // connexion aux serveurs NTP, avec un offset nul. Temps UTC   
+    configTime(0, 0, ntpServerName.c_str(), "pool.ntp.org");      
+    while (!getLocalTime(&timeinfo)) {
+        Serial.println("!");
+    }
+```
 
 # Changelog
 
 **04/09/2022 : ** Creation du README.md 
 
-**08/01/2023 : ** Actualisation de la présentation
+**08/01/2024 : ** Actualisation de la présentation
 
 > **Notes :**
 
