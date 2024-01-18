@@ -2,11 +2,17 @@
 
 ## Description
 
-L'ESP32 emploie une minuterie matérielle pour maintenir l'heure du système, permettant ainsi la conservation de l'heure dans divers modes de veille tant que l'ESP32 demeure alimenté.
+Le circuit Real Time Clock (RTC) est un composant essentiel dans les applications qui dépendent de la gestion précise du temps. Il permet de synchroniser des événements, de marquer des horodatages et de maintenir une référence temporelle cohérente.
+L'une des principales fonctions d'un RTC est de fournir une horloge en temps réel précise. Il maintient une trace du temps, sous la forme de temps epoch (valeur de secondes écoulées depuis le depuis le 1er janvier 1970 à 00h00 UTC.
+La puce ESP32 contient en interne une minuterie matérielle pour maintenir l'heure du système, permettant  la conservation de l'heure dans divers modes de veille. 
+Cependant, le  RTC intégré à l'ESP32 ne conserve pas ses données en cas de coupure d'alimentation. Il est donc essentiel de synchroniser ce RTC interne 
 
-## Obtenir l'heure actuelle
+ - soit avec un serveur NTP à travers le réseau internet,
+ - soit avec un RTC périphérique sur le bus I2C doté d'une alimentation sauvegardée par   une batterie.
 
-Si vous avez besoin d'obtenir l'heure avec une résolution d'une seconde, utilisez l'extrait de code suivant : L'heure est affiché en français et en heure locale.
+## Obtenir l'heure calendaire actuelle
+
+Si vous avez besoin d'obtenir l'heure et la date avec une résolution d'une seconde, utilisez l'extrait de code suivant : L'heure est affiché en français et en heure locale.
 
 ```cpp
 const char * months[] = {
@@ -58,9 +64,10 @@ Pour convertir l'heure calendaire stockée dans une variable de type `struct tm`
 	time_t epochTime = mktime(&calenderTime);
 ```
 
-## Définir la time zone
+## Définir la time zone pour obtenir le temps local
 
-définir la timezone sur **Paris** en utilisant la fonction `setenv`.
+La détermination de la zone horaire permet de convertir l'heure universelle coordonnée (UTC) en heure locale. Différentes régions du monde ont des décalages horaires différents par rapport à l'UTC en raison de la rotation de la Terre. Ainsi, définir la zone horaire permet de représenter correctement l'heure locale à un endroit spécifique.
+De plus certaines régions observent l'heure d'été, au cours de laquelle les horloges sont réglées d'une heure en avant par rapport à l'heure normale. La définition de la zone horaire tient compte de ces ajustements automatiques pour garantir que l'heure est correctement gérée, qu'il s'agisse de l'heure d'été ou de l'heure normale.
 
 Les fuseaux horaires sont généralement définis en utilisant des noms de région (comme "Europe/Paris") ou des abréviations standard (comme "CET" pour Central European Time sans tenir compte de l'heure d'été). 
 
@@ -87,27 +94,33 @@ En résumé, cette valeur de la variable TZ indique que le système est configur
 ## Synchroniser avec un serveur NTP
 
 Le NTP (Network Time Protocol) est un protocole Internet qui permet de synchroniser l' horloge, à travers le réseau internet.
-Aucune librairie additionnelle n’est requise, tout est intégré de base dans `time.h` 
+Sur un esp32 aucune librairie additionnelle n’est requise, tout est intégré de base dans `time.h` 
 
-la fonction `configTime` est utilisée pour configurer le module ESP32 afin de synchroniser l'heure à partir d'un serveur NTP (Network Time Protocol).
+la fonction `configTime` est utilisée pour configurer le RTC interne à l' ESP32 afin de synchroniser l'heure à partir d'un serveur NTP (Network Time Protocol).
 
-[configTime](https://github.com/espressif/arduino-esp32/blob/master/cores/esp32/esp32-hal-time.c#L48)
 
 Voici un exemple de code
 ```cpp
-	struct tm timeinfo;
+	String ntpServerName[3]; 
+	ntpServerName[0] = "ntp-p1.obspm.fr";
+	ntpServerName[1] = "pool.ntp.org";
     // connexion aux serveurs NTP, avec un offset nul. Temps UTC   
-    configTime(0, 0, ntpServerName.c_str(), "pool.ntp.org");      
+    configTime(0, 0, 
+			    ntpServerName[0].c_str(),
+			    ntpServerName[1].c_str()
+			    );      
+    // Attente de la synchronisation
+    struct tm timeinfo;
     while (!getLocalTime(&timeinfo)) {
-        Serial.println("!");
+        Serial.print("!");
     }
 ```
-
+Vous pouvez définir jusqu'à 3 serveurs NTP différents.
 # Changelog
 
-**04/09/2022 : ** Creation du README.md 
+ **04/09/2022 :**  Creation du README.md 
 
-**08/01/2024 : ** Actualisation de la présentation
+**18/01/2024 :**  Actualisation de la présentation
 
 > **Notes :**
 
